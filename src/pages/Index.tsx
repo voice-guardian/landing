@@ -21,12 +21,16 @@ const Index = () => {
           <p className="text-2xl text-gray-600 mb-12 max-w-2xl mx-auto">
             Unlock hidden opportunities to monetize your content. Grow your revenue on autopilot
           </p>
-          <Button size="lg" className="h-14 px-12 text-lg" asChild>
+          <Button 
+            size="lg" 
+            className="h-16 px-14 text-lg bg-[#F97316] hover:bg-[#F97316]/90 transform transition-all duration-300 hover:scale-105 hover:shadow-lg" 
+            asChild
+          >
             <a href="https://google.com" target="_blank" rel="noopener noreferrer">
               Book a Demo
             </a>
           </Button>
-          <div className="mt-16">
+          <div className="mt-24">
             <LogoCarousel />
           </div>
         </div>

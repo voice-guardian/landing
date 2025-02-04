@@ -2,49 +2,46 @@
 import { useEffect, useState } from "react";
 
 const logos = [
-  "Harvard",
-  "Stanford",
-  "MIT",
-  "Google",
-  "Facebook",
-  "Amazon",
-  "Microsoft",
-  "Apple",
+  "/logo1.png",
+  "/logo2.png",
+  "/logo3.png",
+  "/logo4.png",
+  "/logo5.png",
+  "/logo6.png",
 ];
 
 export const LogoCarousel = () => {
   const [position, setPosition] = useState(0);
   const logoWidth = 200; // Width of each logo + spacing
-  const totalWidth = logoWidth * logos.length;
 
   useEffect(() => {
     const interval = setInterval(() => {
       setPosition((prev) => {
         const newPosition = prev - 1;
+        // Reset position when the first logo is completely out of view
         if (newPosition <= -logoWidth) {
-          // When first logo is completely out of view, reset position
-          return prev + logoWidth;
+          return 0;
         }
         return newPosition;
       });
-    }, 50);
+    }, 20);
 
     return () => clearInterval(interval);
-  }, [logoWidth]);
+  }, []);
 
   return (
     <div className="w-full overflow-hidden fade-edges py-12">
       <div 
-        className="flex space-x-12 whitespace-nowrap transition-all duration-500"
+        className="flex space-x-12 whitespace-nowrap transition-transform"
         style={{ transform: `translateX(${position}px)` }}
       >
         {[...logos, ...logos].map((logo, i) => (
-          <span 
+          <img 
             key={i} 
-            className="inline-block grayscale-logos text-2xl font-semibold"
-          >
-            {logo}
-          </span>
+            src={logo}
+            alt={`Partner ${i + 1}`}
+            className="inline-block h-12 w-auto grayscale-logos object-contain"
+          />
         ))}
       </div>
     </div>

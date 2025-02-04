@@ -38,7 +38,7 @@ export const Features = () => {
     const handleScroll = () => {
       const containerTop = container.offsetTop;
       const scrollPosition = window.scrollY - containerTop;
-      const sectionHeight = window.innerHeight * 0.8;
+      const sectionHeight = window.innerHeight;
       
       const newActiveFeature = Math.floor(scrollPosition / sectionHeight);
       if (newActiveFeature >= 0 && newActiveFeature < features.length) {
@@ -57,10 +57,10 @@ export const Features = () => {
           {features.map((feature, index) => (
             <div key={index} className="mb-24">
               <div className="flex items-center space-x-4 mb-8">
-                <feature.icon className="w-16 h-16 text-primary" />
-                <h3 className="text-4xl font-bold">{feature.title}</h3>
+                <feature.icon className="w-12 h-12 text-[#F97316]" />
+                <h3 className="text-3xl font-bold">{feature.title}</h3>
               </div>
-              <p className="text-2xl text-gray-600 mb-12 leading-relaxed">{feature.description}</p>
+              <p className="text-xl text-gray-600 mb-12 leading-relaxed">{feature.description}</p>
               <img
                 src={feature.image}
                 alt={feature.title}
@@ -87,10 +87,10 @@ export const Features = () => {
                   }`}
                 >
                   <div className="flex items-center space-x-6 mb-8">
-                    <feature.icon className="w-16 h-16 text-primary" />
-                    <h3 className="text-4xl font-bold leading-tight">{feature.title}</h3>
+                    <feature.icon className="w-12 h-12 text-[#F97316]" />
+                    <h3 className="text-3xl font-bold leading-tight">{feature.title}</h3>
                   </div>
-                  <p className="text-2xl text-gray-600 leading-relaxed">{feature.description}</p>
+                  <p className="text-xl text-gray-600 leading-relaxed">{feature.description}</p>
                 </div>
               ))}
             </div>
