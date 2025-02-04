@@ -1,3 +1,4 @@
+
 import { useEffect, useRef } from "react";
 
 const testimonials = [
@@ -44,13 +45,13 @@ export const Testimonials = () => {
   }, []);
 
   return (
-    <div ref={containerRef} className="py-16 bg-gray-50">
+    <div ref={containerRef} className="py-24 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl font-bold text-center mb-12">
+        <h2 className="text-4xl md:text-5xl font-bold text-center mb-16">
           Trusted by leading creators,<br />
           managers, labels, and publishers.
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
           {testimonials.map((testimonial, index) => (
             <a
               key={index}
@@ -59,12 +60,12 @@ export const Testimonials = () => {
               rel="noopener noreferrer"
               className="testimonial-card opacity-0 translate-y-4 transition-all duration-700 delay-100 transform hover:scale-105"
             >
-              <div className="bg-white p-8 rounded-lg shadow-lg h-full min-h-[300px]">
-                <p className="text-gray-600 mb-6 text-lg">{testimonial.content}</p>
-                <div className="mt-6">
-                  <p className="font-semibold text-xl">{testimonial.name}</p>
-                  <p className="text-base text-gray-500">{testimonial.role}</p>
-                  <p className="text-base text-primary">{testimonial.company}</p>
+              <div className="bg-white p-10 rounded-lg shadow-lg h-full min-h-[400px]">
+                <p className="text-gray-600 mb-8 text-xl leading-relaxed">{testimonial.content}</p>
+                <div className="mt-8">
+                  <p className="font-semibold text-2xl">{testimonial.name}</p>
+                  <p className="text-lg text-gray-500 mt-2">{testimonial.role}</p>
+                  <p className="text-lg text-primary mt-1">{testimonial.company}</p>
                 </div>
               </div>
             </a>

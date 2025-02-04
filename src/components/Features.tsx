@@ -1,3 +1,4 @@
+
 import { useEffect, useRef, useState } from "react";
 import { Calendar, Users, Zap } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -37,7 +38,7 @@ export const Features = () => {
     const handleScroll = () => {
       const containerTop = container.offsetTop;
       const scrollPosition = window.scrollY - containerTop;
-      const sectionHeight = window.innerHeight * 0.8; // Reduced scroll duration
+      const sectionHeight = window.innerHeight * 0.8;
       
       const newActiveFeature = Math.floor(scrollPosition / sectionHeight);
       if (newActiveFeature >= 0 && newActiveFeature < features.length) {
@@ -54,16 +55,16 @@ export const Features = () => {
       <div className="py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {features.map((feature, index) => (
-            <div key={index} className="mb-12">
-              <div className="flex items-center space-x-4 mb-4">
-                <feature.icon className="w-6 h-6 text-primary" />
-                <h3 className="text-2xl font-bold">{feature.title}</h3>
+            <div key={index} className="mb-16">
+              <div className="flex items-center space-x-4 mb-6">
+                <feature.icon className="w-12 h-12 text-primary" />
+                <h3 className="text-3xl font-bold">{feature.title}</h3>
               </div>
-              <p className="text-gray-600 mb-6">{feature.description}</p>
+              <p className="text-xl text-gray-600 mb-8">{feature.description}</p>
               <img
                 src={feature.image}
                 alt={feature.title}
-                className="w-full h-[300px] object-cover rounded-lg shadow-xl"
+                className="w-full h-[400px] object-cover rounded-lg shadow-xl"
               />
             </div>
           ))}
@@ -76,8 +77,8 @@ export const Features = () => {
     <div ref={containerRef} className="sticky-container">
       <div className="sticky-content flex items-center justify-center">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div className="space-y-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+            <div className="space-y-16">
               {features.map((feature, index) => (
                 <div
                   key={index}
@@ -85,15 +86,15 @@ export const Features = () => {
                     index === activeFeature ? 'opacity-100' : 'opacity-40'
                   }`}
                 >
-                  <div className="flex items-center space-x-4">
-                    <feature.icon className="w-6 h-6 text-primary" />
-                    <h3 className="text-2xl font-bold">{feature.title}</h3>
+                  <div className="flex items-center space-x-6">
+                    <feature.icon className="w-12 h-12 text-primary" />
+                    <h3 className="text-4xl font-bold">{feature.title}</h3>
                   </div>
-                  <p className="mt-4 text-gray-600">{feature.description}</p>
+                  <p className="mt-6 text-xl text-gray-600 leading-relaxed">{feature.description}</p>
                 </div>
               ))}
             </div>
-            <div className="relative h-[400px]">
+            <div className="relative h-[600px]">
               {features.map((feature, index) => (
                 <img
                   key={index}

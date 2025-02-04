@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { Navbar } from "@/components/Navbar";
 import { LogoCarousel } from "@/components/LogoCarousel";
@@ -12,7 +13,7 @@ const Index = () => {
       <Navbar />
       
       {/* Hero Section */}
-      <section className="pt-32 pb-16">
+      <section className="pt-32 pb-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-5xl md:text-6xl font-bold mb-6">
             Maximize<br />your content's worth
@@ -30,17 +31,17 @@ const Index = () => {
       </section>
 
       {/* Features Section */}
-      <section id="features" className="py-24">
+      <section id="features" className="py-16">
         <Features />
       </section>
 
       {/* Testimonials Section */}
-      <section id="testimonials">
+      <section id="testimonials" className="mt-16">
         <Testimonials />
       </section>
 
       {/* CTA Section */}
-      <section>
+      <section className="py-24">
         <CallToAction />
       </section>
 
