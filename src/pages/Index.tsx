@@ -15,18 +15,20 @@ const Index = () => {
       {/* Hero Section */}
       <section className="pt-32 pb-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-5xl md:text-6xl font-bold mb-6">
+          <h1 className="text-6xl md:text-7xl font-bold mb-8">
             Maximize<br />your content's worth
           </h1>
-          <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+          <p className="text-2xl text-gray-600 mb-12 max-w-2xl mx-auto">
             Unlock hidden opportunities to monetize your content. Grow your revenue on autopilot
           </p>
-          <Button size="lg" asChild>
+          <Button size="lg" className="h-14 px-12 text-lg" asChild>
             <a href="https://google.com" target="_blank" rel="noopener noreferrer">
               Book a Demo
             </a>
           </Button>
-          <LogoCarousel />
+          <div className="mt-16">
+            <LogoCarousel />
+          </div>
         </div>
       </section>
 

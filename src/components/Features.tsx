@@ -1,25 +1,25 @@
 
 import { useEffect, useRef, useState } from "react";
-import { Calendar, Users, Zap } from "lucide-react";
+import { Search, TrendingUp, FileCheck } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 
 const features = [
   {
-    title: "Automated Scheduling",
-    description: "Skip the back-and-forth and schedule interviews automatically. Our AI conducts interviews 24/7 with unlimited capacity.",
-    icon: Calendar,
+    title: "Find where your content is, anywhere.",
+    description: "Watchdog monitors the web 24/7 to uncover everywhere your content is being posted, and who is posting it.",
+    icon: Search,
     image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&w=800&q=80"
   },
   {
-    title: "Smart Analysis",
-    description: "Our AI analyzes responses in real-time, providing deep insights and recommendations for better decision making.",
-    icon: Zap,
+    title: "Focus on the uses that matter.",
+    description: "Watchdog sorts through the noise to surface the most actionable revenue opportunities that can move the needle for your business.",
+    icon: TrendingUp,
     image: "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?auto=format&fit=crop&w=800&q=80"
   },
   {
-    title: "Team Collaboration",
-    description: "Share insights and collaborate with your team in real-time. Make better decisions together.",
-    icon: Users,
+    title: "Convert found revenue to claimed revenue.",
+    description: "Watchdog converts found revenue at scale through automated notices, streamlined licensing, and escalation to our network of human legal partners (where necessary).",
+    icon: FileCheck,
     image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80"
   }
 ];
@@ -55,16 +55,16 @@ export const Features = () => {
       <div className="py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {features.map((feature, index) => (
-            <div key={index} className="mb-16">
-              <div className="flex items-center space-x-4 mb-6">
-                <feature.icon className="w-12 h-12 text-primary" />
-                <h3 className="text-3xl font-bold">{feature.title}</h3>
+            <div key={index} className="mb-24">
+              <div className="flex items-center space-x-4 mb-8">
+                <feature.icon className="w-16 h-16 text-primary" />
+                <h3 className="text-4xl font-bold">{feature.title}</h3>
               </div>
-              <p className="text-xl text-gray-600 mb-8">{feature.description}</p>
+              <p className="text-2xl text-gray-600 mb-12 leading-relaxed">{feature.description}</p>
               <img
                 src={feature.image}
                 alt={feature.title}
-                className="w-full h-[400px] object-cover rounded-lg shadow-xl"
+                className="w-full h-[500px] object-cover rounded-lg shadow-xl"
               />
             </div>
           ))}
@@ -78,7 +78,7 @@ export const Features = () => {
       <div className="sticky-content flex items-center justify-center">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-            <div className="space-y-16">
+            <div className="space-y-24">
               {features.map((feature, index) => (
                 <div
                   key={index}
@@ -86,15 +86,15 @@ export const Features = () => {
                     index === activeFeature ? 'opacity-100' : 'opacity-40'
                   }`}
                 >
-                  <div className="flex items-center space-x-6">
-                    <feature.icon className="w-12 h-12 text-primary" />
-                    <h3 className="text-4xl font-bold">{feature.title}</h3>
+                  <div className="flex items-center space-x-6 mb-8">
+                    <feature.icon className="w-16 h-16 text-primary" />
+                    <h3 className="text-4xl font-bold leading-tight">{feature.title}</h3>
                   </div>
-                  <p className="mt-6 text-xl text-gray-600 leading-relaxed">{feature.description}</p>
+                  <p className="text-2xl text-gray-600 leading-relaxed">{feature.description}</p>
                 </div>
               ))}
             </div>
-            <div className="relative h-[600px]">
+            <div className="relative h-[700px]">
               {features.map((feature, index) => (
                 <img
                   key={index}

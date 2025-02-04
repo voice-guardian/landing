@@ -15,15 +15,17 @@ const logos = [
 export const LogoCarousel = () => {
   const [position, setPosition] = useState(0);
   const logoWidth = 200; // Width of each logo + spacing
+  const totalWidth = logoWidth * logos.length;
 
   useEffect(() => {
     const interval = setInterval(() => {
       setPosition((prev) => {
-        if (prev <= -logoWidth) {
-          // Reset position when first logo moves out
-          return 0;
+        const newPosition = prev - 1;
+        if (newPosition <= -logoWidth) {
+          // When first logo is completely out of view, reset position
+          return prev + logoWidth;
         }
-        return prev - 1;
+        return newPosition;
       });
     }, 50);
 
@@ -31,12 +33,12 @@ export const LogoCarousel = () => {
   }, [logoWidth]);
 
   return (
-    <div className="w-full overflow-hidden fade-edges py-8">
+    <div className="w-full overflow-hidden fade-edges py-12">
       <div 
-        className="flex space-x-12 whitespace-nowrap transition-transform duration-1000"
+        className="flex space-x-12 whitespace-nowrap transition-all duration-500"
         style={{ transform: `translateX(${position}px)` }}
       >
-        {[...logos, logos[0]].map((logo, i) => (
+        {[...logos, ...logos].map((logo, i) => (
           <span 
             key={i} 
             className="inline-block grayscale-logos text-2xl font-semibold"
