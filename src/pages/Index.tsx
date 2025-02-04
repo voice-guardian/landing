@@ -13,7 +13,7 @@ const Index = () => {
       <Navbar />
       
       {/* Hero Section */}
-      <section className="pt-32 pb-8">
+      <section className="pt-32 pb-0">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-6xl md:text-7xl font-bold mb-8">
             Maximize<br />your content's worth
@@ -23,21 +23,21 @@ const Index = () => {
           </p>
           <Button 
             size="lg" 
-            className="h-16 px-14 text-lg bg-[#F97316] hover:bg-[#F97316]/90 transform transition-all duration-300 hover:scale-105 hover:shadow-lg" 
+            className="h-16 px-14 text-lg bg-primary hover:bg-primary/90 transform transition-all duration-300 hover:scale-105 hover:shadow-lg" 
             asChild
           >
             <a href="https://google.com" target="_blank" rel="noopener noreferrer">
               Book a Demo
             </a>
           </Button>
-          <div className="mt-24">
+          <div className="mt-8">
             <LogoCarousel />
           </div>
         </div>
       </section>
 
       {/* Features Section */}
-      <section id="features" className="py-16">
+      <section id="features" className="py-0">
         <Features />
       </section>
 

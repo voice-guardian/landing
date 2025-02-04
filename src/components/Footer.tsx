@@ -7,12 +7,12 @@ export const Footer = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center space-y-8 md:space-y-0">
           <div>
-            <h3 className="text-3xl font-bold text-white mb-4">AIStartup</h3>
-            <p className="text-xl">© All rights reserved by AIStartup Inc.</p>
+            <h3 className="text-3xl font-bold text-white mb-4">Watchdog</h3>
+            <p className="text-xl">© All rights reserved by Watchdog Inc.</p>
           </div>
           <div className="flex flex-col md:flex-row items-start md:items-center space-y-6 md:space-y-0 md:space-x-12">
-            <a href="mailto:hello@aistartup.com" className="text-lg hover:text-white transition-colors">
-              hello@aistartup.com
+            <a href="mailto:hello@creatorwatchdog.com" className="text-lg hover:text-white transition-colors">
+              hello@creatorwatchdog.com
             </a>
             <a
               href="https://linkedin.com"
