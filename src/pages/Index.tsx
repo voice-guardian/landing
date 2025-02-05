@@ -23,16 +23,16 @@ const Index = () => {
           </p>
           <Button 
             size="lg" 
-            className="h-16 px-14 text-lg bg-primary hover:bg-primary/90 transform transition-all duration-300 hover:scale-105 hover:shadow-lg" 
+            className="h-14 px-14 text-lg bg-primary hover:bg-primary/90 transform transition-all duration-300 hover:scale-105 hover:shadow-lg" 
             asChild
           >
-            <a href="https://google.com" target="_blank" rel="noopener noreferrer">
-              Book a Demo
+            <a href="https://calendly.com/yoavzimmerman/watchdog" target="_blank" rel="noopener noreferrer">
+              Get Started
             </a>
           </Button>
-          <div className="mt-8">
-            <LogoCarousel />
-          </div>
+          {/* <div className="mt-8"> */}
+            {/* <LogoCarousel /> */}
+          {/* </div> */}
         </div>
       </section>
 
@@ -42,9 +42,9 @@ const Index = () => {
       </section>
 
       {/* Testimonials Section */}
-      <section id="testimonials" className="mt-16">
+      {/* <section id="testimonials" className="mt-16">
         <Testimonials />
-      </section>
+      </section> */}
 
       {/* CTA Section */}
       <section className="py-24">

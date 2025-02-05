@@ -17,14 +17,14 @@ export const Navbar = () => {
               <button onClick={() => scrollToSection('features')} className="text-gray-600 hover:text-gray-900">
                 Features
               </button>
-              <button onClick={() => scrollToSection('testimonials')} className="text-gray-600 hover:text-gray-900">
+              {/* <button onClick={() => scrollToSection('testimonials')} className="text-gray-600 hover:text-gray-900">
                 Testimonials
-              </button>
+              </button> */}
             </div>
           </div>
           <Button asChild>
-            <a href="https://google.com" target="_blank" rel="noopener noreferrer">
-              Book a Demo
+            <a href="https://calendly.com/yoavzimmerman/watchdog" target="_blank" rel="noopener noreferrer">
+              Book Demo
             </a>
           </Button>
         </div>

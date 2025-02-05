@@ -40,7 +40,7 @@ export const Features = () => {
       const totalHeight = container.clientHeight;
       const sectionHeight = totalHeight / features.length;
       
-      const newActiveFeature = Math.floor(scrollPosition / sectionHeight);
+      const newActiveFeature = Math.min(2, Math.floor(scrollPosition * 1.3/ sectionHeight));
       if (newActiveFeature >= 0 && newActiveFeature < features.length) {
         setActiveFeature(newActiveFeature);
       }
@@ -94,13 +94,13 @@ export const Features = () => {
                 </div>
               ))}
             </div>
-            <div className="relative h-[700px]">
+            <div className="relative h-full">
               {features.map((feature, index) => (
                 <img
                   key={index}
                   src={feature.image}
                   alt={feature.title}
-                  className={`absolute top-[60px] w-300 h-300 object-cover transition-all duration-500 ${
+                  className={`absolute top-[60px] w-400 h-400 object-cover transition-all duration-500 ${
                     index === activeFeature ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
                   }`}
                 />
