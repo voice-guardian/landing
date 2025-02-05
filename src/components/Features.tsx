@@ -7,19 +7,19 @@ const features = [
     title: "Find where your content is, anywhere.",
     description: "Watchdog monitors the web 24/7 to uncover everywhere your content is being posted, and who is posting it.",
     icon: Search,
-    image: "/feature-1.png"
+    image: "/feature-1.webp"
   },
   {
     title: "Focus on the uses that matter.",
     description: "Watchdog sorts through the noise to surface the most actionable revenue opportunities that can move the needle for your business.",
     icon: TrendingUp,
-    image: "/feature-2.png"
+    image: "/feature-2.webp"
   },
   {
     title: "Convert found revenue to claimed revenue.",
     description: "Watchdog converts found revenue at scale through automated notices, streamlined licensing, and escalation to our network of human legal partners (where necessary).",
     icon: FileCheck,
-    image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80"
+    image: "/feature-3.webp"
   }
 ];
 
@@ -100,7 +100,7 @@ export const Features = () => {
                   key={index}
                   src={feature.image}
                   alt={feature.title}
-                  className={`absolute top-[60px] w-[90%] h-300 object-fit transition-all duration-500 ${
+                  className={`absolute top-[60px] w-300 h-300 object-cover transition-all duration-500 ${
                     index === activeFeature ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
                   }`}
                 />
