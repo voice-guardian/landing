@@ -56,15 +56,15 @@ export const Features = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {features.map((feature, index) => (
             <div key={index} className="mb-24">
-              <div className="flex items-center space-x-4 mb-8">
+              <div className="flex flex-col items-center space-y-4 mb-8 text-center">
                 <feature.icon className="w-12 h-12 text-primary" />
                 <h3 className="text-3xl font-bold">{feature.title}</h3>
               </div>
-              <p className="text-xl text-gray-600 mb-12 leading-relaxed">{feature.description}</p>
+              <p className="text-xl text-gray-600 mb-12 leading-relaxed text-center">{feature.description}</p>
               <img
                 src={feature.image}
                 alt={feature.title}
-                className="w-full h-[500px] object-cover rounded-lg shadow-xl"
+                className="w-[350px] h-full object-fit mx-auto"
               />
             </div>
           ))}
