@@ -1,29 +1,15 @@
 import React from "react";
 
 const logos = [
-  "https://framerusercontent.com/images/u0XRsBZMYVckdmf5aby68rhwR8.png",
-  "https://framerusercontent.com/images/iNYZv9u8MhOFxSYxmp0hUE5k.png",
-  "https://framerusercontent.com/images/SR28FD5u2y7JVthiocuTbdnSQQ.png",
-  "https://framerusercontent.com/images/XtGVKSjM9oCc9UVlYqGm0sS5dE.png"
+  "https://ik.imagekit.io/rekruiter/Watchdog/platinum-grammar.png",
+  "https://ik.imagekit.io/rekruiter/Watchdog/encore-recordings.png",
+  "https://ik.imagekit.io/rekruiter/Watchdog/romantic.png",
+  "https://ik.imagekit.io/rekruiter/Watchdog/regalias-digitales.png"
 ];
 
 export const LogoCarousel = () => {
   return (
-    <div className="w-3/5 mx-auto overflow-hidden relative py-12">
-      <style>
-        {`
-          @keyframes scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(calc(-150px * ${logos.length} - ${logos.length}rem)); }
-          }
-          .animate-scroll {
-            animation: scroll 20s linear infinite;
-          }
-          .logo-container:hover .animate-scroll {
-            animation-play-state: paused;
-          }
-        `}
-      </style>
+    <div className="w-2/5 mx-auto overflow-hidden relative py-12 center">
 
       <div className="absolute left-0 top-0 w-1/6 h-full bg-gradient-to-r from-white to-transparent z-10" />
       
@@ -35,7 +21,7 @@ export const LogoCarousel = () => {
               <img 
                 src={logo}
                 alt={`Partner ${i + 1}`}
-                className="h-12 w-[100px] grayscale-logos object-contain"
+                className="h-16 w-[100px] grayscale-logos object-contain"
               />
             </div>
           ))}
@@ -46,7 +32,7 @@ export const LogoCarousel = () => {
               <img 
                 src={logo}
                 alt={`Partner ${i + 1}`}
-                className="h-12 w-[150px] grayscale-logos object-contain"
+                className="h-16 w-[150px] grayscale-logos object-contain"
               />
             </div>
           ))}

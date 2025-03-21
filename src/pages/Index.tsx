@@ -30,9 +30,9 @@ const Index = () => {
               Get Started
             </a>
           </Button>
-          {/* <div className="mt-8"> */}
-            {/* <LogoCarousel /> */}
-          {/* </div> */}
+          <div className="mt-8">
+            <LogoCarousel />
+          </div>
         </div>
       </section>
 
@@ -44,7 +44,7 @@ const Index = () => {
       {/* Testimonials Section */}
       {/* <section id="testimonials" className="mt-16">
         <Testimonials />
-      </section> */}
+      </section>
 
       {/* CTA Section */}
       <section className="py-24">
