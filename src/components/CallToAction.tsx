@@ -36,6 +36,11 @@ export const CallToAction = () => {
               Book Demo
             </a>
           </Button>
+          {/* <Button size="lg" variant="outline" className="ml-4 text-white border-white" asChild>
+            <a href="/blog" rel="noopener noreferrer">
+              Learn More
+            </a>
+          </Button> */}
         </div>
       </div>
     </div>
