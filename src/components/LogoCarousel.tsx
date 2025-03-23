@@ -102,7 +102,7 @@ export const LogoCarousel = () => {
               <img 
                 src={logo}
                 alt={`Partner ${i + 1}`}
-                className="h-20 w-[120px] grayscale-logos object-contain"
+                className="h-24 w-[110px] grayscale-logos object-contain"
               />
             </div>
           ))}
@@ -113,7 +113,7 @@ export const LogoCarousel = () => {
               <img 
                 src={logo}
                 alt={`Partner ${i + 1}`}
-                className="h-20 w-[120px] grayscale-logos object-contain"
+                className="h-24 w-[110px] grayscale-logos object-contain"
               />
             </div>
           ))}

@@ -1,10 +1,10 @@
-import { CallToAction } from "@/components/CallToAction";
+import { BlogCallToAction } from "@/components/BlogCallToAction";
 import { BlogContent } from "@/components/BlogContent";
 
 const Blog = () => {
   return (
     <div className="min-h-screen">
-      <CallToAction />
+      <BlogCallToAction />
       <section className="py-24">
         <BlogContent />
       </section>
