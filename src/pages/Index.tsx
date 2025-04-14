@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Navbar } from "@/components/Navbar";
 import { LogoCarousel } from "@/components/LogoCarousel";
@@ -15,11 +14,11 @@ const Index = () => {
       {/* Hero Section */}
       <section className="pt-32 pb-0">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-6xl md:text-7xl font-bold mb-8">
-            Maximize<br />your content's worth
+          <h1 className="text-6xl md:text-7xl font-extrabold mb-8">
+          Don't Miss Out<br/> on Music Revenue
           </h1>
           <p className="text-2xl text-gray-600 mb-12 max-w-2xl mx-auto">
-            Unlock hidden opportunities to monetize your content. Grow your revenue on autopilot
+          We find where brands use your music and help you turn it into revenue.
           </p>
           <Button 
             size="lg" 
@@ -30,7 +29,7 @@ const Index = () => {
               Get Started
             </a>
           </Button>
-          <div className="mt-8">
+          <div className="mt-0">
             <LogoCarousel />
           </div>
         </div>

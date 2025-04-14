@@ -4,20 +4,20 @@ import { useIsMobile } from "@/hooks/use-mobile";
 
 const features = [
   {
-    title: "Find where your content is, anywhere.",
-    description: "Watchdog monitors the web 24/7 to uncover everywhere your content is being posted, and who is posting it.",
+    title: "Monitor",
+    description: "Identify when your music is used by brands in social media, at scale.",
     icon: Search,
     image: "/feature-1.webp"
   },
   {
-    title: "Focus on the uses that matter.",
-    description: "Watchdog sorts through the noise to surface the most actionable revenue opportunities that can move the needle for your business.",
+    title: "Identify",
+    description: "Generate reports of brand uses with high revenue potential — curated and ready to claim.",
     icon: TrendingUp,
     image: "/feature-2.webp"
   },
   {
-    title: "Convert found revenue to claimed revenue.",
-    description: "Watchdog converts found revenue at scale through automated notices, streamlined licensing, and escalation to our network of human legal partners (where necessary).",
+    title: "Collect",
+    description: "Automate notices to brands with a single click, or hand it off to our team to collect on your behalf.",
     icon: FileCheck,
     image: "/feature-3.webp"
   }
@@ -86,7 +86,7 @@ export const Features = () => {
                     index === activeFeature ? 'opacity-100' : 'opacity-40'
                   }`}
                 >
-                  <div className="flex items-center space-x-6 mb-8">
+                  <div className="flex items-center space-x-6 mb-4">
                     <feature.icon className="w-12 h-12 text-primary" />
                     <h3 className="text-3xl font-bold leading-tight">{feature.title}</h3>
                   </div>

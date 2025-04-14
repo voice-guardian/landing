@@ -25,7 +25,7 @@ export const CallToAction = () => {
         
         <div className="relative max-w-4xl mx-auto text-center">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-200 mb-8">
-            Take Back Control of Your Content<br />
+          Tap Into the $90B Social Ad Economy<br />
           </h2>
           <p className="text-gray-300 text-xl mb-10">
             Discover where your content is being used and turn lost revenue into claimed revenue with 
