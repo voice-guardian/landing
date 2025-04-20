@@ -1,0 +1,171 @@
+import React from 'react';
+
+const Footer: React.FC = () => {
+  const navLinks = [
+    { name: 'Home', href: '/' },
+    { name: 'About us', href: '/about' },
+    { name: 'Partners', href: '/partners' },
+    { name: 'Blog', href: '/blog' },
+    { name: 'FAQ', href: '/faq' },
+  ];
+
+  const legalLinks = [
+    { name: 'Privacy Policy', href: '/privacy' },
+    { name: 'Terms of Service', href: '/terms' },
+  ];
+
+  const currentYear = new Date().getFullYear();
+
+  return (
+    <footer className="bg-[#0e0e0e] text-white pt-16 pb-8">
+      <div className="container mx-auto px-4 md:px-6">
+        {/* Top Section with Brand + CTA */}
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-14">
+          {/* Left - Logo + Headline */}
+          <div className="max-w-lg mb-10 md:mb-0">
+            <div className="flex items-center mb-6">
+              <img src="/images/logo.png" alt="Watchdog Logo" className="h-8 mr-3" />
+              <span className="text-white text-xl font-bold">Watchdog</span>
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold leading-tight">
+              Tap Into the <span className="font-mono glitch-text-footer">$65B</span> Copyright<br />
+              Market
+            </h2>
+          </div>
+          
+          {/* Right - CTA Button */}
+          <div>
+            <button className="bg-white text-[#0e0e0e] px-8 py-3 rounded-lg font-bold text-base hover:bg-gray-200 transition-colors duration-300">
+              Book a Demo
+            </button>
+          </div>
+        </div>
+        
+        {/* Middle Section - Nav Links */}
+        <div className="border-t border-gray-800 py-8">
+          <nav className="flex flex-wrap justify-start mb-8">
+            {navLinks.map((link, index) => (
+              <a 
+                key={index}
+                href={link.href}
+                className="text-gray-400 hover:text-white mr-8 mb-4 transition-colors duration-200"
+              >
+                {link.name}
+              </a>
+            ))}
+          </nav>
+        </div>
+        
+        {/* Bottom Section - Copyright + Socials + Legal */}
+        <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
+          {/* Left - Copyright */}
+          <div className="text-gray-500 text-sm mb-6 md:mb-0">
+            © {currentYear} Watchdog. All Rights Reserved.
+          </div>
+          
+          {/* Right - Social + Legal */}
+          <div className="flex flex-col md:flex-row items-center">
+            {/* Social Icons */}
+            <div className="flex space-x-4 mb-6 md:mb-0 md:mr-8">
+              <a 
+                href="https://linkedin.com" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-white transition-colors duration-200"
+                aria-label="LinkedIn"
+              >
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                </svg>
+              </a>
+              <a 
+                href="https://twitter.com" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-white transition-colors duration-200"
+                aria-label="Twitter"
+              >
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                </svg>
+              </a>
+            </div>
+            
+            {/* Legal Links */}
+            <div className="flex space-x-6">
+              {legalLinks.map((link, index) => (
+                <a 
+                  key={index}
+                  href={link.href}
+                  className="text-gray-400 hover:text-white text-sm transition-colors duration-200"
+                >
+                  {link.name}
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      {/* CSS for $90B glitch effect - replacing style jsx with regular style */}
+      <style>
+        {`
+        .glitch-text-footer {
+          position: relative;
+          display: inline-block;
+          color: #fff;
+        }
+        
+        .glitch-text-footer::before,
+        .glitch-text-footer::after {
+          content: "$65B";
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          left: 0;
+          top: 0;
+        }
+        
+        .glitch-text-footer::before {
+          color: #f87171;
+          animation: glitch-footer 3s infinite;
+          clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+          transform: translate(-2px, -2px);
+          opacity: 0.7;
+        }
+        
+        .glitch-text-footer::after {
+          color: #60a5fa;
+          animation: glitch-footer 2s infinite alternate-reverse;
+          clip-path: polygon(0 55%, 100% 55%, 100% 100%, 0 100%);
+          transform: translate(2px, 2px);
+          opacity: 0.7;
+        }
+        
+        @keyframes glitch-footer {
+          0% {
+            transform: translate(0);
+          }
+          20% {
+            transform: translate(-1px, 1px);
+          }
+          40% {
+            transform: translate(-1px, -1px);
+          }
+          60% {
+            transform: translate(1px, 1px);
+          }
+          80% {
+            transform: translate(1px, -1px);
+          }
+          100% {
+            transform: translate(0);
+          }
+        }
+        `}
+      </style>
+    </footer>
+  );
+};
+
+export default Footer;

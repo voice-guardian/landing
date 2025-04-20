@@ -1,0 +1,57 @@
+/* Glitch text effect for testimonials */
+.glitch-text {
+  position: relative;
+  display: inline-block;
+  color: #a855f7; /* purple-500 */
+}
+
+.glitch-text::before,
+.glitch-text::after {
+  content: "to get paid";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  text-align: center;
+  top: 0;
+  opacity: 0.8;
+}
+
+.glitch-text::before {
+  /* Red glitch */
+  color: #f87171; /* red-400 */
+  animation: glitch-effect 3s infinite;
+  clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+  transform: translate(-2px, -2px);
+  opacity: 0.5;
+}
+
+.glitch-text::after {
+  /* Blue glitch */
+  color: #60a5fa; /* blue-400 */
+  animation: glitch-effect 2s infinite alternate-reverse;
+  clip-path: polygon(0 55%, 100% 55%, 100% 100%, 0 100%);
+  transform: translate(2px, 2px);
+  opacity: 0.5;
+}
+
+@keyframes glitch-effect {
+  0% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(-2px, 2px);
+  }
+  40% {
+    transform: translate(-2px, -2px);
+  }
+  60% {
+    transform: translate(2px, 2px);
+  }
+  80% {
+    transform: translate(2px, -2px);
+  }
+  100% {
+    transform: translate(0);
+  }
+} 
