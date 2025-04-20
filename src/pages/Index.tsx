@@ -7,7 +7,7 @@ const Index = () => {
     <div 
       className="min-h-screen bg-cover bg-center bg-no-repeat"
       style={{ 
-        backgroundImage: "url('/lovable-uploads/8b27d33a-6578-4c3d-90fe-f48b9d68678e.png')",
+        backgroundImage: "url('/lovable-uploads/3cac15fb-3df7-49c0-851b-165f0a8357b0.png')",
         backgroundColor: "#1A0A23", // Fallback color
       }}
     >
@@ -20,3 +20,4 @@ const Index = () => {
 };
 
 export default Index;
+
