@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import '../styles/testimonials.css';
 
 interface Testimonial {
@@ -13,6 +13,37 @@ interface Testimonial {
 
 const Testimonials: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef(null);
+  
+  useEffect(() => {
+    // Create an Intersection Observer to detect when the section is in the viewport
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        // When section enters viewport with at least 15% visibility
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          // Once we've triggered the animation, we can stop observing
+          observer.unobserve(entry.target);
+        }
+      },
+      { 
+        threshold: 0.15 // Trigger when at least 15% of the section is visible
+      }
+    );
+    
+    // Start observing the section
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+    
+    // Clean up the observer on unmount
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, []);
   
   // Sample testimonial data
   const testimonials: Testimonial[] = [
@@ -68,10 +99,15 @@ const Testimonials: React.FC = () => {
   };
 
   return (
-    <section className="w-full py-20 bg-[#111]">
+    <section ref={sectionRef} className="w-full py-20 bg-[#111] overflow-hidden">
       <div className="container mx-auto px-4 md:px-6">
-        {/* Headline */}
-        <div className="text-center mb-12">
+        {/* Headline with animation */}
+        <div 
+          className={`text-center mb-12 transition-all duration-700 ease-out transform ${
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+          }`}
+          style={{ transitionDelay: "200ms" }}
+        >
           <p className="text-gray-400 text-sm font-semibold tracking-widest uppercase mb-4">
             HEAR FROM OUR CUSTOMERS
           </p>
@@ -85,13 +121,24 @@ const Testimonials: React.FC = () => {
           </h2>
         </div>
         
-        {/* Testimonial Cards */}
-        <div className="relative">
+        {/* Testimonial Cards with animation */}
+        <div 
+          className={`relative transition-all duration-700 ease-out transform ${
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-16"
+          }`}
+          style={{ transitionDelay: "500ms" }}
+        >
           <div className="flex space-x-6 transition-all duration-500 ease-in-out">
-            {visibleTestimonials().map((testimonial) => (
+            {visibleTestimonials().map((testimonial, index) => (
               <div 
                 key={testimonial.id}
-                className="flex-1 relative rounded-xl overflow-hidden transition-all duration-300 transform hover:scale-[1.02] group"
+                className={`flex-1 relative rounded-xl overflow-hidden transition-all duration-300 transform hover:scale-[1.02] group ${
+                  isVisible ? "" : "opacity-0"
+                }`}
+                style={{ 
+                  transitionDelay: `${600 + index * 200}ms`,
+                  transition: "all 0.7s ease-out"
+                }}
               >
                 {/* Background Image with Overlay */}
                 <div 
@@ -135,8 +182,13 @@ const Testimonials: React.FC = () => {
             ))}
           </div>
           
-          {/* Navigation Controls */}
-          <div className="flex justify-center items-center mt-8 space-x-4">
+          {/* Navigation Controls with animation */}
+          <div 
+            className={`flex justify-center items-center mt-8 space-x-4 transition-all duration-500 ease-out ${
+              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+            }`}
+            style={{ transitionDelay: "1000ms" }}
+          >
             <button 
               onClick={prevSlide}
               className="bg-transparent border border-gray-700 rounded-full p-3 text-white hover:bg-white hover:text-black transition-all duration-300"

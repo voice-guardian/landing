@@ -1,7 +1,38 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 
 const Pricing: React.FC = () => {
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef(null);
+  
+  useEffect(() => {
+    // Create an Intersection Observer to detect when the section is in the viewport
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        // When section enters viewport with at least 15% visibility
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          // Once we've triggered the animation, we can stop observing
+          observer.unobserve(entry.target);
+        }
+      },
+      { 
+        threshold: 0.15 // Trigger when at least 15% of the section is visible
+      }
+    );
+    
+    // Start observing the section
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+    
+    // Clean up the observer on unmount
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, []);
   
   const plans = [
     {
@@ -47,10 +78,15 @@ const Pricing: React.FC = () => {
   ];
 
   return (
-    <section className="w-full py-20 bg-white">
+    <section ref={sectionRef} className="w-full py-20 bg-white overflow-hidden">
       <div className="container mx-auto px-4 md:px-6">
-        {/* Headline */}
-        <div className="text-center mb-12">
+        {/* Headline with animation */}
+        <div 
+          className={`text-center mb-12 transition-all duration-700 ease-out transform ${
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+          }`}
+          style={{ transitionDelay: "200ms" }}
+        >
           <p className="text-purple-600 text-sm font-semibold tracking-widest uppercase mb-4">
             PRICING
           </p>
@@ -62,19 +98,22 @@ const Pricing: React.FC = () => {
           </p>
         </div>
         
-        {/* Pricing Cards */}
+        {/* Pricing Cards with animation */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-          {plans.map((plan) => (
+          {plans.map((plan, index) => (
             <div 
               key={plan.id}
-              className={`rounded-xl overflow-hidden transition-all duration-500 hover:shadow-xl relative ${plan.bgColor} ${plan.textColor}`}
-              onMouseEnter={() => setHoveredCard(plan.id)}
-              onMouseLeave={() => setHoveredCard(null)}
-              style={{
+              className={`rounded-xl overflow-hidden transition-all duration-700 ease-out transform hover:shadow-xl relative ${plan.bgColor} ${plan.textColor} ${
+                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-16"
+              }`}
+              style={{ 
+                transitionDelay: `${400 + index * 200}ms`,
                 backgroundImage: hoveredCard === plan.id ? plan.hoverBgImage : 'none',
                 backgroundSize: 'cover',
                 backgroundPosition: 'center'
               }}
+              onMouseEnter={() => setHoveredCard(plan.id)}
+              onMouseLeave={() => setHoveredCard(null)}
             >
               {/* Popular Badge */}
               {plan.isPopular && (
@@ -154,8 +193,13 @@ const Pricing: React.FC = () => {
           ))}
         </div>
         
-        {/* Additional Info */}
-        <div className="text-center mt-12 text-gray-600">
+        {/* Additional Info with animation */}
+        <div 
+          className={`text-center mt-12 text-gray-600 transition-all duration-700 ease-out transform ${
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+          }`}
+          style={{ transitionDelay: "800ms" }}
+        >
           <p>Need a custom solution? <a href="#" className="text-purple-600 font-medium hover:underline">Contact our sales team</a> for a personalized quote.</p>
         </div>
       </div>

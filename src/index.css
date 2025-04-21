@@ -1,3 +1,6 @@
+/* Import Satoshi font */
+@import url('https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900,300,401,501,701,901&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -35,19 +38,12 @@
     --radius: 0.5rem;
 
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
@@ -88,14 +84,28 @@
     --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
-}
 
-@layer base {
-  * {
-    @apply border-border;
+  /* Set Satoshi as the default font for the entire site */
+  html {
+    font-family: 'Satoshi', system-ui, sans-serif;
+  }
+  
+  body {
+    font-family: 'Satoshi', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    @apply bg-background text-foreground;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Satoshi', system-ui, sans-serif;
   }
 
-  body {
-    @apply bg-background text-foreground;
+  button, input, select, textarea {
+    font-family: 'Satoshi', system-ui, sans-serif;
+  }
+  
+  * {
+    @apply border-border;
   }
 }
