@@ -21,9 +21,11 @@ const Navbar = () => {
   }, []);
 
   // Toggle mobile menu
-  const toggleMenu = () => {
+  const toggleMenu = (e: React.MouseEvent) => {
+    e.stopPropagation(); // Prevent event bubbling
     setIsMenuOpen(!isMenuOpen);
-    // Prevent scrolling when menu is open
+    
+    // Toggle body scroll
     if (!isMenuOpen) {
       document.body.style.overflow = 'hidden';
     } else {
@@ -31,22 +33,12 @@ const Navbar = () => {
     }
   };
 
-  // Close menu when clicking outside
+  // Close menu on component unmount
   useEffect(() => {
-    const handleClickOutside = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
-      if (isMenuOpen && !target.closest('.mobile-menu') && !target.closest('.menu-button')) {
-        setIsMenuOpen(false);
-        document.body.style.overflow = 'auto';
-      }
-    };
-
-    document.addEventListener('click', handleClickOutside);
     return () => {
-      document.removeEventListener('click', handleClickOutside);
       document.body.style.overflow = 'auto';
     };
-  }, [isMenuOpen]);
+  }, []);
 
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -105,57 +97,63 @@ const Navbar = () => {
         
         {/* Mobile Menu Button - Only visible on mobile */}
         <button 
-          className="md:hidden text-white z-50 menu-button" 
+          className="md:hidden text-white z-50 menu-button p-2" 
           onClick={toggleMenu}
           aria-label="Toggle menu"
         >
           {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
         
-        {/* Mobile Menu - Fullscreen overlay */}
-        {isMenuOpen && (
+        {/* Updated Mobile Menu with simpler implementation */}
+        <div 
+          className={`fixed inset-0 bg-black z-40 md:hidden transition-opacity duration-300 ${
+            isMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+          }`}
+          onClick={() => {
+            setIsMenuOpen(false);
+            document.body.style.overflow = 'auto';
+          }}
+        >
           <div 
-            className="fixed inset-0 bg-black z-40 mobile-menu md:hidden"
+            className="flex flex-col h-full w-full px-6 pt-24 pb-8"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="flex flex-col h-full w-full px-6 pt-24 pb-8">
-              <div className="flex flex-col space-y-8">
-                <div className="flex items-center text-white text-xl font-medium">
-                  <span>Products</span>
-                  <ChevronDown className="ml-2 h-5 w-5" />
-                </div>
-                <a href="/blog" className="text-white text-xl font-medium">
-                  Blog
-                </a>
-                
-                <div className="border-t border-gray-800 my-4 pt-4"></div>
-                
-                <a href="/login" className="text-white text-lg flex items-center justify-between">
-                  Log in
-                  <svg 
-                    xmlns="http://www.w3.org/2000/svg" 
-                    width="20" 
-                    height="20" 
-                    viewBox="0 0 24 24" 
-                    fill="none" 
-                    stroke="currentColor" 
-                    strokeWidth="2" 
-                    strokeLinecap="round" 
-                    strokeLinejoin="round" 
-                    className="rotate-[-45deg]"
-                  >
-                    <path d="M5 12h14"></path>
-                    <path d="m12 5 7 7-7 7"></path>
-                  </svg>
-                </a>
-                
-                <Button variant="outline" className="bg-white text-black hover:bg-gray-100 text-base mt-4 h-12 w-full rounded-md">
-                  Book a Demo
-                </Button>
+            <div className="flex flex-col space-y-8">
+              <div className="flex items-center text-white text-xl font-medium">
+                <span>Products</span>
+                <ChevronDown className="ml-2 h-5 w-5" />
               </div>
+              <a href="/blog" className="text-white text-xl font-medium">
+                Blog
+              </a>
+              
+              <div className="border-t border-gray-800 my-4 pt-4"></div>
+              
+              <a href="/login" className="text-white text-lg flex items-center justify-between">
+                Log in
+                <svg 
+                  xmlns="http://www.w3.org/2000/svg" 
+                  width="20" 
+                  height="20" 
+                  viewBox="0 0 24 24" 
+                  fill="none" 
+                  stroke="currentColor" 
+                  strokeWidth="2" 
+                  strokeLinecap="round" 
+                  strokeLinejoin="round" 
+                  className="rotate-[-45deg]"
+                >
+                  <path d="M5 12h14"></path>
+                  <path d="m12 5 7 7-7 7"></path>
+                </svg>
+              </a>
+              
+              <Button variant="outline" className="bg-white text-black hover:bg-gray-100 text-base mt-4 h-12 w-full rounded-md">
+                Book a Demo
+              </Button>
             </div>
           </div>
-        )}
+        </div>
       </div>
     </nav>
   );

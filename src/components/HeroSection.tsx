@@ -51,7 +51,7 @@ const HeroSection = () => {
           We find where brands use your music and help you turn it into revenue.
         </p>
         
-        {/* Search Bar with animation */}
+        {/* Search Bar with animation - with much smaller placeholder text for mobile */}
         <div 
           className={`relative w-full max-w-2xl transition-all duration-700 ease-out ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4"
@@ -60,12 +60,12 @@ const HeroSection = () => {
         >
           <input
             type="text"
-            className="w-full h-14 rounded-full bg-gray-800/50 border-none text-white px-8 py-4 focus:outline-none focus:ring-2 focus:ring-purple-500 placeholder:text-sm md:placeholder:text-base placeholder:text-gray-400"
-            placeholder="Search how much you're missing out on..."
+            className="w-full h-14 rounded-full bg-gray-800/50 border-none text-white px-8 py-4 focus:outline-none focus:ring-2 focus:ring-purple-500 placeholder:text-xs xs:placeholder:text-sm md:placeholder:text-base placeholder:text-gray-400"
+            placeholder="Search artist or song..."
           />
           <Button 
             variant="outline"
-            className={`absolute right-0 top-0 h-14 rounded-r-full rounded-l-none px-4 md:px-8 bg-white text-black hover:bg-gray-100 border-none font-medium text-sm md:text-base transition-all duration-500 ease-out ${
+            className={`absolute right-0 top-0 h-14 rounded-r-full rounded-l-none px-3 sm:px-4 md:px-8 bg-white text-black hover:bg-gray-100 border-none font-medium text-xs sm:text-sm md:text-base transition-all duration-500 ease-out ${
               isVisible ? "opacity-100" : "opacity-0"
             }`}
             style={{ transitionDelay: "900ms" }}
