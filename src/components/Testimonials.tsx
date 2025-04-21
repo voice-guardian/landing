@@ -76,8 +76,17 @@ const Testimonials: React.FC = () => {
     },
   ];
   
-  // Calculate visible testimonials (3 at a time)
-  const visibleTestimonials = () => {
+  // Handle testimonial navigation
+  const nextSlide = () => {
+    setActiveIndex((prev) => (prev + 1) % testimonials.length);
+  };
+  
+  const prevSlide = () => {
+    setActiveIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+  };
+
+  // Calculate visible testimonials for desktop (3 side by side)
+  const getDesktopTestimonials = () => {
     const total = testimonials.length;
     const visible = [];
     
@@ -89,13 +98,22 @@ const Testimonials: React.FC = () => {
     
     return visible;
   };
-  
-  const nextSlide = () => {
-    setActiveIndex((prev) => (prev + 1) % testimonials.length);
-  };
-  
-  const prevSlide = () => {
-    setActiveIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+
+  // For mobile, just get the active testimonial
+  const activeMobileTestimonial = testimonials[activeIndex];
+
+  // Function to generate dots indicators
+  const renderDotIndicators = () => {
+    return testimonials.map((_, index) => (
+      <button
+        key={index}
+        onClick={() => setActiveIndex(index)}
+        className={`w-2 h-2 rounded-full mx-1 transition-all duration-300 ${
+          index === activeIndex ? 'bg-white scale-125' : 'bg-gray-600'
+        }`}
+        aria-label={`Go to testimonial ${index + 1}`}
+      />
+    ));
   };
 
   return (
@@ -112,7 +130,7 @@ const Testimonials: React.FC = () => {
             HEAR FROM OUR CUSTOMERS
           </p>
           <h2 className="text-3xl md:text-4xl lg:text-5xl text-white font-light mb-8">
-            Join leading businesses using Watchdog <br />
+            Join leading businesses using Watchdog <br className="hidden sm:block" />
             <span className="font-normal">
               <span className="font-mono glitch-text">
                 to get paid
@@ -121,15 +139,97 @@ const Testimonials: React.FC = () => {
           </h2>
         </div>
         
-        {/* Testimonial Cards with animation */}
+        {/* Mobile Testimonial (Single Card) - Only visible on mobile */}
         <div 
-          className={`relative transition-all duration-700 ease-out transform ${
+          className={`md:hidden transition-all duration-700 ease-out transform ${
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-16"
+          }`}
+          style={{ transitionDelay: "500ms" }}
+        >
+          <div 
+            className="relative rounded-xl overflow-hidden transition-all duration-300 transform group"
+            style={{ 
+              transitionDelay: "600ms",
+              transition: "all 0.7s ease-out"
+            }}
+          >
+            {/* Background Image with Overlay */}
+            <div 
+              className="absolute inset-0 bg-cover bg-center z-0"
+              style={{ 
+                backgroundImage: `url(${activeMobileTestimonial.backgroundImage})`,
+                filter: 'blur(2px) brightness(0.3)' 
+              }}
+            />
+            
+            {/* Content Container */}
+            <div className="relative z-10 p-6 h-full flex flex-col">
+              {/* Company Logo */}
+              <div className="mb-4 h-10">
+                <img 
+                  src={activeMobileTestimonial.companyLogo} 
+                  alt={activeMobileTestimonial.personCompany}
+                  className="h-full w-auto object-contain"
+                />
+              </div>
+              
+              {/* Quote */}
+              <div className="flex-grow flex items-center mb-6">
+                <p className="text-white text-lg italic">
+                  "{activeMobileTestimonial.quote}"
+                </p>
+              </div>
+              
+              {/* Person Info */}
+              <div className="mt-auto">
+                <p className="text-white font-medium">{activeMobileTestimonial.personName}</p>
+                <p className="text-gray-400 text-sm">
+                  {activeMobileTestimonial.personTitle} • {activeMobileTestimonial.personCompany}
+                </p>
+              </div>
+            </div>
+          </div>
+          
+          {/* Mobile Navigation - Dots + Arrows */}
+          <div className="flex flex-col items-center mt-6 space-y-4">
+            {/* Dots Indicators */}
+            <div className="flex justify-center space-x-1 mb-2">
+              {renderDotIndicators()}
+            </div>
+            
+            {/* Arrow Controls */}
+            <div className="flex justify-center space-x-6">
+              <button 
+                onClick={prevSlide}
+                className="bg-transparent border border-gray-700 rounded-full p-3 text-white hover:bg-white hover:text-black transition-all duration-300"
+                aria-label="Previous testimonial"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
+              <button 
+                onClick={nextSlide}
+                className="bg-transparent border border-gray-700 rounded-full p-3 text-white hover:bg-white hover:text-black transition-all duration-300"
+                aria-label="Next testimonial"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        {/* Desktop Testimonials (Multiple Cards) - Hidden on mobile */}
+        <div 
+          className={`hidden md:block relative transition-all duration-700 ease-out transform ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-16"
           }`}
           style={{ transitionDelay: "500ms" }}
         >
           <div className="flex space-x-6 transition-all duration-500 ease-in-out">
-            {visibleTestimonials().map((testimonial, index) => (
+            {getDesktopTestimonials().map((testimonial, index) => (
               <div 
                 key={testimonial.id}
                 className={`flex-1 relative rounded-xl overflow-hidden transition-all duration-300 transform hover:scale-[1.02] group ${
@@ -182,7 +282,7 @@ const Testimonials: React.FC = () => {
             ))}
           </div>
           
-          {/* Navigation Controls with animation */}
+          {/* Desktop Navigation Controls */}
           <div 
             className={`flex justify-center items-center mt-8 space-x-4 transition-all duration-500 ease-out ${
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
