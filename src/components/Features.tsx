@@ -66,7 +66,7 @@ const Features = () => {
 
   return (
     <section ref={sectionRef} className="w-full py-20 bg-white overflow-hidden">
-      <div className="container mx-auto px-4 md:px-6">
+      <div className="container mx-auto px-4 md:px-6 max-w-7xl">
         {/* Section Heading with animation */}
         <div 
           className={`transition-all duration-700 ease-out transform ${
@@ -113,22 +113,22 @@ const Features = () => {
           </div>
         </div>
         
-        {/* Collect Feature (full width) */}
+        {/* Collect Feature (full width within max-width container) */}
         <div 
           className={`w-full bg-gray-100 rounded-2xl p-8 md:p-12 transition-all duration-700 ease-out transform ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-16"
           }`}
           style={{ transitionDelay: "800ms" }}
         >
-          <div className="text-center mb-8">
+          <div className="text-center mb-8 max-w-3xl mx-auto">
             <h3 className="text-2xl md:text-3xl mb-4">Collect</h3>
-            <p className="text-gray-700 max-w-3xl mx-auto">
+            <p className="text-gray-700">
               Automate notices to brands with a single click, or hand it off to our team to collect on your behalf.
             </p>
           </div>
           
           {/* Brands grid with staggered animations for each logo */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-6 md:gap-8">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-6 md:gap-8 max-w-5xl mx-auto">
             {brands.map((brand, index) => (
               <div 
                 key={index}

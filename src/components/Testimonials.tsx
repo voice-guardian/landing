@@ -9,6 +9,7 @@ interface Testimonial {
   personName: string;
   personTitle: string;
   personCompany: string;
+  isCaseStudy?: boolean;
 }
 
 const Testimonials: React.FC = () => {
@@ -45,7 +46,7 @@ const Testimonials: React.FC = () => {
     };
   }, []);
   
-  // Sample testimonial data
+  // Sample testimonial data - marking the second one as a case study
   const testimonials: Testimonial[] = [
     {
       id: 1,
@@ -63,7 +64,8 @@ const Testimonials: React.FC = () => {
       backgroundImage: "/images/testimonials/testimonial2.webp",
       personName: "Alex Rivera",
       personTitle: "CEO",
-      personCompany: "Indie Label Collective"
+      personCompany: "Indie Label Collective",
+      isCaseStudy: true
     },
     {
       id: 3,
@@ -118,7 +120,7 @@ const Testimonials: React.FC = () => {
 
   return (
     <section ref={sectionRef} className="w-full py-20 bg-[#111] overflow-hidden">
-      <div className="container mx-auto px-4 md:px-6">
+      <div className="container mx-auto px-4 md:px-6 max-w-7xl">
         {/* Headline with animation */}
         <div 
           className={`text-center mb-12 transition-all duration-700 ease-out transform ${
@@ -147,12 +149,20 @@ const Testimonials: React.FC = () => {
           style={{ transitionDelay: "500ms" }}
         >
           <div 
-            className="relative rounded-xl overflow-hidden transition-all duration-300 transform group"
+            className={`relative rounded-xl overflow-hidden transition-all duration-300 transform group
+              ${activeMobileTestimonial.isCaseStudy ? 'ring-2 ring-purple-500 ring-offset-4 ring-offset-[#111]' : ''}`}
             style={{ 
               transitionDelay: "600ms",
               transition: "all 0.7s ease-out"
             }}
           >
+            {/* Case Study Badge - Show only if it's a case study */}
+            {activeMobileTestimonial.isCaseStudy && (
+              <div className="absolute top-4 right-4 z-20 bg-purple-500 text-white text-xs font-bold px-2 py-1 rounded-md">
+                Case Study
+              </div>
+            )}
+            
             {/* Background Image with Overlay */}
             <div 
               className="absolute inset-0 bg-cover bg-center z-0"
@@ -234,12 +244,19 @@ const Testimonials: React.FC = () => {
                 key={testimonial.id}
                 className={`flex-1 relative rounded-xl overflow-hidden transition-all duration-300 transform hover:scale-[1.02] group ${
                   isVisible ? "" : "opacity-0"
-                }`}
+                } ${testimonial.isCaseStudy ? 'ring-2 ring-purple-500 ring-offset-4 ring-offset-[#111] shadow-lg shadow-purple-900/20' : ''}`}
                 style={{ 
                   transitionDelay: `${600 + index * 200}ms`,
                   transition: "all 0.7s ease-out"
                 }}
               >
+                {/* Case Study Badge - Show only for the special case study card */}
+                {testimonial.isCaseStudy && (
+                  <div className="absolute top-4 right-4 z-20 bg-purple-500 text-white text-xs font-bold px-2 py-1 rounded-md">
+                    CASE STUDY
+                  </div>
+                )}
+                
                 {/* Background Image with Overlay */}
                 <div 
                   className="absolute inset-0 bg-cover bg-center z-0"

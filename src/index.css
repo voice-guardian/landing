@@ -87,22 +87,22 @@
 
   /* Set Satoshi as the default font for the entire site */
   html {
-    font-family: 'Satoshi', system-ui, sans-serif;
+    font-family: 'Inter', system-ui, sans-serif;
   }
   
   body {
-    font-family: 'Satoshi', system-ui, sans-serif;
+    font-family: 'Inter', system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     @apply bg-background text-foreground;
   }
   
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Satoshi', system-ui, sans-serif;
+    font-family: 'Inter', system-ui, sans-serif;
   }
 
   button, input, select, textarea {
-    font-family: 'Satoshi', system-ui, sans-serif;
+    font-family: 'Inter', system-ui, sans-serif;
   }
   
   * {

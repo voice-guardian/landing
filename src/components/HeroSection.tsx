@@ -1,28 +1,51 @@
 import { Button } from "@/components/ui/button";
 import PartnerLogos from "./PartnerLogos";
 import { useEffect, useState } from "react";
+import SearchBar from "./search/SearchBar";
+import FindingUsesScreen from "./finding-uses/FindingUsesScreen";
 
 const HeroSection = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [showFindingUsesScreen, setShowFindingUsesScreen] = useState(false);
   
   useEffect(() => {
     // Trigger animations after component mount
     setIsVisible(true);
   }, []);
 
+  // Handle Find Uses button click
+  const handleFindUses = () => {
+    if (!searchTerm) return;
+    setShowFindingUsesScreen(true);
+  };
+
+  // If showing the finding uses screen, render that instead of the main content
+  if (showFindingUsesScreen) {
+    return (
+      <FindingUsesScreen 
+        searchTerm={searchTerm} 
+        onClose={() => {
+          setShowFindingUsesScreen(false);
+          setSearchTerm(""); // Reset search term when done
+        }}
+      />
+    );
+  }
+
   return (
-    <div className="relative w-full pt-28 md:pt-32 pb-20 flex flex-col items-center">
-      <div className="px-8 w-full max-w-7xl mx-auto flex flex-col items-center">
+    <div className="relative w-full pt-24 md:pt-28 pb-16 flex flex-col items-center">
+      <div className="px-4 w-full max-w-7xl mx-auto flex flex-col items-center">
         {/* YCombinator Badge */}
         <div 
-          className={`bg-black text-white py-1.5 px-7 rounded-full mb-10 inline-flex text-sm bg-black transform transition-all duration-700 ease-out ${
+          className={`bg-black text-white py-1 px-8 rounded-full mb-8 inline-flex text-xs bg-black transform transition-all duration-700 ease-out ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4"
           }`}
           style={{ transitionDelay: "100ms" }}
         >
           <div className="flex items-center">
             <p>Backed by </p>
-            <img src="/images/ycombinator.png" alt="YCombinator" className="w-25 h-10" />
+            <img src="/images/ycombinator.png" alt="YCombinator" className="w-24 h-8" />
           </div>
         </div>
         
@@ -51,33 +74,24 @@ const HeroSection = () => {
           We find where brands use your music and help you turn it into revenue.
         </p>
         
-        {/* Search Bar with animation - with much smaller placeholder text for mobile */}
+        {/* Search Bar Component - With increased z-index */}
         <div 
-          className={`relative w-full max-w-2xl transition-all duration-700 ease-out ${
+          className={`relative w-full max-w-2xl transition-all duration-700 ease-out z-[1000] ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4"
           }`}
           style={{ transitionDelay: "700ms" }}
         >
-          <input
-            type="text"
-            className="w-full h-14 rounded-full bg-gray-800/50 border-none text-white px-8 py-4 focus:outline-none focus:ring-2 focus:ring-purple-500 placeholder:text-xs xs:placeholder:text-sm md:placeholder:text-base placeholder:text-gray-400"
-            placeholder="Search artist or song..."
+          <SearchBar 
+            searchTerm={searchTerm}
+            onSearchTermChange={setSearchTerm}
+            onFindUses={handleFindUses}
+            isVisible={isVisible}
           />
-          <Button 
-            variant="outline"
-            className={`absolute right-0 top-0 h-14 rounded-r-full rounded-l-none px-3 sm:px-4 md:px-8 bg-white text-black hover:bg-gray-100 border-none font-medium text-xs sm:text-sm md:text-base transition-all duration-500 ease-out ${
-              isVisible ? "opacity-100" : "opacity-0"
-            }`}
-            style={{ transitionDelay: "900ms" }}
-          >
-            <span className="hidden sm:inline">Find Uses</span>
-            <span className="sm:hidden">Find</span>
-          </Button>
         </div>
         
-        {/* Partner Logos */}
+        {/* Partner Logos - With lower z-index */}
         <div 
-          className={`w-full transition-all duration-700 ease-out ${
+          className={`w-full relative z-[1] transition-all duration-700 ease-out ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           }`}
           style={{ transitionDelay: "1100ms" }}
