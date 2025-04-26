@@ -12,10 +12,10 @@ const ProductSlider = ({ images }: ProductSliderProps) => {
   
   // Product images defined in the component (5 slides)
   const productImages = [
-    { src: '/images/products/product1.webp', alt: 'Product 1' },
-    { src: '/images/products/product2.webp', alt: 'Product 2' },
-    { src: '/images/products/product3.webp', alt: 'Product 3' },
-    { src: '/images/products/product4.webp', alt: 'Product 4' },
+    { src: '/images/products/lebron.png', alt: 'Product 1' },
+    { src: '/images/products/serena.png', alt: 'Product 2' },
+    { src: '/images/products/sabrina.png', alt: 'Product 3' },
+    { src: '/images/products/uniqlo.png', alt: 'Product 4' },
   ];
   
   // Use provided images or default to the internal product images

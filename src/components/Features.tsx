@@ -43,13 +43,13 @@ const Features = () => {
     {
       title: "Monitor",
       description: "Track where your music is being used across digital platforms. Our automated system scans millions of videos and content to find unauthorized commercial usages.",
-      image: "/images/brands/brand1.webp",
+      image: "/images/products/monitor.png",
       variant: "light" // white background
     },
     {
       title: "Identify",
       description: "Our AI-powered system accurately identifies your compositions and recordings, providing detailed reports on commercial usages across campaigns.",
-      image: "/images/brands/brand2.webp",
+      image: "/images/products/claim.png",
       variant: "dark" // dark background
     }
   ];

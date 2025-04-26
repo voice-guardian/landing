@@ -17,7 +17,7 @@ const Index = () => {
           backgroundImage: "url('/images/background.png')",
           backgroundColor: "#1A0A23", // Fallback color
           width: "100vw",
-          marginLeft: "calc(-50vw + 50%)"
+          marginLeft: "calc(-50vw + 50%)",
         }}
       >
         <div className="container mx-auto">

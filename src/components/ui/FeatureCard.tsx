@@ -38,7 +38,7 @@ const FeatureCard: React.FC<FeatureCardProps> = ({
 
   return (
     <div 
-      className={`rounded-xl overflow-hidden transition-all duration-500 hover:shadow-xl ${cardStyles}`}
+      className={`rounded-xl overflow-hidden transition-all duration-500 hover:shadow-xl flex flex-col ${cardStyles}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       style={{
@@ -73,8 +73,9 @@ const FeatureCard: React.FC<FeatureCardProps> = ({
         </div>
       </div>
       
-      <div className="px-6 md:px-8 pb-6 md:pb-8">
-        <div className="w-full h-64 md:h-72 overflow-hidden rounded-lg">
+      {/* Image container with horizontal padding but extends to bottom */}
+      <div className="px-6 md:px-8 flex-grow mt-auto pb-0">
+        <div className="overflow-hidden h-full rounded-t-lg">
           <img 
             src={image} 
             alt={`${title} dashboard screenshot`}

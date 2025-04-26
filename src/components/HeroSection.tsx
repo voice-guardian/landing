@@ -3,6 +3,7 @@ import PartnerLogos from "./PartnerLogos";
 import { useEffect, useState } from "react";
 import SearchBar from "./search/SearchBar";
 import FindingUsesScreen from "./finding-uses/FindingUsesScreen";
+import '../styles/testimonials.css'; // Import the CSS that contains the glitch effect
 
 const HeroSection = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -56,12 +57,7 @@ const HeroSection = () => {
           }`}
           style={{ transitionDelay: "300ms" }}
         >
-          Don't miss out on <span className="font-mono relative inline-block">
-            music
-            <span className={`absolute -bottom-1 left-0 h-0.5 bg-purple-500 transition-all duration-1000 ease-in-out ${
-              isVisible ? "w-full" : "w-0"
-            }`}></span>
-          </span> revenue
+          Don't miss out on <span className="font-mono glitch-text" data-text="music">music</span> revenue
         </h1>
         
         {/* Subheading with animation */}

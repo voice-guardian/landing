@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import '../styles/testimonials.css';
 
 interface Testimonial {
@@ -13,7 +13,6 @@ interface Testimonial {
 }
 
 const Testimonials: React.FC = () => {
-  const [activeIndex, setActiveIndex] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef(null);
   
@@ -50,73 +49,36 @@ const Testimonials: React.FC = () => {
   const testimonials: Testimonial[] = [
     {
       id: 1,
-      quote: "Watchdog helped us recover over $250,000 in royalties from unauthorized brand uses we didn't even know about.",
+      quote: "Before Watchdog, I felt powerless to collect the money I was owed from big corporations. Watchdog helped me secure a fair outcome, and I couldn't be more excited to partner with them on future projects.",
       companyLogo: "/images/encore.png",
       backgroundImage: "/images/testimonials/testimonial1.webp",
       personName: "Sarah Johnson",
       personTitle: "Director of Rights Management",
-      personCompany: "SoundWave Records"
+      personCompany: "Amber Lowe"
     },
     {
       id: 2,
-      quote: "Finally a solution that makes the collection process painless. Their team handles everything and we just watch the revenue come in.",
-      companyLogo: "/images/romantic.png",
-      backgroundImage: "/images/testimonials/testimonial2.webp",
+      quote: "As a small, independent musician, I was completely caught off guard when my music went viral on social media. Through their incredible dedication, consistent communication and ever-expanding network of partners, Watchdog has helped to increase my revenue by four times within 6 months! They have been a breeze to work with, carefully and respectfully taking care of all the nitty-gritty so I can continue to focus completely on my music and career. I will forever be grateful for this life-changing opportunity to partner with Watchdog!",
+      companyLogo: "/images/testimonials/fatcoda.png",
+      backgroundImage: "/images/testimonials/fatcoda.png",
       personName: "Alex Rivera",
       personTitle: "CEO",
-      personCompany: "Indie Label Collective",
+      personCompany: "Fat Coda Studios",
       isCaseStudy: true
     },
     {
       id: 3,
-      quote: "We were leaving money on the table for years. Watchdog found over 300 unauthorized uses in the first month alone.",
-      companyLogo: "/images/regalias.png",
-      backgroundImage: "/images/testimonials/testimonial3.png",
+      quote: "Watchdog is filling an incredible gap in the industry for protecting and monetizing our client's composition copyrights, finding examples of unlicensed uses we have never seen before.",
+      companyLogo: "/images/testimonials/platinum-grammar.png",
+      backgroundImage: "/images/testimonials/platinum-grammar.png",
       personName: "Emma Lewis",
       personTitle: "Publishing Administrator",
-      personCompany: "Global Music Publishing"
+      personCompany: "Platinum Grammar"
     },
   ];
-  
-  // Handle testimonial navigation
-  const nextSlide = () => {
-    setActiveIndex((prev) => (prev + 1) % testimonials.length);
-  };
-  
-  const prevSlide = () => {
-    setActiveIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
-  };
 
-  // Calculate visible testimonials for desktop (3 side by side)
-  const getDesktopTestimonials = () => {
-    const total = testimonials.length;
-    const visible = [];
-    
-    for (let i = 0; i < 3; i++) {
-      // Calculate index with wrapping
-      const index = (activeIndex + i) % total;
-      visible.push(testimonials[index]);
-    }
-    
-    return visible;
-  };
-
-  // For mobile, just get the active testimonial
-  const activeMobileTestimonial = testimonials[activeIndex];
-
-  // Function to generate dots indicators
-  const renderDotIndicators = () => {
-    return testimonials.map((_, index) => (
-      <button
-        key={index}
-        onClick={() => setActiveIndex(index)}
-        className={`w-2 h-2 rounded-full mx-1 transition-all duration-300 ${
-          index === activeIndex ? 'bg-white scale-125' : 'bg-gray-600'
-        }`}
-        aria-label={`Go to testimonial ${index + 1}`}
-      />
-    ));
-  };
+  // Display a single testimonial for mobile (using the case study one)
+  const mobileFeaturedTestimonial = testimonials.find(t => t.isCaseStudy) || testimonials[0];
 
   return (
     <section ref={sectionRef} className="w-full py-20 bg-[#111] overflow-hidden">
@@ -134,9 +96,7 @@ const Testimonials: React.FC = () => {
           <h2 className="text-3xl md:text-4xl lg:text-5xl text-white font-light mb-8">
             Join leading businesses using Watchdog <br className="hidden sm:block" />
             <span className="font-normal">
-              <span className="font-mono glitch-text">
-                to get paid
-              </span> for brand uses
+              <span className="font-mono glitch-text" data-text="to get paid">to get paid</span> for brand uses
             </span>
           </h2>
         </div>
@@ -150,16 +110,16 @@ const Testimonials: React.FC = () => {
         >
           <div 
             className={`relative rounded-xl overflow-hidden transition-all duration-300 transform group
-              ${activeMobileTestimonial.isCaseStudy ? 'ring-2 ring-purple-500 ring-offset-4 ring-offset-[#111]' : ''}`}
+              ${mobileFeaturedTestimonial.isCaseStudy ? 'ring-2 ring-purple-500 ring-offset-4 ring-offset-[#111]' : ''}`}
             style={{ 
               transitionDelay: "600ms",
               transition: "all 0.7s ease-out"
             }}
           >
             {/* Case Study Badge - Show only if it's a case study */}
-            {activeMobileTestimonial.isCaseStudy && (
+            {mobileFeaturedTestimonial.isCaseStudy && (
               <div className="absolute top-4 right-4 z-20 bg-purple-500 text-white text-xs font-bold px-2 py-1 rounded-md">
-                Case Study
+                CASE STUDY
               </div>
             )}
             
@@ -167,7 +127,7 @@ const Testimonials: React.FC = () => {
             <div 
               className="absolute inset-0 bg-cover bg-center z-0"
               style={{ 
-                backgroundImage: `url(${activeMobileTestimonial.backgroundImage})`,
+                backgroundImage: `url(${mobileFeaturedTestimonial.backgroundImage})`,
                 filter: 'blur(2px) brightness(0.3)' 
               }}
             />
@@ -177,8 +137,8 @@ const Testimonials: React.FC = () => {
               {/* Company Logo */}
               <div className="mb-4 h-10">
                 <img 
-                  src={activeMobileTestimonial.companyLogo} 
-                  alt={activeMobileTestimonial.personCompany}
+                  src={mobileFeaturedTestimonial.companyLogo} 
+                  alt={mobileFeaturedTestimonial.personCompany}
                   className="h-full w-auto object-contain"
                 />
               </div>
@@ -186,47 +146,17 @@ const Testimonials: React.FC = () => {
               {/* Quote */}
               <div className="flex-grow flex items-center mb-6">
                 <p className="text-white text-lg italic">
-                  "{activeMobileTestimonial.quote}"
+                  "{mobileFeaturedTestimonial.quote}"
                 </p>
               </div>
               
               {/* Person Info */}
               <div className="mt-auto">
-                <p className="text-white font-medium">{activeMobileTestimonial.personName}</p>
+                <p className="text-white font-medium">{mobileFeaturedTestimonial.personName}</p>
                 <p className="text-gray-400 text-sm">
-                  {activeMobileTestimonial.personTitle} • {activeMobileTestimonial.personCompany}
+                  {mobileFeaturedTestimonial.personTitle} • {mobileFeaturedTestimonial.personCompany}
                 </p>
               </div>
-            </div>
-          </div>
-          
-          {/* Mobile Navigation - Dots + Arrows */}
-          <div className="flex flex-col items-center mt-6 space-y-4">
-            {/* Dots Indicators */}
-            <div className="flex justify-center space-x-1 mb-2">
-              {renderDotIndicators()}
-            </div>
-            
-            {/* Arrow Controls */}
-            <div className="flex justify-center space-x-6">
-              <button 
-                onClick={prevSlide}
-                className="bg-transparent border border-gray-700 rounded-full p-3 text-white hover:bg-white hover:text-black transition-all duration-300"
-                aria-label="Previous testimonial"
-              >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                </svg>
-              </button>
-              <button 
-                onClick={nextSlide}
-                className="bg-transparent border border-gray-700 rounded-full p-3 text-white hover:bg-white hover:text-black transition-all duration-300"
-                aria-label="Next testimonial"
-              >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </button>
             </div>
           </div>
         </div>
@@ -239,7 +169,7 @@ const Testimonials: React.FC = () => {
           style={{ transitionDelay: "500ms" }}
         >
           <div className="flex space-x-6 transition-all duration-500 ease-in-out">
-            {getDesktopTestimonials().map((testimonial, index) => (
+            {testimonials.map((testimonial, index) => (
               <div 
                 key={testimonial.id}
                 className={`flex-1 relative rounded-xl overflow-hidden transition-all duration-300 transform hover:scale-[1.02] group ${
@@ -297,33 +227,6 @@ const Testimonials: React.FC = () => {
                 <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-5"></div>
               </div>
             ))}
-          </div>
-          
-          {/* Desktop Navigation Controls */}
-          <div 
-            className={`flex justify-center items-center mt-8 space-x-4 transition-all duration-500 ease-out ${
-              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-            }`}
-            style={{ transitionDelay: "1000ms" }}
-          >
-            <button 
-              onClick={prevSlide}
-              className="bg-transparent border border-gray-700 rounded-full p-3 text-white hover:bg-white hover:text-black transition-all duration-300"
-              aria-label="Previous testimonial"
-            >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-              </svg>
-            </button>
-            <button 
-              onClick={nextSlide}
-              className="bg-transparent border border-gray-700 rounded-full p-3 text-white hover:bg-white hover:text-black transition-all duration-300"
-              aria-label="Next testimonial"
-            >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </button>
           </div>
         </div>
       </div>

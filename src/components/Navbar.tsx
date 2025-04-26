@@ -60,7 +60,7 @@ const Navbar = () => {
         </div>
         
         {/* Desktop Navigation - Hidden on mobile */}
-        <div className="hidden md:flex flex-1 justify-center items-center space-x-8 mx-auto">
+        {/* <div className="hidden md:flex flex-1 justify-center items-center space-x-8 mx-auto">
           <div className="flex items-center text-white text-base cursor-pointer hover:text-gray-300 transition-colors">
             <span>Products</span>
             <ChevronDown className="ml-1 h-4 w-4" />
@@ -68,11 +68,11 @@ const Navbar = () => {
           <a href="/blog" className="text-white text-base hover:text-gray-300 transition-colors">
             Blog
           </a>
-        </div>
+        </div> */}
         
         {/* Desktop Action Buttons - Hidden on mobile */}
         <div className="hidden md:flex items-center space-x-6 z-20">
-          <a href="/login" className="text-white text-sm flex items-center bg-black/50 hover:bg-black/70 transition-colors px-4 h-10 justify-center rounded">
+          <a href="https://app.creatorwatchdog.com/" className="text-white text-sm flex items-center bg-black/50 hover:bg-black/70 transition-colors px-4 h-10 justify-center rounded">
             Log in
             <svg 
               xmlns="http://www.w3.org/2000/svg" 

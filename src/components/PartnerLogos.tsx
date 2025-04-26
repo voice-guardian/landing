@@ -9,11 +9,14 @@ const PartnerLogos = () => {
       </div>
       
       <div className="text-white">
-        <img src="/images/encore.png" alt="Encore Productions" className="h-26" />
+        <img src="/images/encore.png" alt="Encore Productions" className="h-12" />
       </div>
       
       <div className="text-white">
-        <img src="/images/romantic.png" alt="Romantic" className="h-32" />
+        <img src="/images/brands/romantic.png" alt="Romantic" className="h-20" />
+      </div>
+      <div className="text-white">
+        <img src="/images/brands/platinum.png" alt="Platinum Grammar" className="h-20" />
       </div>
     </div>
   );
