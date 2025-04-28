@@ -35,11 +35,11 @@ const HeroSection = () => {
   }
 
   return (
-    <div className="relative w-full pt-24 md:pt-28 pb-16 flex flex-col items-center">
+    <div className="relative w-full pt-44 md:pt-48 pb-24 flex flex-col items-center">
       <div className="px-4 w-full max-w-7xl mx-auto flex flex-col items-center">
         {/* YCombinator Badge */}
         <div 
-          className={`bg-black text-white py-1 px-8 rounded-full mb-8 inline-flex text-xs bg-black transform transition-all duration-700 ease-out ${
+          className={`bg-black text-white  px-6 rounded-full mb-8 inline-flex text-xs bg-black transform transition-all duration-700 ease-out ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4"
           }`}
           style={{ transitionDelay: "100ms" }}
@@ -72,7 +72,7 @@ const HeroSection = () => {
         
         {/* Search Bar Component - With increased z-index */}
         <div 
-          className={`relative w-full max-w-2xl transition-all duration-700 ease-out z-[1000] ${
+          className={`relative w-full max-w-2xl transition-all duration-700 ease-out z-[10] ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4"
           }`}
           style={{ transitionDelay: "700ms" }}

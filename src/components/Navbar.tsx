@@ -42,18 +42,18 @@ const Navbar = () => {
 
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-      scrolled ? 'bg-black/90 backdrop-blur-sm shadow-md' : 'bg-transparent'
+      scrolled ? 'bg-black/40 backdrop-blur-sm' : 'bg-transparent'
     }`}>
       <div className="relative flex justify-between items-center py-5 px-4 md:px-8 container mx-auto">
         {/* Logo */}
         <div className="flex items-center z-20">
           <a href="/" className="flex items-center text-white font-bold text-xl">
             <img
-              src="/images/logo.png"
+              src="/images/watchdog.png"
               alt="Watchdog Logo"
-              width="32"
-              height="32"
-              className="mr-4"
+              width="38"
+              height="38"
+              className="mr-4 brightness-0 invert"
             />
             Watchdog
           </a>
@@ -72,7 +72,7 @@ const Navbar = () => {
         
         {/* Desktop Action Buttons - Hidden on mobile */}
         <div className="hidden md:flex items-center space-x-6 z-20">
-          <a href="https://app.creatorwatchdog.com/" className="text-white text-sm flex items-center bg-black/50 hover:bg-black/70 transition-colors px-4 h-10 justify-center rounded">
+          <a href="https://app.creatorwatchdog.com/" className="text-white text-sm flex items-center bg-black/30 hover:bg-black/50 transition-colors px-4 h-10 justify-center rounded">
             Log in
             <svg 
               xmlns="http://www.w3.org/2000/svg" 
@@ -90,7 +90,7 @@ const Navbar = () => {
               <path d="m12 5 7 7-7 7"></path>
             </svg>
           </a>
-          <Button variant="outline" className="bg-white text-black hover:bg-gray-100 text-sm h-9 px-4 w-[112px] rounded-md">
+          <Button variant="outline" className="bg-white text-black hover:bg-gray-100 text-sm h-9 px-4 w-[112px] rounded-md border-0 shadow-none">
             Book a Demo
           </Button>
         </div>
@@ -148,7 +148,7 @@ const Navbar = () => {
                 </svg>
               </a>
               
-              <Button variant="outline" className="bg-white text-black hover:bg-gray-100 text-base mt-4 h-12 w-full rounded-md">
+              <Button variant="outline" className="bg-white text-black hover:bg-gray-100 text-base mt-4 h-12 w-full rounded-md border-0 shadow-none">
                 Book a Demo
               </Button>
             </div>

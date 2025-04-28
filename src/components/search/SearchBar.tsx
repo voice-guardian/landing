@@ -156,7 +156,7 @@ const SearchBar = ({ searchTerm, onSearchTermChange, onFindUses, isVisible }: Se
         }`}
         style={{ transitionDelay: "900ms" }}
       >
-        <span className="hidden sm:inline">Find Uses</span>
+        <span className="hidden sm:inline">Go</span>
         <span className="sm:hidden">Find</span>
       </Button>
       

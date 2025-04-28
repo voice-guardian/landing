@@ -6,41 +6,50 @@ import Features from "@/components/Features";
 import Testimonials from "@/components/Testimonials";
 import Pricing from "@/components/Pricing";
 import Footer from "@/components/Footer";
+import { useEffect, useRef } from "react";
 
 const Index = () => {
   return (
     <div className="min-h-screen">
-      {/* Background container for Navbar, HeroSection, and ProductSlider */}
+      {/* Background container with explicit height for hero section only */}
       <div 
-        className="relative bg-cover bg-center bg-no-repeat w-full"
+        className="relative w-full"
         style={{ 
-          backgroundImage: "url('/images/background.png')",
           backgroundColor: "#1A0A23", // Fallback color
           width: "100vw",
           marginLeft: "calc(-50vw + 50%)",
         }}
       >
-        <div className="container mx-auto">
-          <Navbar />
-        </div>
-        <HeroSection />
+        {/* Background image */}
+        <img 
+          className="absolute inset-0 w-full h-full object-cover"
+          src="/images/background8.png"
+          alt=""
+        />
         
-        {/* Full-width components with no gap between them */}
-        <ProductSlider />
+        {/* Content container */}
+        <div className="relative z-10">
+          <Navbar />
+          <HeroSection />
+        </div>
       </div>
-      <TypewriterStatement />
-      
-      {/* Features section */}
-      <Features />
-      
-      {/* Testimonials section */}
-      <Testimonials />
-      
-      {/* Pricing section */}
-      <Pricing />
-      
-      {/* Footer */}
-      <Footer />
+
+      {/* Rest of the page content with clean separation */}
+      <div className="bg-black">
+        <TypewriterStatement />
+        
+        {/* Features section */}
+        <Features />
+        
+        {/* Testimonials section */}
+        <Testimonials />
+        
+        {/* Pricing section */}
+        <Pricing />
+        
+        {/* Footer */}
+        <Footer />
+      </div>
     </div>
   );
 };
