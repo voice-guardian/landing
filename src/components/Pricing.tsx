@@ -35,35 +35,15 @@ const Pricing: React.FC = () => {
   }, []);
   
   const plans = [
-    {
-      id: 'software',
-      name: 'Software',
-      description: 'DIY solution to monitor and collect on your music',
-      price: 'X',
-      period: '/month',
-      ctaText: 'Get Started',
-      features: [
-        'Monitor for recordings and compositions',
-        'Generate claim reports',
-        'Automate evidence collection',
-        'Automate brand notices',
-        'Receive licensing payments'
-      ],
-      isPopular: false,
-      bgColor: 'bg-[#f1f1ff]',
-      hoverBgImage: "url('/images/background2.png')",
-      textColor: 'text-gray-800',
-      buttonClass: 'bg-[#404154] text-white hover:bg-[#2d2e3d]'
-    },
+   
     {
       id: 'managed',
       name: 'Managed',
-      description: 'Complete hands-off solution for serious publishers',
-      price: 'Custom',
+      description: '',
+      price: 'Custom/per month',
       period: '',
       ctaText: 'Contact Us',
       features: [
-        'Everything in the Software Tier',
         'Done-For-You Revenue Recovery',
         'Outcome-Based Business Model',
         'Priority Legal Services',
@@ -87,23 +67,19 @@ const Pricing: React.FC = () => {
           }`}
           style={{ transitionDelay: "200ms" }}
         >
-          <p className="text-purple-600 text-sm font-semibold tracking-widest uppercase mb-4">
-            PRICING
-          </p>
+         
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
             Choose Your Plan
           </h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            Select the plan that best fits your needs. Whether you prefer to manage yourself or want us to handle everything.
-          </p>
+          
         </div>
         
-        {/* Pricing Cards with animation */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        {/* Pricing Card centered */}
+        <div className="flex justify-center">
           {plans.map((plan, index) => (
             <div 
               key={plan.id}
-              className={`rounded-xl overflow-hidden transition-all duration-700 ease-out transform hover:shadow-xl relative ${plan.bgColor} ${plan.textColor} ${
+              className={`rounded-xl overflow-hidden transition-all duration-700 ease-out transform hover:shadow-xl relative ${plan.bgColor} ${plan.textColor} max-w-lg w-full ${
                 isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-16"
               }`}
               style={{ 
@@ -115,14 +91,7 @@ const Pricing: React.FC = () => {
               onMouseEnter={() => setHoveredCard(plan.id)}
               onMouseLeave={() => setHoveredCard(null)}
             >
-              {/* Popular Badge */}
-              {plan.isPopular && (
-                <div className="absolute top-6 right-6">
-                  <span className="bg-purple-600 text-white text-xs font-bold px-3 py-1 rounded-full">
-                    RECOMMENDED
-                  </span>
-                </div>
-              )}
+             
               
               {/* Content */}
               <div className="p-8 md:p-10 relative z-10">
@@ -149,7 +118,7 @@ const Pricing: React.FC = () => {
                       className={`flex items-start transition-colors duration-300 ${hoveredCard === plan.id ? 'text-white' : ''}`}
                     >
                       <svg 
-                        className="w-5 h-5 mr-3 mt-0.5 flex-shrink-0 text-purple-600" 
+                        className="w-5 h-5 mr-3 mt-0.5 flex-shrink-0 text-white-600" 
                         fill="none" 
                         stroke="currentColor" 
                         viewBox="0 0 24 24"
@@ -168,8 +137,9 @@ const Pricing: React.FC = () => {
                 
                 {/* CTA Button */}
                 <div className={`transition-opacity duration-300 ${hoveredCard === plan.id ? 'opacity-100' : ''}`}>
-                  <button 
-                    className={`w-full py-3 px-4 rounded-lg font-medium transition-all duration-300 ${
+                  <a 
+                    href="https://calendly.com/yoavzimmerman/watchdog"
+                    className={`w-full py-3 px-4 rounded-lg font-medium transition-all duration-300 inline-block text-center ${
                       hoveredCard === plan.id 
                         ? 'bg-white text-[#404154]' 
                         : plan.buttonClass
@@ -186,22 +156,14 @@ const Pricing: React.FC = () => {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
                       </svg>
                     </span>
-                  </button>
+                  </a>
                 </div>
               </div>
             </div>
           ))}
         </div>
         
-        {/* Additional Info with animation */}
-        <div 
-          className={`text-center mt-12 text-gray-600 transition-all duration-700 ease-out transform ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-          }`}
-          style={{ transitionDelay: "800ms" }}
-        >
-          <p>Need a custom solution? <a href="#" className="text-purple-600 font-medium hover:underline">Contact our sales team</a> for a personalized quote.</p>
-        </div>
+        
       </div>
     </section>
   );

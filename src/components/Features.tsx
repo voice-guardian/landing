@@ -2,8 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 
 // UI Components
 import FeatureCard from '@/components/ui/FeatureCard.tsx';
-import SectionHeading from '@/components/ui/SectionHeading.tsx';
-import BrandLogo from '@/components/ui/BrandLogo.tsx';
+
 
 const Features = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -42,13 +41,13 @@ const Features = () => {
   const features = [
     {
       title: "Monitor",
-      description: "Track where your music is being used across digital platforms. Our automated system scans millions of videos and content to find unauthorized commercial usages.",
+      description: "Identify when your music is used by brands in social media, at scale.",
       image: "/images/products/monitor.png",
       variant: "light" // white background
     },
     {
       title: "Identify",
-      description: "Our AI-powered system accurately identifies your compositions and recordings, providing detailed reports on commercial usages across campaigns.",
+      description: "Generate reports of brand uses with high revenue potential, curated and ready to claim.",
       image: "/images/products/claim.png",
       variant: "dark" // dark background
     }
@@ -74,42 +73,45 @@ const Features = () => {
           }`}
           style={{ transitionDelay: "200ms" }}
         >
-          <SectionHeading label="PRODUCTS" title="Features" />
         </div>
         
         {/* Monitor & Identify Features (side by side on desktop, stacked on mobile) */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
           {/* Animate each feature card with increasing delay */}
           <div 
-            className={`transition-all duration-700 ease-out transform ${
+            className={`transition-all duration-700 ease-out transform h-full ${
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-16"
             }`}
             style={{ transitionDelay: "400ms" }}
           >
-            <FeatureCard 
-              key={0}
-              title={features[0].title}
-              description={features[0].description}
-              image={features[0].image}
-              variant="light"
-              index={0}
-            />
+            <div className="h-[450px] md:h-[500px]"> {/* Fixed height container */}
+              <FeatureCard 
+                key={0}
+                title={features[0].title}
+                description={features[0].description}
+                image={features[0].image}
+                variant="light"
+                index={0}
+              />
+            </div>
           </div>
           
           <div 
-            className={`transition-all duration-700 ease-out transform ${
+            className={`transition-all duration-700 ease-out transform h-full ${
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-16"
             }`}
             style={{ transitionDelay: "600ms" }}
           >
-            <FeatureCard 
-              key={1}
-              title={features[1].title}
-              description={features[1].description}
-              image={features[1].image}
-              variant="dark"
-              index={1}
-            />
+            <div className="h-[450px] md:h-[500px]"> {/* Fixed height container */}
+              <FeatureCard 
+                key={1}
+                title={features[1].title}
+                description={features[1].description}
+                image={features[1].image}
+                variant="dark"
+                index={1}
+              />
+            </div>
           </div>
         </div>
         
@@ -120,14 +122,14 @@ const Features = () => {
           }`}
           style={{ transitionDelay: "800ms" }}
         >
-          <div className="text-center mb-8 max-w-3xl mx-auto">
+          <div className="text-center max-w-3xl mx-auto">
             <h3 className="text-2xl md:text-3xl mb-4">Collect</h3>
             <p className="text-gray-700">
-              Automate notices to brands with a single click, or hand it off to our team to collect on your behalf.
+            Automate notices to brands with a single click, or hand it off to our team to collect on your behalf.
             </p>
           </div>
           
-          {/* Brands grid with staggered animations for each logo */}
+          {/* Brands grid with staggered animations for each logo
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-6 md:gap-8 max-w-5xl mx-auto">
             {brands.map((brand, index) => (
               <div 
@@ -143,7 +145,7 @@ const Features = () => {
                 />
               </div>
             ))}
-          </div>
+          </div> */}
         </div>
       </div>
     </section>

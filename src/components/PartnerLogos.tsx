@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 
 const PartnerLogos = () => {
-  const scrollRef = useRef<HTMLDivElement>(null);
   const [deviceType, setDeviceType] = useState<'mobile' | 'tablet' | 'desktop'>('desktop');
   
   useEffect(() => {
@@ -27,124 +26,103 @@ const PartnerLogos = () => {
     return () => window.removeEventListener('resize', checkDeviceType);
   }, []);
   
-  useEffect(() => {
-    // Only apply animation for mobile devices
-    if (deviceType !== 'mobile') return;
-    
-    const scrollContainer = scrollRef.current;
-    if (!scrollContainer) return;
-    
-    // Simple continuous scroll approach
-    let animationId: number;
-    let scrollAmount = 0;
-    const speed = 0.1;
-    const maxScroll = scrollContainer.scrollWidth - scrollContainer.clientWidth;
-    
-    const scroll = () => {
-      scrollAmount += speed;
-      
-      // Reset when reaching the end
-      if (scrollAmount >= maxScroll) {
-        scrollAmount = 0;
-      }
-      
-      // Apply scroll
-      scrollContainer.scrollLeft = scrollAmount;
-      
-      // Request next frame
-      animationId = requestAnimationFrame(scroll);
-    };
-    
-    // Start animation
-    animationId = requestAnimationFrame(scroll);
-    
-    // Clean up
-    return () => {
-      if (animationId) {
-        cancelAnimationFrame(animationId);
-      }
-    };
-  }, [deviceType]); // Re-run effect if device type changes
-
   // Mobile carousel view
   if (deviceType === 'mobile') {
     return (
       <div className="w-full overflow-hidden relative mt-10">
-        <div 
-          ref={scrollRef}
-          className="flex overflow-x-hidden py-4"
-          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-        >
-          <div className="flex space-x-12 px-4" style={{ minWidth: 'max-content' }}>
-            {/* Include each logo twice to ensure smooth infinite scrolling */}
-            <div className="flex-shrink-0">
-              <img 
-                src="/images/brands/regalias-dig.png" 
-                alt="Regalias" 
-                className="h-14 brightness-0 invert" 
-              />
+        {/* The outer container with hidden overflow */}
+        <div className="py-4 relative">
+          {/* Inner container that's twice as wide and animates */}
+          <div className="inline-flex marquee-container space-x-12">
+            {/* First set of logos */}
+            <div className="flex space-x-12">
+              <div className="logo-item flex-shrink-0">
+                <img 
+                  src="/images/brands/regalias-dig.png" 
+                  alt="Regalias" 
+                  className="h-14 brightness-0 invert" 
+                />
+              </div>
+              
+              <div className="logo-item flex-shrink-0">
+                <img 
+                  src="/images/brands/encore-rec.png" 
+                  alt="Encore Productions" 
+                  className="h-14 brightness-0 invert" 
+                />
+              </div>
+              
+              <div className="logo-item flex-shrink-0">
+                <img 
+                  src="/images/brands/romantic.png" 
+                  alt="Romantic" 
+                  className="h-14 brightness-0 invert" 
+                />
+              </div>
+              
+              <div className="logo-item flex-shrink-0">
+                <img 
+                  src="/images/brands/platinum.png" 
+                  alt="Platinum Grammar" 
+                  className="h-14 brightness-0 invert" 
+                />
+              </div>
             </div>
             
-            <div className="flex-shrink-0">
-              <img 
-                src="/images/brands/encore-rec.png" 
-                alt="Encore Productions" 
-                className="h-14 brightness-0 invert" 
-              />
-            </div>
-            
-            <div className="flex-shrink-0">
-              <img 
-                src="/images/brands/romantic.png" 
-                alt="Romantic" 
-                className="h-14 brightness-0 invert" 
-              />
-            </div>
-            
-            <div className="flex-shrink-0">
-              <img 
-                src="/images/brands/platinum.png" 
-                alt="Platinum Grammar" 
-                className="h-14 brightness-0 invert" 
-              />
-            </div>
-
-            {/* Duplicate set for continuous scrolling */}
-            <div className="flex-shrink-0">
-              <img 
-                src="/images/brands/regalias-dig.png" 
-                alt="Regalias" 
-                className="h-14 brightness-0 invert" 
-              />
-            </div>
-            
-            <div className="flex-shrink-0">
-              <img 
-                src="/images/brands/encore-rec.png" 
-                alt="Encore Productions" 
-                className="h-14 brightness-0 invert" 
-              />
-            </div>
-            
-            <div className="flex-shrink-0">
-              <img 
-                src="/images/brands/romantic.png" 
-                alt="Romantic" 
-                className="h-14 brightness-0 invert" 
-              />
-            </div>
-            
-            <div className="flex-shrink-0">
-              <img 
-                src="/images/brands/platinum.png" 
-                alt="Platinum Grammar" 
-                className="h-14 brightness-0 invert" 
-              />
+            {/* Second identical set of logos for seamless looping */}
+            <div className="flex space-x-12">
+              <div className="logo-item flex-shrink-0">
+                <img 
+                  src="/images/brands/regalias-dig.png" 
+                  alt="Regalias" 
+                  className="h-14 brightness-0 invert" 
+                />
+              </div>
+              
+              <div className="logo-item flex-shrink-0">
+                <img 
+                  src="/images/brands/encore-rec.png" 
+                  alt="Encore Productions" 
+                  className="h-14 brightness-0 invert" 
+                />
+              </div>
+              
+              <div className="logo-item flex-shrink-0">
+                <img 
+                  src="/images/brands/romantic.png" 
+                  alt="Romantic" 
+                  className="h-14 brightness-0 invert" 
+                />
+              </div>
+              
+              <div className="logo-item flex-shrink-0">
+                <img 
+                  src="/images/brands/platinum.png" 
+                  alt="Platinum Grammar" 
+                  className="h-14 brightness-0 invert" 
+                />
+              </div>
             </div>
           </div>
         </div>
         
-       
+        
+        {/* Add CSS keyframe animation */}
+        <style >{`
+          .marquee-container {
+            animation: marquee 20s linear infinite;
+            min-width: max-content;
+          }
+          
+          @keyframes marquee {
+            0% {
+              transform: translateX(0);
+            }
+            100% {
+              transform: translateX(-50%);
+            }
+          }
+        `}</style>
       </div>
     );
   }

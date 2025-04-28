@@ -35,9 +35,12 @@ const Footer: React.FC = () => {
           
           {/* Right - CTA Button */}
           <div>
-            <button className="bg-white text-[#0e0e0e] px-8 py-3 rounded-lg font-bold text-base hover:bg-gray-200 transition-colors duration-300">
+            <a 
+              href="https://calendly.com/yoavzimmerman/watchdog" 
+              className="bg-white text-[#0e0e0e] px-8 py-3 rounded-lg font-bold text-base hover:bg-gray-200 transition-colors duration-300 inline-block"
+            >
               Book a Demo
-            </button>
+            </a>
           </div>
         </div>
         

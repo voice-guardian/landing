@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import React from 'react';
 
 interface TypewriterStatementProps {
   text?: string;
@@ -6,13 +7,17 @@ interface TypewriterStatementProps {
 }
 
 const TypewriterStatement = ({ 
-  text = "Watchdog makes it easy to monitor, negotiate, and get paid when your music is used by brands.",
+  text = "Watchdog makes it easy to monitor, negotiate, and <gradient>get paid</gradient> when your music is used by brands.",
   typingSpeed = 10
 }: TypewriterStatementProps) => {
   const [displayText, setDisplayText] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const [hasTyped, setHasTyped] = useState(false);
+  const [isDone, setIsDone] = useState(false);
   const componentRef = useRef<HTMLDivElement>(null);
+  
+  // Remove tags to get the plain text version for typing
+  const plainText = text.replace(/<gradient>|<\/gradient>/g, '');
   
   useEffect(() => {
     const component = componentRef.current;
@@ -21,16 +26,17 @@ const TypewriterStatement = ({
     let timeoutId: NodeJS.Timeout;
     let charIndex = 0;
     
-    // Function to type the next character
+    // Function to type the next character of the plain text
     const typeNextChar = () => {
-      if (charIndex < text.length) {
-        setDisplayText(text.substring(0, charIndex + 1));
+      if (charIndex < plainText.length) {
+        setDisplayText(plainText.substring(0, charIndex + 1));
         setIsTyping(true);
         charIndex++;
         timeoutId = setTimeout(typeNextChar, typingSpeed);
       } else {
         setIsTyping(false);
         setHasTyped(true);
+        setIsDone(true);
       }
     };
     
@@ -40,6 +46,7 @@ const TypewriterStatement = ({
       charIndex = 0;
       setDisplayText('');
       setIsTyping(true);
+      setIsDone(false);
       timeoutId = setTimeout(typeNextChar, typingSpeed);
     };
     
@@ -49,6 +56,7 @@ const TypewriterStatement = ({
       setDisplayText('');
       setIsTyping(false);
       setHasTyped(false);
+      setIsDone(false);
       charIndex = 0;
     };
     
@@ -77,7 +85,7 @@ const TypewriterStatement = ({
       observer.disconnect();
       clearTimeout(timeoutId);
     };
-  }, [text, typingSpeed, hasTyped]);
+  }, [plainText, typingSpeed, hasTyped]);
 
   return (
     <div 
@@ -93,8 +101,20 @@ const TypewriterStatement = ({
       >
         <div className="max-w-5xl mx-auto px-8 text-start">
           <p className="text-white text-3xl md:text-5xl font-medium">
-            {displayText}
-            {isTyping && <span className="inline-block ml-1 animate-pulse">|</span>}
+            {isDone ? (
+              <>
+                Watchdog makes it easy to monitor, negotiate, and{' '}
+                <span className="bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent">
+                  get paid
+                </span>
+                {' '}when your music is used by brands.
+              </>
+            ) : (
+              <>
+                {displayText}
+                {isTyping && <span className="inline-block ml-1 animate-pulse">|</span>}
+              </>
+            )}
           </p>
         </div>
       </div>

@@ -4,16 +4,15 @@ import '../styles/testimonials.css';
 interface Testimonial {
   id: number;
   quote: string;
-  companyLogo: string;
+  companyLogo?: string | null;
   backgroundImage: string;
-  personName: string;
-  personTitle: string;
-  personCompany: string;
+  companyName: string;
   isCaseStudy?: boolean;
 }
 
 const Testimonials: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [currentMobileIndex, setCurrentMobileIndex] = useState(0);
   const sectionRef = useRef(null);
   
   useEffect(() => {
@@ -50,35 +49,43 @@ const Testimonials: React.FC = () => {
     {
       id: 1,
       quote: "Before Watchdog, I felt powerless to collect the money I was owed from big corporations. Watchdog helped me secure a fair outcome, and I couldn't be more excited to partner with them on future projects.",
-      companyLogo: "/images/encore.png",
-      backgroundImage: "/images/testimonials/testimonial1.webp",
-      personName: "Sarah Johnson",
-      personTitle: "Director of Rights Management",
-      personCompany: "Amber Lowe"
+      backgroundImage: "/images/ugc.jpeg",
+      companyName: "Amber Lowe (UGC Creator)",
+      isCaseStudy: false
     },
     {
       id: 2,
-      quote: "As a small, independent musician, I was completely caught off guard when my music went viral on social media. Through their incredible dedication, consistent communication and ever-expanding network of partners, Watchdog has helped to increase my revenue by four times within 6 months! They have been a breeze to work with, carefully and respectfully taking care of all the nitty-gritty so I can continue to focus completely on my music and career. I will forever be grateful for this life-changing opportunity to partner with Watchdog!",
+      quote: "Watchdog has helped to increase my revenue by four times within 6 months! They have been a breeze to work with, carefully and respectfully taking care of all the nitty-gritty so I can continue to focus completely on my music and career. I will forever be grateful for this life-changing opportunity to partner with Watchdog!",
       companyLogo: "/images/testimonials/fatcoda.png",
-      backgroundImage: "/images/testimonials/fatcoda.png",
-      personName: "Alex Rivera",
-      personTitle: "CEO",
-      personCompany: "Fat Coda Studios",
+      backgroundImage: "/images/drums.webp",
+      companyName: "Fat Coda Studios",
       isCaseStudy: true
     },
     {
       id: 3,
       quote: "Watchdog is filling an incredible gap in the industry for protecting and monetizing our client's composition copyrights, finding examples of unlicensed uses we have never seen before.",
       companyLogo: "/images/testimonials/platinum-grammar.png",
-      backgroundImage: "/images/testimonials/platinum-grammar.png",
-      personName: "Emma Lewis",
-      personTitle: "Publishing Administrator",
-      personCompany: "Platinum Grammar"
+      backgroundImage: "/images/record.jpg",
+      companyName: "Platinum Grammar Publishing",
+      isCaseStudy: false
     },
   ];
 
-  // Display a single testimonial for mobile (using the case study one)
-  const mobileFeaturedTestimonial = testimonials.find(t => t.isCaseStudy) || testimonials[0];
+  // Navigation handlers
+  const goToPrevious = () => {
+    setCurrentMobileIndex(prevIndex => 
+      prevIndex === 0 ? testimonials.length - 1 : prevIndex - 1
+    );
+  };
+
+  const goToNext = () => {
+    setCurrentMobileIndex(prevIndex => 
+      prevIndex === testimonials.length - 1 ? 0 : prevIndex + 1
+    );
+  };
+
+  // Get current testimonial for mobile view
+  const currentMobileTestimonial = testimonials[currentMobileIndex];
 
   return (
     <section ref={sectionRef} className="w-full py-20 bg-[#111] overflow-hidden">
@@ -90,9 +97,7 @@ const Testimonials: React.FC = () => {
           }`}
           style={{ transitionDelay: "200ms" }}
         >
-          <p className="text-gray-400 text-sm font-semibold tracking-widest uppercase mb-4">
-            HEAR FROM OUR CUSTOMERS
-          </p>
+         
           <h2 className="text-3xl md:text-4xl lg:text-5xl text-white font-light mb-8">
             Join leading businesses using Watchdog <br className="hidden sm:block" />
             <span className="font-normal">
@@ -101,7 +106,7 @@ const Testimonials: React.FC = () => {
           </h2>
         </div>
         
-        {/* Mobile Testimonial (Single Card) - Only visible on mobile */}
+        {/* Mobile Testimonial (Single Card with Navigation) - Only visible on mobile */}
         <div 
           className={`md:hidden transition-all duration-700 ease-out transform ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-16"
@@ -109,15 +114,16 @@ const Testimonials: React.FC = () => {
           style={{ transitionDelay: "500ms" }}
         >
           <div 
-            className={`relative rounded-xl overflow-hidden transition-all duration-300 transform group
-              ${mobileFeaturedTestimonial.isCaseStudy ? 'ring-2 ring-purple-500 ring-offset-4 ring-offset-[#111]' : ''}`}
+            className={`relative rounded-xl overflow-hidden transition-all duration-300 transform
+              ${currentMobileTestimonial.isCaseStudy ? 'ring-2 ring-purple-500 ring-offset-4 ring-offset-[#111]' : ''}`}
             style={{ 
               transitionDelay: "600ms",
-              transition: "all 0.7s ease-out"
+              transition: "all 0.7s ease-out",
+              minHeight: "350px" // Ensure consistent height
             }}
           >
             {/* Case Study Badge - Show only if it's a case study */}
-            {mobileFeaturedTestimonial.isCaseStudy && (
+            {currentMobileTestimonial.isCaseStudy && (
               <div className="absolute top-4 right-4 z-20 bg-purple-500 text-white text-xs font-bold px-2 py-1 rounded-md">
                 CASE STUDY
               </div>
@@ -127,7 +133,7 @@ const Testimonials: React.FC = () => {
             <div 
               className="absolute inset-0 bg-cover bg-center z-0"
               style={{ 
-                backgroundImage: `url(${mobileFeaturedTestimonial.backgroundImage})`,
+                backgroundImage: `url(${currentMobileTestimonial.backgroundImage})`,
                 filter: 'blur(2px) brightness(0.3)' 
               }}
             />
@@ -136,27 +142,54 @@ const Testimonials: React.FC = () => {
             <div className="relative z-10 p-6 h-full flex flex-col">
               {/* Company Logo */}
               <div className="mb-4 h-10">
-                <img 
-                  src={mobileFeaturedTestimonial.companyLogo} 
-                  alt={mobileFeaturedTestimonial.personCompany}
-                  className="h-full w-auto object-contain"
-                />
+                {currentMobileTestimonial.companyLogo && (
+                  <img 
+                    src={currentMobileTestimonial.companyLogo} 
+                    className="h-full w-auto object-contain"
+                    alt={currentMobileTestimonial.companyName}
+                  />
+                )}
               </div>
               
               {/* Quote */}
               <div className="flex-grow flex items-center mb-6">
                 <p className="text-white text-lg italic">
-                  "{mobileFeaturedTestimonial.quote}"
+                  "{currentMobileTestimonial.quote}"
                 </p>
               </div>
               
               {/* Person Info */}
               <div className="mt-auto">
-                <p className="text-white font-medium">{mobileFeaturedTestimonial.personName}</p>
-                <p className="text-gray-400 text-sm">
-                  {mobileFeaturedTestimonial.personTitle} • {mobileFeaturedTestimonial.personCompany}
-                </p>
+                <p className="text-white font-medium">{currentMobileTestimonial.companyName}</p>
               </div>
+            </div>
+          </div>
+
+          {/* Navigation Controls */}
+          <div className="flex justify-center items-center mt-6 space-x-4">
+            
+
+            {/* Left/Right Buttons */}
+            <div className="flex space-x-3">
+              <button
+                onClick={goToPrevious}
+                className="w-10 h-10 rounded-full bg-gray-800 hover:bg-gray-700 flex items-center justify-center transition-colors duration-300 border border-gray-700"
+                aria-label="Previous testimonial"
+              >
+                <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
+              
+              <button
+                onClick={goToNext}
+                className="w-10 h-10 rounded-full bg-gray-800 hover:bg-gray-700 flex items-center justify-center transition-colors duration-300 border border-gray-700"
+                aria-label="Next testimonial"
+              >
+                <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
             </div>
           </div>
         </div>
@@ -192,34 +225,33 @@ const Testimonials: React.FC = () => {
                   className="absolute inset-0 bg-cover bg-center z-0"
                   style={{ 
                     backgroundImage: `url(${testimonial.backgroundImage})`,
-                    filter: 'blur(2px) brightness(0.3)' 
+                    filter: 'blur(2px) brightness(0.4)' 
                   }}
                 />
                 
                 {/* Content Container */}
                 <div className="relative z-10 p-6 md:p-8 h-full flex flex-col">
                   {/* Company Logo */}
-                  <div className="mb-4 h-10">
-                    <img 
-                      src={testimonial.companyLogo} 
-                      alt={testimonial.personCompany}
-                      className="h-full w-auto object-contain"
-                    />
+                  <div className="mb-4 h-16">
+                    {testimonial.companyLogo && (
+                      <img 
+                        src={testimonial.companyLogo} 
+                        className="h-full w-auto object-contain"
+                        alt={testimonial.companyName}
+                      />
+                    )}
                   </div>
                   
                   {/* Quote */}
                   <div className="flex-grow flex items-center mb-6">
-                    <p className="text-white text-lg md:text-xl italic">
+                    <p className="text-white text-lg md:text-m">
                       "{testimonial.quote}"
                     </p>
                   </div>
                   
                   {/* Person Info */}
                   <div className="mt-auto">
-                    <p className="text-white font-medium">{testimonial.personName}</p>
-                    <p className="text-gray-400 text-sm">
-                      {testimonial.personTitle} • {testimonial.personCompany}
-                    </p>
+                    <p className="text-white font-medium">{testimonial.companyName}</p>
                   </div>
                 </div>
                 
