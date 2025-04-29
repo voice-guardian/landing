@@ -8,6 +8,7 @@ import '../styles/testimonials.css'; // Import the CSS that contains the glitch 
 const HeroSection = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
+  const [selectedArtistId, setSelectedArtistId] = useState<string | undefined>(undefined);
   const [showFindingUsesScreen, setShowFindingUsesScreen] = useState(false);
   
   useEffect(() => {
@@ -16,8 +17,14 @@ const HeroSection = () => {
   }, []);
 
   // Handle Find Uses button click
-  const handleFindUses = () => {
+  const handleFindUses = (artistId?: string) => {
     if (!searchTerm) return;
+    
+    // Store the artist ID if provided
+    if (artistId) {
+      setSelectedArtistId(artistId);
+    }
+    
     setShowFindingUsesScreen(true);
   };
 
@@ -26,9 +33,11 @@ const HeroSection = () => {
     return (
       <FindingUsesScreen 
         searchTerm={searchTerm} 
+        artistId={selectedArtistId}
         onClose={() => {
           setShowFindingUsesScreen(false);
           setSearchTerm(""); // Reset search term when done
+          setSelectedArtistId(undefined); // Reset artist ID
         }}
       />
     );

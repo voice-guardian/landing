@@ -19,7 +19,7 @@ interface SpotifySearchResults {
 interface SearchBarProps {
   searchTerm: string;
   onSearchTermChange: (term: string) => void;
-  onFindUses: () => void;
+  onFindUses: (artistId?: string) => void;
   isVisible: boolean;
 }
 
@@ -27,6 +27,7 @@ const SearchBar = ({ searchTerm, onSearchTermChange, onFindUses, isVisible }: Se
   const [searchResults, setSearchResults] = useState<SpotifySearchResults | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
+  const [selectedArtistId, setSelectedArtistId] = useState<string | undefined>(undefined);
   const searchTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const searchInputRef = useRef<HTMLInputElement>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -88,6 +89,7 @@ const SearchBar = ({ searchTerm, onSearchTermChange, onFindUses, isVisible }: Se
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const query = e.target.value;
     onSearchTermChange(query);
+    setSelectedArtistId(undefined);
     
     // Clear previous timeout
     if (searchTimeoutRef.current) {
@@ -126,9 +128,19 @@ const SearchBar = ({ searchTerm, onSearchTermChange, onFindUses, isVisible }: Se
   };
 
   // Handle artist selection
-  const handleSelectItem = (name: string) => {
+  const handleSelectItem = (name: string, itemId: string, isArtist: boolean) => {
     onSearchTermChange(name);
+    if (isArtist) {
+      setSelectedArtistId(itemId);
+    } else {
+      setSelectedArtistId(undefined);
+    }
     setShowDropdown(false);
+  };
+
+  // Handle find uses button click
+  const handleFindUses = () => {
+    onFindUses(selectedArtistId);
   };
 
   return (
@@ -150,7 +162,7 @@ const SearchBar = ({ searchTerm, onSearchTermChange, onFindUses, isVisible }: Se
       
       <Button 
         variant="outline"
-        onClick={onFindUses}
+        onClick={handleFindUses}
         className={`absolute right-0 top-0 h-14 rounded-r-full rounded-l-none px-3 sm:px-4 md:px-8 bg-white text-black hover:bg-gray-100 border-none font-medium text-xs sm:text-sm md:text-base transition-all duration-500 ease-out ${
           isVisible ? "opacity-100" : "opacity-0"
         }`}

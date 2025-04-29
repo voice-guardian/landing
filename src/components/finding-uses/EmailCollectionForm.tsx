@@ -3,9 +3,11 @@ import { Button } from "@/components/ui/button";
 
 interface EmailCollectionFormProps {
   onSubmit: (email: string) => void;
+  companies?: string[];
+  totalUses?: number;
 }
 
-const EmailCollectionForm = ({ onSubmit }: EmailCollectionFormProps) => {
+const EmailCollectionForm = ({ onSubmit, companies = [], totalUses = 0 }: EmailCollectionFormProps) => {
   const [email, setEmail] = useState("");
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -20,7 +22,27 @@ const EmailCollectionForm = ({ onSubmit }: EmailCollectionFormProps) => {
 
   return (
     <>
-      <h3 className="text-xl font-bold text-white mb-2">We Found Potential Earnings!</h3>
+      <h3 className="text-xl font-bold text-white mb-2">
+        {totalUses > 0 
+          ? `We Found ${totalUses} Potential Uses!` 
+          : "We Found Potential Earnings!"}
+      </h3>
+      
+      {totalUses > 0 && companies.length > 0 && (
+        <div className="w-full mb-4">
+          <p className="text-gray-300 mb-2 text-sm">Including uses by:</p>
+          <div className="bg-black/30 rounded-lg p-3 max-h-32 overflow-y-auto mb-3">
+            <div className="flex flex-col">
+              {companies.map((company, index) => (
+                <div key={index} className="text-purple-300 py-1">
+                  <span className="text-sm">{company}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+      
       <p className="text-gray-400 mb-4">Enter your email to receive a detailed report on the money you can claim from copyright uses.</p>
       
       <form onSubmit={handleSubmit} className="w-full">

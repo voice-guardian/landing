@@ -2,15 +2,18 @@
  * Utility for sending notifications to Slack
  */
 
-interface SlackNotificationData {
+export interface SlackNotificationData {
   email: string;
   artistOrTrack: string;
+  foundCompanies?: string[];
+  totalUses?: number;
+  artistId?: string;
 }
 
 /**
  * Sends a notification to a Slack channel with artist/track and email information
  */
-export async function sendSlackNotification({ email, artistOrTrack }: SlackNotificationData): Promise<boolean> {
+export async function sendSlackNotification({ email, artistOrTrack, foundCompanies, totalUses, artistId }: SlackNotificationData): Promise<boolean> {
   try {
     // Get Slack webhook URL from environment variables
     const webhookUrl = import.meta.env.VITE_SLACK_WEBHOOK_URL;
@@ -62,7 +65,7 @@ export async function sendSlackNotification({ email, artistOrTrack }: SlackNotif
       ]
     };
 
-    console.log("Preparing Slack notification with data:", { artistOrTrack, email });
+    console.log("Preparing Slack notification with data:", { artistOrTrack, email, foundCompanies, totalUses });
     
     // CORS Workaround: Store the submission data in localStorage
     try {
@@ -73,6 +76,9 @@ export async function sendSlackNotification({ email, artistOrTrack }: SlackNotif
       localStorage.setItem(submissionId, JSON.stringify({
         email,
         artistOrTrack,
+        foundCompanies,
+        totalUses,
+        artistId,
         timestamp: new Date().toISOString(),
         webhookUrl
       }));

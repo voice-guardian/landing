@@ -10,7 +10,7 @@ interface SearchResultsProps {
       items: any[];
     };
   };
-  onSelectItem: (name: string) => void;
+  onSelectItem: (name: string, id: string, isArtist: boolean) => void;
 }
 
 const SearchResults = forwardRef<HTMLDivElement, SearchResultsProps>(
@@ -30,7 +30,7 @@ const SearchResults = forwardRef<HTMLDivElement, SearchResultsProps>(
               <div 
                 key={artist.id}
                 className="flex items-center p-3 hover:bg-[#282828] cursor-pointer transition-colors duration-200"
-                onClick={() => onSelectItem(artist.name)}
+                onClick={() => onSelectItem(artist.name, artist.id, true)}
               >
                 <div className="flex-shrink-0 h-10 w-10 rounded-full overflow-hidden bg-gray-700">
                   {artist.images && artist.images.length > 0 ? (
@@ -66,7 +66,7 @@ const SearchResults = forwardRef<HTMLDivElement, SearchResultsProps>(
               <div 
                 key={track.id}
                 className="flex items-center p-3 hover:bg-[#282828] cursor-pointer transition-colors duration-200"
-                onClick={() => onSelectItem(track.name)}
+                onClick={() => onSelectItem(track.name, track.id, false)}
               >
                 <div className="flex-shrink-0 h-10 w-10 rounded overflow-hidden bg-gray-700">
                   {track.album.images && track.album.images.length > 0 ? (

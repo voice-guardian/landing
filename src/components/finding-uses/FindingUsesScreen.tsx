@@ -7,14 +7,31 @@ import { sendSlackNotification } from "@/utils/slackNotifier";
 interface FindingUsesScreenProps {
   searchTerm: string;
   onClose: () => void;
+  artistId?: string; // Add artistId prop
 }
 
-const FindingUsesScreen = ({ searchTerm, onClose }: FindingUsesScreenProps) => {
+interface CompanyUse {
+  url: string;
+  company_name: string;
+  company_linkedin_url: string;
+  spotify_track_name: string;
+  spotify_artist_names: string[];
+}
+
+interface WatchdogApiResponse {
+  uses: CompanyUse[];
+  total: number;
+}
+
+const FindingUsesScreen = ({ searchTerm, onClose, artistId }: FindingUsesScreenProps) => {
   const [loadingProgress, setLoadingProgress] = useState(0);
   const [showEmailPopup, setShowEmailPopup] = useState(false);
   const [isEmailSubmitted, setIsEmailSubmitted] = useState(false);
   const [isSlackNotificationSent, setIsSlackNotificationSent] = useState(false);
+  const [foundCompanies, setFoundCompanies] = useState<string[]>([]);
+  const [totalUsesFound, setTotalUsesFound] = useState(0);
   const progressIntervalRef = useRef<NodeJS.Timeout | null>(null);
+  const apiCallCompleted = useRef(false);
   
   useEffect(() => {
     // Reset state
@@ -22,11 +39,97 @@ const FindingUsesScreen = ({ searchTerm, onClose }: FindingUsesScreenProps) => {
     setShowEmailPopup(false);
     setIsEmailSubmitted(false);
     setIsSlackNotificationSent(false);
+    apiCallCompleted.current = false;
     
-    // Set up progress interval (5 seconds to complete)
+    // Fetch data from Watchdog API if artistId is available
+    const fetchWatchdogData = async () => {
+      if (!artistId) {
+        // No artist ID, skip API call
+        apiCallCompleted.current = true;
+        return;
+      }
+      
+      try {
+        const url = `https://api.creatorwatchdog.com/abba/quick_search?spotify_artist_id=${artistId}`;
+        const response = await fetch(url);
+        
+        if (!response.ok) {
+          throw new Error(`API request failed with status ${response.status}`);
+        }
+        
+        const data = await response.json() as WatchdogApiResponse;
+        
+        // Log the raw response for debugging
+        console.log("Raw API response:", data);
+        
+        // Extract company names from the API response
+        const companyUsernames = data.uses
+          .map(use => {
+            try {
+              // Get the company name and ensure first letter is capitalized
+              if (!use.company_name) return null;
+              
+              // Capitalize first letter if it's not already
+              const companyName = use.company_name.charAt(0).toUpperCase() + use.company_name.slice(1);
+              return companyName;
+            } catch (e) {
+              console.error("Error processing company name:", use.company_name, e);
+              return null;
+            }
+          })
+          .filter((companyName): companyName is string => companyName !== null);
+        
+        // Get unique company usernames
+        const uniqueCompanies = Array.from(new Set(companyUsernames));
+        
+        console.log("Extracted usernames:", companyUsernames);
+        console.log("Unique companies:", uniqueCompanies);
+        
+        setFoundCompanies(uniqueCompanies);
+        setTotalUsesFound(data.total);
+        
+        // Mark API call as completed
+        apiCallCompleted.current = true;
+      } catch (error) {
+        console.error("Error fetching Watchdog data:", error);
+        apiCallCompleted.current = true;
+      }
+    };
+    
+    // Start API call
+    fetchWatchdogData();
+    
+    // Set up progress interval (runs for up to 10 seconds)
+    const progressSpeed = 10; // Update progress every 100ms
+    const maxProgressTime = 10000; // 10 seconds max
+    const totalSteps = maxProgressTime / progressSpeed;
+    
     progressIntervalRef.current = setInterval(() => {
       setLoadingProgress(prev => {
-        const newProgress = prev + 1;
+        // If API call is done and we're at least at 70%, accelerate to 100%
+        if (apiCallCompleted.current && prev >= 70) {
+          const newProgress = prev + 5;
+          
+          if (newProgress >= 100) {
+            if (progressIntervalRef.current) {
+              clearInterval(progressIntervalRef.current);
+            }
+            setTimeout(() => {
+              setShowEmailPopup(true);
+            }, 500);
+            return 100;
+          }
+          
+          return newProgress;
+        }
+        
+        // Standard progress increase
+        const newProgress = prev + (100 / totalSteps);
+        
+        // If we reach 70% but API isn't done, slow down progress
+        if (newProgress >= 70 && !apiCallCompleted.current) {
+          return 70;
+        }
         
         // When progress reaches 100%, clear interval and show email popup
         if (newProgress >= 100) {
@@ -41,14 +144,14 @@ const FindingUsesScreen = ({ searchTerm, onClose }: FindingUsesScreenProps) => {
         
         return newProgress;
       });
-    }, 50); // 50ms * 100 steps = ~5 seconds
+    }, progressSpeed);
     
     return () => {
       if (progressIntervalRef.current) {
         clearInterval(progressIntervalRef.current);
       }
     };
-  }, []);
+  }, [artistId]);
 
   const handleEmailSubmit = async (email: string) => {
     console.log(`Email submitted: ${email} for term: ${searchTerm}`);
@@ -59,7 +162,10 @@ const FindingUsesScreen = ({ searchTerm, onClose }: FindingUsesScreenProps) => {
       
       const notificationSent = await sendSlackNotification({
         email,
-        artistOrTrack: searchTerm
+        artistOrTrack: searchTerm,
+        foundCompanies: foundCompanies,
+        totalUses: totalUsesFound,
+        artistId: artistId
       });
       
       setIsSlackNotificationSent(notificationSent);
@@ -106,9 +212,16 @@ const FindingUsesScreen = ({ searchTerm, onClose }: FindingUsesScreenProps) => {
         {showEmailPopup && (
           <div className="mt-8 bg-[#1a1a1a] p-6 rounded-xl w-full max-w-md border border-gray-800 animate-fade-in">
             {!isEmailSubmitted ? (
-              <EmailCollectionForm onSubmit={handleEmailSubmit} />
+              <EmailCollectionForm 
+                onSubmit={handleEmailSubmit} 
+                companies={foundCompanies}
+                totalUses={totalUsesFound}
+              />
             ) : (
-              <SuccessMessage />
+              <SuccessMessage 
+                companies={foundCompanies} 
+                totalUses={totalUsesFound} 
+              />
             )}
           </div>
         )}
