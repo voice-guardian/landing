@@ -1,5 +1,8 @@
 import React, { useRef, useEffect, useState } from 'react';
 import '../styles/testimonials.css';
+import { useNavigate } from 'react-router-dom';
+import { ROUTES } from '@/routes/constants';
+import { Button } from '@/components/ui/button';
 
 interface Testimonial {
   id: number;
@@ -8,12 +11,14 @@ interface Testimonial {
   backgroundImage: string;
   companyName: string;
   isCaseStudy?: boolean;
+  hasBlogPost?: boolean;
 }
 
 const Testimonials: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [currentMobileIndex, setCurrentMobileIndex] = useState(0);
   const sectionRef = useRef(null);
+  const navigate = useNavigate();
   
   useEffect(() => {
     // Create an Intersection Observer to detect when the section is in the viewport
@@ -44,6 +49,11 @@ const Testimonials: React.FC = () => {
     };
   }, []);
   
+  // Navigate to the blog post
+  const navigateToBlog = () => {
+    navigate(ROUTES.AMBER_BLOG);
+  };
+  
   // Sample testimonial data - marking the second one as a case study
   const testimonials: Testimonial[] = [
     {
@@ -51,7 +61,8 @@ const Testimonials: React.FC = () => {
       quote: "Before Watchdog, I felt powerless to collect the money I was owed from big corporations. Watchdog helped me secure a fair outcome, and I couldn't be more excited to partner with them on future projects.",
       backgroundImage: "/images/ugc.jpeg",
       companyName: "Amber Lowe (UGC Creator)",
-      isCaseStudy: false
+      isCaseStudy: false,
+      hasBlogPost: true
     },
     {
       id: 2,
@@ -161,14 +172,22 @@ const Testimonials: React.FC = () => {
               {/* Person Info */}
               <div className="mt-auto">
                 <p className="text-white font-medium">{currentMobileTestimonial.companyName}</p>
+                
+                {/* Blog Button - Show only if testimonial has a blog post */}
+                {currentMobileTestimonial.hasBlogPost && (
+                  <Button 
+                    onClick={navigateToBlog}
+                    className="mt-3 bg-purple-600 hover:bg-purple-700 text-white text-sm py-1 px-3"
+                  >
+                    View Blog
+                  </Button>
+                )}
               </div>
             </div>
           </div>
 
           {/* Navigation Controls */}
           <div className="flex justify-center items-center mt-6 space-x-4">
-            
-
             {/* Left/Right Buttons */}
             <div className="flex space-x-3">
               <button
@@ -252,6 +271,16 @@ const Testimonials: React.FC = () => {
                   {/* Person Info */}
                   <div className="mt-auto">
                     <p className="text-white font-medium">{testimonial.companyName}</p>
+                    
+                    {/* Blog Button - Show only if testimonial has a blog post */}
+                    {testimonial.hasBlogPost && (
+                      <Button 
+                        onClick={navigateToBlog}
+                        className="mt-3 bg-purple-600 hover:bg-purple-700 text-white text-sm py-1 px-3"
+                      >
+                        View Blog
+                      </Button>
+                    )}
                   </div>
                 </div>
                 

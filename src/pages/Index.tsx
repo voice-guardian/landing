@@ -1,11 +1,10 @@
-import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import ProductSlider from "@/components/ProductSlider";
 import TypewriterStatement from "@/components/TypewriterStatement";
 import Features from "@/components/Features";
 import Testimonials from "@/components/Testimonials";
 import Pricing from "@/components/Pricing";
-import Footer from "@/components/Footer";
+import MainLayout from "@/components/layouts/MainLayout";
 import { useEffect, useRef } from "react";
 
 const Index = () => {
@@ -27,9 +26,8 @@ const Index = () => {
           alt=""
         />
         
-        {/* Content container */}
+        {/* Content container - Navbar is now part of MainLayout */}
         <div className="relative z-10">
-          <Navbar />
           <HeroSection />
         </div>
       </div>
@@ -47,11 +45,16 @@ const Index = () => {
         {/* Pricing section */}
         <Pricing />
         
-        {/* Footer */}
-        <Footer />
+        {/* Footer is now part of MainLayout */}
       </div>
     </div>
   );
 };
 
-export default Index;
+const IndexPage = () => (
+  <MainLayout>
+    <Index />
+  </MainLayout>
+);
+
+export default IndexPage;

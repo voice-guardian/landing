@@ -3,6 +3,8 @@ import { Button } from "@/components/ui/button";
 import EmailCollectionForm from "./EmailCollectionForm";
 import SuccessMessage from "./SuccessMessage";
 import { sendSlackNotification } from "@/utils/slackNotifier";
+import { useNavigate } from "react-router-dom";
+import { ROUTES } from "@/routes/constants";
 
 interface FindingUsesScreenProps {
   searchTerm: string;
@@ -32,6 +34,7 @@ const FindingUsesScreen = ({ searchTerm, onClose, artistId }: FindingUsesScreenP
   const [totalUsesFound, setTotalUsesFound] = useState(0);
   const progressIntervalRef = useRef<NodeJS.Timeout | null>(null);
   const apiCallCompleted = useRef(false);
+  const navigate = useNavigate();
   
   useEffect(() => {
     // Reset state
@@ -186,11 +189,23 @@ const FindingUsesScreen = ({ searchTerm, onClose, artistId }: FindingUsesScreenP
     // Show success state after attempting notification
     setIsEmailSubmitted(true);
     
-    // Reset state after a delay
+    // Reset state after a delay and navigate back to home
     setTimeout(() => {
       onClose();
     }, 3000);
   };
+
+  // Add keyboard event listener for Escape key
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        onClose();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [onClose]);
 
   return (
     <div className="fixed inset-0 bg-black flex flex-col items-center justify-center p-4 z-[9999]">
@@ -207,6 +222,17 @@ const FindingUsesScreen = ({ searchTerm, onClose, artistId }: FindingUsesScreenP
         </div>
         
         <p className="text-gray-500 text-sm">{loadingProgress}% complete</p>
+        
+        {/* Close button */}
+        <button
+          onClick={onClose}
+          className="absolute top-4 right-4 text-gray-500 hover:text-white transition-colors"
+          aria-label="Close"
+        >
+          <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
         
         {/* Email Collection or Success component */}
         {showEmailPopup && (

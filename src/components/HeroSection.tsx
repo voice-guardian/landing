@@ -2,46 +2,37 @@ import { Button } from "@/components/ui/button";
 import PartnerLogos from "./PartnerLogos";
 import { useEffect, useState } from "react";
 import SearchBar from "./search/SearchBar";
-import FindingUsesScreen from "./finding-uses/FindingUsesScreen";
+import { useLocation, useNavigate } from 'react-router-dom';
+import { ROUTES } from "@/routes/constants";
 import '../styles/testimonials.css'; // Import the CSS that contains the glitch effect
 
 const HeroSection = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedArtistId, setSelectedArtistId] = useState<string | undefined>(undefined);
-  const [showFindingUsesScreen, setShowFindingUsesScreen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
   
   useEffect(() => {
     // Trigger animations after component mount
     setIsVisible(true);
-  }, []);
+  }, [location.pathname]);
 
   // Handle Find Uses button click
   const handleFindUses = (artistId?: string) => {
     if (!searchTerm) return;
     
-    // Store the artist ID if provided
+    // Use URL parameters to maintain state
+    const params = new URLSearchParams();
+    params.set("term", searchTerm);
+    
     if (artistId) {
-      setSelectedArtistId(artistId);
+      params.set("artistId", artistId);
     }
     
-    setShowFindingUsesScreen(true);
+    // Navigate to the search results page with the parameters
+    navigate(`${ROUTES.SEARCH_RESULTS}?${params.toString()}`);
   };
-
-  // If showing the finding uses screen, render that instead of the main content
-  if (showFindingUsesScreen) {
-    return (
-      <FindingUsesScreen 
-        searchTerm={searchTerm} 
-        artistId={selectedArtistId}
-        onClose={() => {
-          setShowFindingUsesScreen(false);
-          setSearchTerm(""); // Reset search term when done
-          setSelectedArtistId(undefined); // Reset artist ID
-        }}
-      />
-    );
-  }
 
   return (
     <div className="relative w-full pt-44 md:pt-48 pb-24 flex flex-col items-center">

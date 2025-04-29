@@ -1,9 +1,12 @@
 import { ChevronDown, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { ROUTES } from "@/routes/constants";
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
+  const navigate = useNavigate();
 
   // Add scroll event listener to change navbar appearance on scroll
   useEffect(() => {
@@ -26,7 +29,7 @@ const Navbar = () => {
       <div className="relative flex justify-between items-center py-5 px-4 md:px-8 container mx-auto">
         {/* Logo */}
         <div className="flex items-center z-20">
-          <a href="/" className="flex items-center text-white font-bold text-xl">
+          <Link to={ROUTES.HOME} className="flex items-center text-white font-bold text-xl">
             <img
               src="/images/watchdog.png"
               alt="Watchdog Logo"
@@ -35,7 +38,7 @@ const Navbar = () => {
               className="mr-4 brightness-0 invert"
             />
             Watchdog
-          </a>
+          </Link>
         </div>
         
         {/* Desktop Navigation - Hidden on mobile */}
