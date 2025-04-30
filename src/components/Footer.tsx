@@ -1,4 +1,3 @@
-
 import { Linkedin } from "lucide-react";
 
 export const Footer = () => {
@@ -26,8 +25,8 @@ export const Footer = () => {
         </div>
         <div className="mt-16 pt-12 border-t border-gray-800 flex flex-col md:flex-row justify-between">
           <div className="space-y-4 md:space-y-0 md:space-x-12">
-            <a href="#" className="block md:inline text-lg hover:text-white transition-colors">Terms of Service</a>
-            <a href="#" className="block md:inline text-lg hover:text-white transition-colors">Privacy Policy</a>
+            <a href="/terms-of-service" className="block md:inline text-lg hover:text-white transition-colors">Terms of Service</a>
+            <a href="/privacy-policy" className="block md:inline text-lg hover:text-white transition-colors">Privacy Policy</a>
           </div>
         </div>
       </div>
