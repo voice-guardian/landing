@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import ColorGradient from "@/components/ColorGradient";
 
 const HeroSectionV2: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -7,9 +8,13 @@ const HeroSectionV2: React.FC = () => {
   }, []);
 
   return (
-    <section className="flex flex-col items-center justify-center w-[1000px] max-w-full h-full mx-auto relative min-h-[auto]">
+    <section className="flex flex-col items-center justify-center max-w-full h-full mx-auto relative min-h-[1000px]">
+      {/* Animated Gradient Background */}
+      <div className="absolute inset-0 w-full h-full z-0 pointer-events-none">
+        <ColorGradient />
+      </div>
       {/* Content Section */}
-      <div className="flex flex-col items-center justify-center w-full gap-8 py-8 flex-1">
+      <div className="flex flex-col items-center justify-center w-full gap-8 py-8 flex-1 relative z-10">
         {/* Heading Block */}
         <div
           className={`flex flex-col items-center justify-center gap-2 transition-all duration-700 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
@@ -35,7 +40,7 @@ const HeroSectionV2: React.FC = () => {
         </a>
       </div>
       {/* Image Section */}
-      <div className="flex items-center justify-center w-full relative flex-1">
+      <div className="flex items-center justify-center w-[1000px] relative flex-1">
         <img
           src="/left-splash-200h.png"
           alt="Left Splash"

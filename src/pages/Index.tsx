@@ -7,6 +7,7 @@ import Pricing from "@/components/Pricing";
 import MainLayout from "@/components/layouts/MainLayout";
 import { useEffect, useRef } from "react";
 import HeroSection from "@/components/HeroSection";
+import ColorGradient from "@/components/ColorGradient";
 
 const Index = () => {
   return (
@@ -28,9 +29,7 @@ const Index = () => {
         />
         
         {/* Content container - Navbar is now part of MainLayout */}
-        <div className="relative z-10">
-          <HeroSectionV2 />
-        </div>
+        <HeroSectionV2 />
       </div>
 
       {/* Rest of the page content with clean separation */}
