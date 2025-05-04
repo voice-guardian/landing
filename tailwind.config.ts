@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import tailwindcssAnimate from "tailwindcss-animate";
 
 export default {
 	darkMode: ["class"],
@@ -84,13 +85,33 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'fade-in-left': {
+					'0%': { opacity: '0', transform: 'translateX(-20px)' },
+					'100%': { opacity: '1', transform: 'translateX(0)' }
+				},
+				'fade-in-right': {
+					'0%': { opacity: '0', transform: 'translateX(20px)' },
+					'100%': { opacity: '1', transform: 'translateX(0)' }
+				},
+				'fade-in': {
+					'0%': { opacity: '0', transform: 'translateY(30px)' },
+					'100%': { opacity: '1', transform: 'translateY(0)' }
+				},
+				'flip-in': {
+					'0%': { opacity: '0', transform: 'perspective(400px) rotateX(35deg)' },
+					'100%': { opacity: '1', transform: 'perspective(400px) rotateX(0)' }
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'fade-in-left': 'fade-in-left 0.5s ease-out both',
+				'fade-in-right': 'fade-in-right 0.5s ease-out both',
+				'fade-in': 'fade-in 0.5s ease-out both',
+				'flip-in': 'flip-in 0.4s ease-out both'
 			}
 		}
 	},
-	plugins: [require("tailwindcss-animate")],
+	plugins: [tailwindcssAnimate],
 } satisfies Config;

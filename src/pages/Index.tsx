@@ -1,4 +1,4 @@
-import HeroSection from "@/components/HeroSection";
+import HeroSectionV2 from "@/components/HeroSectionV2";
 import ProductSlider from "@/components/ProductSlider";
 import TypewriterStatement from "@/components/TypewriterStatement";
 import Features from "@/components/Features";
@@ -6,6 +6,7 @@ import Testimonials from "@/components/Testimonials";
 import Pricing from "@/components/Pricing";
 import MainLayout from "@/components/layouts/MainLayout";
 import { useEffect, useRef } from "react";
+import HeroSection from "@/components/HeroSection";
 
 const Index = () => {
   return (
@@ -28,7 +29,7 @@ const Index = () => {
         
         {/* Content container - Navbar is now part of MainLayout */}
         <div className="relative z-10">
-          <HeroSection />
+          <HeroSectionV2 />
         </div>
       </div>
 
