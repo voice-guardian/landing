@@ -1,11 +1,30 @@
 import React, { useEffect, useState } from "react";
 import ColorGradient from "@/components/ColorGradient";
+import PartnerLogos from "@/components/PartnerLogos";
+import SearchBar from "@/components/search/SearchBar";
+import { useLocation, useNavigate } from 'react-router-dom';
+import { ROUTES } from "@/routes/constants";
 
 const HeroSectionV2: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+  const location = useLocation();
+  const navigate = useNavigate();
+
   useEffect(() => {
     setIsVisible(true);
-  }, []);
+  }, [location.pathname]);
+
+  // Handle Find Uses button click
+  const handleFindUses = (artistId?: string) => {
+    if (!searchTerm) return;
+    const params = new URLSearchParams();
+    params.set("term", searchTerm);
+    if (artistId) {
+      params.set("artistId", artistId);
+    }
+    navigate(`${ROUTES.SEARCH_RESULTS}?${params.toString()}`);
+  };
 
   return (
     <section className="flex flex-col items-center justify-center max-w-full h-full mx-auto relative min-h-[1000px]">
@@ -20,45 +39,56 @@ const HeroSectionV2: React.FC = () => {
           className={`flex flex-col items-center justify-center gap-2 transition-all duration-700 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
           style={{ transitionDelay: '0.2s' }}
         >
-          <h1 className="text-white text-4xl md:text-5xl font-semibold text-center font-inter leading-[60px] w-full">
+          <h1 className="text-white text-4xl md:text-5xl pt-24 font-semibold text-center font-inter leading-[60px] w-full">
             <span>Don't Miss Out on</span>
             <br />
             <span>Music Revenue</span>
           </h1>
-          <p className="text-gray-300 text-[22px] font-light text-center w-full max-w-[70%] leading-[27px]">
+          <p className="text-gray-300 text-[22px] font-light pt-2 text-center w-full max-w-[70%] leading-[27px]">
             <span>We find where brands use your music and help you</span>
             <span> turn it into revenue</span>
           </p>
         </div>
-        {/* CTA Button */}
-        <a
-          href="#book"
-          className={`transition-all duration-700 ease-out rounded-lg no-underline bg-[#965cff] hover:bg-[#6b33cc] flex items-center gap-2 text-white font-semibold text-base py-4 px-6 mt-4 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
-          style={{ borderRadius: '8px', transitionDelay: '0.5s' }}
+        {/* Search Bar Component */}
+        <div
+          className={`relative w-full max-w-2xl transition-all duration-700 ease-out z-[10] ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4"}`}
+          style={{ transitionDelay: "700ms" }}
         >
-          Schedule Demo
-        </a>
+          <SearchBar
+            searchTerm={searchTerm}
+            onSearchTermChange={setSearchTerm}
+            onFindUses={handleFindUses}
+            isVisible={isVisible}
+          />
+        </div>
+        {/* Partner Logos */}
+        <div
+          className={`w-full relative z-[1] transition-all duration-700 ease-out ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
+          style={{ transitionDelay: "1100ms" }}
+        >
+          <PartnerLogos />
+        </div>
       </div>
       {/* Image Section */}
       <div className="flex items-center justify-center w-[1000px] relative flex-1">
-        <img
+        {/* <img
           src="/left-splash-200h.png"
           alt="Left Splash"
           className={`absolute top-[265px] left-[-80px] w-[250px] h-[120px] z-10 object-cover rounded-lg transition-all duration-700 ease-out ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'}`}
           style={{ borderRadius: '8px', transitionDelay: '2s' }}
-        />
+        /> */}
         <img
           src="/dashboard-big.png"
           alt="Dashboard"
           className={`flex-1 w-auto h-auto object-cover transition-all duration-700 ease-out ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`}
           style={{ transitionDelay: '1s' }}
         />
-        <img
+        {/* <img
           src="/right-splash-200h.png"
           alt="Right Splash"
           className={`absolute top-[-30px] right-[-70px] w-[250px] h-[120px] z-10 object-cover rounded-lg transition-all duration-700 ease-out ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'}`}
           style={{ borderRadius: '8px', transitionDelay: '2.5s' }}
-        />
+        /> */}
       </div>
       {/* Splash Decoration (if needed) */}
       <div className="home-splash"></div>

@@ -29,7 +29,7 @@ const Index = () => {
         />
         
         {/* Content container - Navbar is now part of MainLayout */}
-        <HeroSectionV2 />
+        <HeroSection />
       </div>
 
       {/* Rest of the page content with clean separation */}
