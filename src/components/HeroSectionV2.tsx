@@ -45,9 +45,9 @@ const HeroSectionV2: React.FC = () => {
           {/* <div className="absolute left-0 top-0 w-full h-full rounded-full pointer-events-none overflow-hidden">
             <div className="absolute left-[-40%] top-0 w-2/3 h-full bg-gradient-to-tr from-white/60 via-white/10 to-transparent opacity-60 animate-sheen" />
           </div> */}
-          <div className="flex items-center relative z-10">
+          <div className="flex items-center relative z-10 p-0.5">
             <p style={{ textShadow: "0 1px 4px rgba(255,255,255,0.5)" }}>Backed by&nbsp;</p>
-            <img src="/images/yc-logo.png" alt="YCombinator" className="w-24 h-7" />
+            <img src="/images/yc-logo.png" alt="YCombinator" className="w-24 h-5" />
           </div>
         </div>
         
@@ -68,7 +68,7 @@ const HeroSectionV2: React.FC = () => {
         </div>
         {/* Search Bar Component */}
         <div
-          className={`relative w-full max-w-2xl transition-all duration-700 ease-out z-[10] ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4"}`}
+          className={`relative w-full max-w-2xl pt-2 transition-all duration-700 ease-out z-[10] ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4"}`}
           style={{ transitionDelay: "700ms" }}
         >
           <SearchBar
