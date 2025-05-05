@@ -117,7 +117,7 @@ const Features = () => {
         
         {/* Collect Feature (full width within max-width container) */}
         <div 
-          className={`w-full bg-gray-100 rounded-2xl p-8 md:p-12 shadow-lg hover:shadow-xl transition-shadow duration-500 transition-all duration-700 ease-out transform ${
+          className={`w-full bg-[#f7f7f7] rounded-2xl p-8 md:p-12 shadow-lg hover:shadow-xl transition-shadow duration-500 transition-all duration-700 ease-out transform ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-16"
           }`}
           style={{ transitionDelay: "800ms" }}
@@ -134,7 +134,7 @@ const Features = () => {
             {/* Image below description (placeholder) */}
             <div className="w-full flex justify-center mt-2">
               <img 
-                src="/images/products/feat-3.jpg" 
+                src="/images/products/feat-3.png" 
                 alt="Collect dashboard screenshot" 
                 className="w-full max-w-md object-contain rounded-lg"
               />
