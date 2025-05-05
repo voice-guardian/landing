@@ -78,7 +78,7 @@ const HeroSectionV2: React.FC = () => {
           style={{ borderRadius: '8px', transitionDelay: '2s' }}
         /> */}
         <img
-          src="/dashboard-big.png"
+          src="/dashboard-new.png"
           alt="Dashboard"
           className={`flex-1 w-auto h-auto object-cover transition-all duration-700 ease-out ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`}
           style={{ transitionDelay: '1s' }}

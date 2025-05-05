@@ -42,13 +42,13 @@ const Features = () => {
     {
       title: "Monitor",
       description: "Identify when your music is used by brands in social media, at scale.",
-      image: "/images/products/monitor.png",
+      image: "/images/products/feat-1.jpg",
       variant: "light" // white background
     },
     {
       title: "Identify",
       description: "Generate reports of brand uses with high revenue potential, curated and ready to claim.",
-      image: "/images/products/claim.png",
+      image: "/images/products/feat-2.jpg",
       variant: "dark" // dark background
     }
   ];
@@ -65,7 +65,7 @@ const Features = () => {
 
   return (
     <section ref={sectionRef} className="w-full py-20 bg-white overflow-hidden">
-      <div className="container mx-auto px-4 md:px-6 max-w-7xl">
+      <div className="container mx-auto px-20 md:px-20 max-w-7xl">
         {/* Section Heading with animation */}
         <div 
           className={`transition-all duration-700 ease-out transform ${
@@ -117,16 +117,28 @@ const Features = () => {
         
         {/* Collect Feature (full width within max-width container) */}
         <div 
-          className={`w-full bg-gray-100 rounded-2xl p-8 md:p-12 transition-all duration-700 ease-out transform ${
+          className={`w-full bg-gray-100 rounded-2xl p-8 md:p-12 shadow-lg hover:shadow-xl transition-shadow duration-500 transition-all duration-700 ease-out transform ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-16"
           }`}
           style={{ transitionDelay: "800ms" }}
         >
-          <div className="text-center max-w-3xl mx-auto">
-            <h3 className="text-2xl md:text-3xl mb-4">Collect</h3>
-            <p className="text-gray-700">
-            Automate notices to brands with a single click, or hand it off to our team to collect on your behalf.
+          <div className="text-center max-w-3xl mx-auto flex flex-col items-center">
+            {/* Title as a green chip */}
+            <div className="inline-block px-4 py-1 mb-4 rounded-full text-sm font-semibold shadow bg-green-400 text-gray-900">
+              Collect
+            </div>
+            {/* Bigger description */}
+            <p className="text-gray-700 text-2xl font-bold mb-2">
+              Automate notices to brands with a single click, or hand it off to our team to collect on your behalf.
             </p>
+            {/* Image below description (placeholder) */}
+            <div className="w-full flex justify-center mt-2">
+              <img 
+                src="/images/products/feat-3.jpg" 
+                alt="Collect dashboard screenshot" 
+                className="w-full max-w-md object-contain rounded-lg"
+              />
+            </div>
           </div>
           
           {/* Brands grid with staggered animations for each logo
