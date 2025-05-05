@@ -22,14 +22,14 @@ const Index = () => {
         }}
       >
         {/* Background image */}
-        <img 
+        {/* <img 
           className="absolute inset-0 w-full h-full object-cover"
           src="/images/background8.png"
           alt=""
-        />
+        /> */}
         
         {/* Content container - Navbar is now part of MainLayout */}
-        <HeroSection />
+        <HeroSectionV2 />
       </div>
 
       {/* Rest of the page content with clean separation */}

@@ -170,7 +170,7 @@ const PartnerLogos = () => {
   
   // Desktop view - horizontal layout
   return (
-    <div className="w-full mt-10">
+    <div className="w-full mt-2">
       <div className="flex justify-center items-center space-x-16 py-4">
         <div className="text-white">
           <img 

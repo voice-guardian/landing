@@ -27,7 +27,7 @@ const HeroSectionV2: React.FC = () => {
   };
 
   return (
-    <section className="flex flex-col items-center justify-center max-w-full h-full mx-auto relative min-h-[1000px]">
+    <section className="flex flex-col items-center justify-center max-w-full mx-auto relative min-h-screen">
       {/* Animated Gradient Background */}
       <div className="absolute inset-0 w-full h-full z-0 pointer-events-none">
         <ColorGradient />
@@ -39,7 +39,7 @@ const HeroSectionV2: React.FC = () => {
           className={`flex flex-col items-center justify-center gap-2 transition-all duration-700 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
           style={{ transitionDelay: '0.2s' }}
         >
-          <h1 className="text-white text-4xl md:text-5xl pt-24 font-semibold text-center font-inter leading-[60px] w-full">
+          <h1 className="text-white text-4xl md:text-5xl pt-20 font-semibold text-center font-inter leading-[60px] w-full">
             <span>Don't Miss Out on</span>
             <br />
             <span>Music Revenue</span>
@@ -91,7 +91,7 @@ const HeroSectionV2: React.FC = () => {
         /> */}
       </div>
       {/* Splash Decoration (if needed) */}
-      <div className="home-splash"></div>
+      {/* <div className="home-splash"></div> */}
     </section>
   );
 };
