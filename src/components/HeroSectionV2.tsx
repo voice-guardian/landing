@@ -33,13 +33,30 @@ const HeroSectionV2: React.FC = () => {
         <ColorGradient />
       </div>
       {/* Content Section */}
-      <div className="flex flex-col items-center justify-center w-full gap-8 py-8 flex-1 relative z-10">
+      <div className="flex flex-col items-center justify-center w-full gap-6 pt-20 flex-1 relative z-10">
+        {/* YCombinator Badge */}
+        <div 
+          className={`relative backdrop-blur-md bg-white/20 border border-white/10 text-white/80 px-4 py-0.5 rounded-full inline-flex text-xs font-semibold tracking-wide transition-all duration-700 ease-out ${
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4"
+          }`}
+          style={{ transitionDelay: "100ms" }}
+        >
+          {/* Sheen overlay */}
+          {/* <div className="absolute left-0 top-0 w-full h-full rounded-full pointer-events-none overflow-hidden">
+            <div className="absolute left-[-40%] top-0 w-2/3 h-full bg-gradient-to-tr from-white/60 via-white/10 to-transparent opacity-60 animate-sheen" />
+          </div> */}
+          <div className="flex items-center relative z-10">
+            <p style={{ textShadow: "0 1px 4px rgba(255,255,255,0.5)" }}>Backed by&nbsp;</p>
+            <img src="/images/yc-logo.png" alt="YCombinator" className="w-24 h-7" />
+          </div>
+        </div>
+        
         {/* Heading Block */}
         <div
           className={`flex flex-col items-center justify-center gap-2 transition-all duration-700 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
           style={{ transitionDelay: '0.2s' }}
         >
-          <h1 className="text-white text-4xl md:text-5xl pt-20 font-semibold text-center font-inter leading-[60px] w-full">
+          <h1 className="text-white text-4xl md:text-5xl font-semibold text-center font-inter leading-[60px] w-full">
             <span>Don't Miss Out on</span>
             <br />
             <span>Music Revenue</span>
