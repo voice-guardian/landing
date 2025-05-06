@@ -109,10 +109,10 @@ const Testimonials: React.FC = () => {
           style={{ transitionDelay: "200ms" }}
         >
          
-          <h2 className="text-3xl md:text-4xl lg:text-5xl text-white font-light mb-8">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl text-white font-light mb-8 font-inter">
             Join leading businesses using Watchdog <br className="hidden sm:block" />
-            <span className="font-normal">
-              <span className="font-mono glitch-text" data-text="to get paid">to get paid</span> for brand uses
+            <span className="font-normal font-inter">
+              <span className="font-bold text-[#a855f7]" data-text="to get paid">to get paid</span> for brand uses
             </span>
           </h2>
         </div>
@@ -164,14 +164,14 @@ const Testimonials: React.FC = () => {
               
               {/* Quote */}
               <div className="flex-grow flex items-center mb-6">
-                <p className="text-white text-lg italic">
+                <p className="text-white text-lg italic font-inter">
                   "{currentMobileTestimonial.quote}"
                 </p>
               </div>
               
               {/* Person Info */}
               <div className="mt-auto">
-                <p className="text-white font-medium">{currentMobileTestimonial.companyName}</p>
+                <p className="text-white font-medium font-inter">{currentMobileTestimonial.companyName}</p>
                 
                 {/* Blog Button - Show only if testimonial has a blog post */}
                 {currentMobileTestimonial.hasBlogPost && (
@@ -263,14 +263,14 @@ const Testimonials: React.FC = () => {
                   
                   {/* Quote */}
                   <div className="flex-grow flex items-center mb-6">
-                    <p className="text-white text-lg md:text-m">
+                    <p className="text-white text-lg md:text-m font-inter">
                       "{testimonial.quote}"
                     </p>
                   </div>
                   
                   {/* Person Info */}
                   <div className="mt-auto">
-                    <p className="text-white font-medium">{testimonial.companyName}</p>
+                    <p className="text-white font-medium font-inter">{testimonial.companyName}</p>
                     
                     {/* Blog Button - Show only if testimonial has a blog post */}
                     {testimonial.hasBlogPost && (

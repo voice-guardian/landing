@@ -87,7 +87,7 @@ const HeroSectionV2: React.FC = () => {
         </div>
       </div>
       {/* Image Section */}
-      <div className="flex items-center justify-center w-[1000px] relative flex-1">
+      <div className="flex items-center justify-center w-3/5 relative flex-1">
         {/* <img
           src="/left-splash-200h.png"
           alt="Left Splash"
