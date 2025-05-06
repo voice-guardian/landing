@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 // Centralized logo data
 const logos = [
@@ -7,119 +7,67 @@ const logos = [
   { src: "/images/brands/defend-music.png", alt: "Defend Music" },
   { src: "/images/brands/romantic.png", alt: "Romantic" },
   { src: "/images/brands/platinum.png", alt: "Platinum Grammar" },
+  { src: "/images/brands/the-administration.png", alt: "The Administration" },
 ];
 
-// Reusable logo item component
-const LogoItem = ({ src, alt, className = "" }) => (
-  <div className="logo-item flex-shrink-0 flex justify-center items-center">
-    <img src={src} alt={alt} className={className} />
+const LogoItem = ({ src, alt }) => (
+  <div className="logo-item flex-shrink-0 flex justify-center items-center group">
+    <img 
+      src={src} 
+      alt={alt} 
+      className="h-16 md:h-20 lg:h-24 w-auto object-contain transition-all duration-200 brightness-0 invert group-hover:brightness-100 group-hover:invert-0" 
+    />
   </div>
 );
 
 const PartnerLogos = () => {
-  const [deviceType, setDeviceType] = useState<'mobile' | 'tablet' | 'desktop'>('desktop');
-  
+  const marqueeRef = useRef(null);
+
+  // Pause animation on hover
   useEffect(() => {
-    // Check screen size and set device type
-    const checkDeviceType = () => {
-      const width = window.innerWidth;
-      if (width < 640) {
-        setDeviceType('mobile');
-      } else if (width < 1024) {
-        setDeviceType('tablet');
-      } else {
-        setDeviceType('desktop');
-      }
+    const marquee = marqueeRef.current;
+    if (!marquee) return;
+    const handleMouseEnter = () => marquee.style.animationPlayState = 'paused';
+    const handleMouseLeave = () => marquee.style.animationPlayState = 'running';
+    marquee.addEventListener('mouseenter', handleMouseEnter);
+    marquee.addEventListener('mouseleave', handleMouseLeave);
+    return () => {
+      marquee.removeEventListener('mouseenter', handleMouseEnter);
+      marquee.removeEventListener('mouseleave', handleMouseLeave);
     };
-    
-    // Initial check
-    checkDeviceType();
-    
-    // Add window resize listener
-    window.addEventListener('resize', checkDeviceType);
-    
-    // Cleanup
-    return () => window.removeEventListener('resize', checkDeviceType);
   }, []);
-  
-  // Mobile carousel view
-  if (deviceType === 'mobile') {
-    return (
-      <div className="w-full overflow-hidden relative mt-10">
-        {/* The outer container with hidden overflow */}
-        <div className="py-4 relative">
-          {/* Inner container that's twice as wide and animates */}
-          <div className="inline-flex marquee-container space-x-12">
-            {[0, 1].map((repeat) => (
-              <div className="flex space-x-12" key={repeat}>
-                {logos.map((logo, idx) => (
-                  <LogoItem key={logo.alt + repeat} {...logo} className="h-14 brightness-0 invert" />
-                ))}
-              </div>
-            ))}
-          </div>
-        </div>
-        
-        
-        {/* Add CSS keyframe animation */}
-        <style >{`
-          .marquee-container {
-            animation: marquee 20s linear infinite;
-            min-width: max-content;
-          }
-          
-          @keyframes marquee {
-            0% {
-              transform: translateX(0);
-            }
-            100% {
-              transform: translateX(-50%);
-            }
-          }
-        `}</style>
-      </div>
-    );
-  }
-  
-  // Tablet view - use marquee/scrolling style like mobile, but with larger logos
-  if (deviceType === 'tablet') {
-    return (
-      <div className="w-full overflow-hidden relative mt-10">
-        <div className="py-4 relative">
-          {/* Marquee: two sets for seamless looping */}
-          <div className="inline-flex marquee-container space-x-16">
-            {[0, 1].map((repeat) => (
-              <div className="flex space-x-16" key={repeat}>
-                {logos.map((logo, idx) => (
-                  <LogoItem key={logo.alt + repeat} {...logo} className="h-20 brightness-0 invert" />
-                ))}
-              </div>
-            ))}
-          </div>
-        </div>
-        {/* Marquee animation */}
-        <style>{`
-          .marquee-container {
-            animation: marquee 24s linear infinite;
-            min-width: max-content;
-          }
-          @keyframes marquee {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-          }
-        `}</style>
-      </div>
-    );
-  }
-  
-  // Desktop view - horizontal layout
+
+  // Duplicate logos for seamless scroll
+  const allLogos = [...logos, ...logos];
+
   return (
-    <div className="w-full">
-      <div className="flex justify-center items-center space-x-16 py-4">
-        {logos.map((logo) => (
-          <LogoItem key={logo.alt} {...logo} className="h-20 brightness-0 invert" />
-        ))}
+    <div className="w-full px-4 sm:w-2/5 sm:mx-auto relative overflow-hidden py-6">
+      {/* Scrolling logos */}
+      <div className="logo-carousel-container">
+        <div
+          ref={marqueeRef}
+          className="flex gap-10 animate-logo-marquee"
+          style={{ minWidth: 'max-content' }}
+        >
+          {allLogos.map((logo, idx) => (
+            <LogoItem key={logo.alt + idx} {...logo} />
+          ))}
+        </div>
       </div>
+      {/* Animation styles */}
+      <style>{`
+        @keyframes logo-marquee {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+        .animate-logo-marquee {
+          animation: logo-marquee 20s linear infinite;
+          animation-play-state: running;
+        }
+        .logo-carousel-container:hover .animate-logo-marquee {
+          animation-play-state: paused;
+        }
+      `}</style>
     </div>
   );
 };
