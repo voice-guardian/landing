@@ -112,7 +112,7 @@ const Testimonials: React.FC = () => {
           <h2 className="text-3xl md:text-4xl lg:text-5xl text-white font-light mb-8 font-inter">
             Join leading businesses using Watchdog <br className="hidden sm:block" />
             <span className="font-normal font-inter">
-              <span className="font-bold text-[#a855f7]" data-text="to get paid">to get paid</span> for brand uses
+              <span className="font-bold bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent">to get paid</span> for brand uses
             </span>
           </h2>
         </div>

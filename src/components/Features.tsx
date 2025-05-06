@@ -117,26 +117,27 @@ const Features = () => {
         
         {/* Collect Feature (full width within max-width container) */}
         <div 
-          className={`w-full bg-[#f7f7f7] rounded-2xl p-8 md:p-12 shadow-lg hover:shadow-xl transition-shadow duration-500 transition-all duration-700 ease-out transform ${
+          className={`w-full bg-[#f7f7f7] rounded-2xl p-8 md:p-8 shadow-lg hover:shadow-xl transition-shadow duration-500 transition-all duration-700 ease-out transform ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-16"
           }`}
           style={{ transitionDelay: "800ms" }}
         >
-          <div className="text-center max-w-3xl mx-auto flex flex-col items-center">
-            {/* Title as a green chip */}
-            <div className="inline-block px-4 py-1 mb-4 rounded-full text-sm font-semibold shadow bg-green-400 text-gray-900">
-              Collect
+          <div className="mx-auto flex flex-col items-center">
+            {/* Title as a green chip and description, contained */}
+            <div className="w-full max-w-2xl text-center">
+              <div className="inline-block px-4 py-1 mb-4 rounded-full text-sm font-semibold shadow bg-green-400 text-gray-900">
+                Collect
+              </div>
+              <p className="text-gray-700 text-2xl font-bold mb-2">
+                Automate notices to brands with a single click, or hand it off to our team to collect on your behalf.
+              </p>
             </div>
-            {/* Bigger description */}
-            <p className="text-gray-700 text-2xl font-bold mb-2">
-              Automate notices to brands with a single click, or hand it off to our team to collect on your behalf.
-            </p>
-            {/* Image below description (placeholder) */}
+            {/* Image below description (very large) */}
             <div className="w-full flex justify-center mt-2">
               <img 
                 src="/images/products/feat-3.png" 
                 alt="Collect dashboard screenshot" 
-                className="w-full max-w-md object-contain rounded-lg"
+                className="w-full max-w-5xl object-contain rounded-lg"
               />
             </div>
           </div>
