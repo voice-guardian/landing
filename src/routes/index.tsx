@@ -1,4 +1,4 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider, Navigate } from 'react-router-dom';
 import Index from '@/pages/Index';
 import About from '@/pages/About';
 import SearchResults from '@/pages/SearchResults';
@@ -29,6 +29,14 @@ const router = createBrowserRouter([
   {
     path: ROUTES.ADMINISTRATION_BLOG,
     element: <AdministrationBlog />
+  },
+  {
+    path: '/privacy-policy',
+    element: <Navigate to="/privacy-policy.html" replace />,
+  },
+  {
+    path: '/terms-of-service',
+    element: <Navigate to="/terms-of-service.html" replace />,
   },
   // Add more routes here as needed
   // Example:
