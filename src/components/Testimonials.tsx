@@ -88,7 +88,7 @@ const Testimonials: React.FC = () => {
     },
     {
       id: 4,
-      quote: "This is definitely the best product I’ve seen in this category. Every other vendor just sends us CSV data files that from outsourced data labelers.",
+      quote: "This is definitely the best product I’ve seen in this category. Every other vendor just sends us CSV data files from outsourced data labelers.",
       // companyLogo: "/images/testimonials/platinum-grammar.png",
       backgroundImage: "/images/drums.webp",
       companyName: "Business & Legal Affairs, Top 3 Music Company",
