@@ -28,7 +28,7 @@ const Footer: React.FC = () => {
               <span className="text-white text-xl font-bold">Watchdog</span>
             </div>
             <h2 className="text-3xl md:text-4xl font-bold leading-tight">
-              Tap Into the <span className="font-mono glitch-text-footer">$65B</span> Copyright<br />
+              Tap Into the <span className="font-bold bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent">$65B</span> Copyright<br />
               Market
             </h2>
           </div>

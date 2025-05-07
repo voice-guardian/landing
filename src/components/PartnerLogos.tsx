@@ -41,7 +41,7 @@ const PartnerLogos = () => {
   const allLogos = [...logos, ...logos];
 
   return (
-    <div className="w-full px-4 sm:w-2/5 sm:mx-auto relative overflow-hidden py-6">
+    <div className="w-full px-4 sm:w-3/5 sm:mx-auto md:w-2/5 relative overflow-hidden py-6">
       {/* Scrolling logos */}
       <div className="logo-carousel-container">
         <div

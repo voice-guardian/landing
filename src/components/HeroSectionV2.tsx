@@ -68,7 +68,7 @@ const HeroSectionV2: React.FC = () => {
         </div>
         {/* Search Bar Component */}
         <div
-          className={`relative w-full max-w-2xl pt-2 transition-all duration-700 ease-out z-[10] ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4"}`}
+          className={`relative w-[90%] mx-16 sm:mx-10 sm:w-3/5 md:w-2/5 pt-2 transition-all duration-700 ease-out z-[10] ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4"}`}
           style={{ transitionDelay: "700ms" }}
         >
           <SearchBar
@@ -87,25 +87,13 @@ const HeroSectionV2: React.FC = () => {
         </div>
       </div>
       {/* Image Section */}
-      <div className="flex items-center justify-center w-3/5 relative flex-1">
-        {/* <img
-          src="/left-splash-200h.png"
-          alt="Left Splash"
-          className={`absolute top-[265px] left-[-80px] w-[250px] h-[120px] z-10 object-cover rounded-lg transition-all duration-700 ease-out ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'}`}
-          style={{ borderRadius: '8px', transitionDelay: '2s' }}
-        /> */}
+      <div className="flex items-end justify-end w-full sm:w-3/5 relative flex-1">
         <img
-          src="/dashboard-new.png"
+          src="/dashboard.png"
           alt="Dashboard"
-          className={`flex-1 w-auto h-auto object-cover transition-all duration-700 ease-out ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`}
+          className={`flex-1 h-auto object-cover transition-all duration-700 ease-out ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-90'} mb-0 sm:mb-0 w-[400px] sm:w-[800px] lg:w-[1000px] mx-4`}
           style={{ transitionDelay: '1s' }}
         />
-        {/* <img
-          src="/right-splash-200h.png"
-          alt="Right Splash"
-          className={`absolute top-[-30px] right-[-70px] w-[250px] h-[120px] z-10 object-cover rounded-lg transition-all duration-700 ease-out ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'}`}
-          style={{ borderRadius: '8px', transitionDelay: '2.5s' }}
-        /> */}
       </div>
       {/* Splash Decoration (if needed) */}
       {/* <div className="home-splash"></div> */}

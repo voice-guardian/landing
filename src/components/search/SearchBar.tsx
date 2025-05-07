@@ -155,7 +155,7 @@ const SearchBar = ({ searchTerm, onSearchTermChange, onFindUses, isVisible }: Se
         value={searchTerm}
         onChange={handleSearchChange}
         className="w-full h-14 rounded-full bg-gray-800/50 border-none text-white px-8 py-4 focus:outline-none focus:ring-2 focus:ring-purple-500 placeholder:text-xs xs:placeholder:text-sm md:placeholder:text-base placeholder:text-gray-400"
-        placeholder="Search artist or song..."
+        placeholder="Search any artist or song..."
       />
       
       {isLoading && (

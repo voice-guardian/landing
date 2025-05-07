@@ -61,7 +61,7 @@ const EmailCollectionForm = ({ onSubmit, companies = [], totalUses = 0 }: EmailC
       
       <div className="space-y-5">
         <p className="text-gray-300 text-sm leading-relaxed">
-          Enter your email to receive a detailed report on the money you can claim from copyright uses. 
+          Enter your email to receive a detailed report on the uses you can claim from copyright uses. 
         </p>
         
         <form onSubmit={handleSubmit} className="w-full space-y-3">

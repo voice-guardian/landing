@@ -79,7 +79,7 @@ const AmberBlogContent = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
               <div className="absolute bottom-0 left-0 right-0 p-6">
                 <h2 className="text-2xl font-bold text-white">
-                  How Amber Lowe Claimed $X in Licensing Revenue with Watchdog's Tools
+                Amber Lowe’s Success Story with Watchdog's Platform
                 </h2>
               </div>
             </div>
@@ -88,11 +88,9 @@ const AmberBlogContent = () => {
           {/* Metrics Section */}
           <div className={`mb-16 transition-all duration-1000 delay-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             <h3 className="text-2xl font-bold mb-6 text-center text-purple-400">Key Metrics</h3>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div className="grid grid-cols-2 md:grid-cols-2 gap-4">
               <MetricCard value="300+" label="revenue opportunities" />
-              <MetricCard value="$X" label="licensing revenue" />
-              <MetricCard value="Y" label="days" />
-              <MetricCard value="$Z" label="expected revenue (next 6 months)" />
+              <MetricCard value="50+" label="brands flagged, including Fortune 500 advertisers" />
             </div>
           </div>
           
@@ -101,7 +99,7 @@ const AmberBlogContent = () => {
             <h3 className="text-2xl font-bold mb-4 text-purple-400">Executive Summary</h3>
             <div className="bg-[#14101A] border-l-4 border-purple-500 p-6 rounded-r-lg">
               <p className="text-gray-300">
-                When Amber Lowe's viral TikTok audio was used by 300+ brands—including Fortune 500 companies—without permission, she faced a choice: let thousands in revenue slip away or fight back. With Watchdog, she transformed unauthorized use into a $X licensing revenue stream in Y days. This case study reveals how creators can turn IP protection from a headache into a profit center.
+                When Amber Lowe's viral TikTok audio was used by 300+ brands—including Fortune 500 companies—without permission, she faced a choice: let thousands in revenue slip away or fight back. With Watchdog, she transformed unauthorized use into a licensing revenue stream. This case study reveals how creators can turn IP protection from a headache into a profit center.
               </p>
             </div>
           </div>
@@ -165,7 +163,7 @@ const AmberBlogContent = () => {
             <section>
               <h3 className="text-2xl font-bold mb-4 text-purple-400">Results</h3>
               <p className="text-gray-300 mb-4">
-                Within two months, Amber successfully converted 300 unauthorized uses into $X in licensing revenue. Over the next six months, she expects to recover an additional $Y, marking a Z% increase from similar audio trends she has monetized in the past.
+              Within two months, Amber successfully converted hundreds of unauthorized uses into licensing revenue. Over the next six months, she expects to recover even more, marking a significant increase compared to similar audio trends she has monetized in the past.
               </p>
             </section>
             
