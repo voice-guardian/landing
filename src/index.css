@@ -88,6 +88,7 @@
   /* Set Satoshi as the default font for the entire site */
   html {
     font-family: 'Inter', system-ui, sans-serif;
+    scroll-behavior: smooth;
   }
   
   body {

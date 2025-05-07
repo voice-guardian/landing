@@ -2,6 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import SpotifyWebApi from "spotify-web-api-js";
 import SearchResults from "./SearchResults";
+import posthog from 'posthog-js';
 
 // Initialize Spotify API
 const spotifyApi = new SpotifyWebApi();
@@ -112,6 +113,9 @@ const SearchBar = ({ searchTerm, onSearchTermChange, onFindUses, isVisible }: Se
   const searchArtists = async (query: string) => {
     if (query.length < 3) return;
     
+    // PostHog analytics event
+    posthog.capture('spotify_search', { query });
+
     setIsLoading(true);
     try {
       // Search for both artists and tracks

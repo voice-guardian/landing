@@ -14,6 +14,7 @@ const Index = () => {
     <div className="min-h-screen">
       {/* Background container with explicit height for hero section only */}
       <div 
+        id="home"
         className="relative w-full"
         style={{ 
           backgroundColor: "#1A0A23", // Fallback color
@@ -37,13 +38,19 @@ const Index = () => {
         <TypewriterStatement />
         
         {/* Features section */}
-        <Features />
+        <div id="features">
+          <Features />
+        </div>
         
         {/* Testimonials section */}
-        <Testimonials />
+        <div id="testimonials">
+          <Testimonials />
+        </div>
         
         {/* Pricing section */}
-        <Pricing />
+        <div id="pricing">
+          <Pricing />
+        </div>
         
         {/* Footer is now part of MainLayout */}
       </div>
