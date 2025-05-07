@@ -193,15 +193,7 @@ const FindingUsesScreen = ({ searchTerm, onClose, artistId }: FindingUsesScreenP
       // Optionally log error, but do not block UI
       console.error('Slack notification error:', err);
     });
-    
-    // Call hello API endpoint
-    fetch('/api/hello', {
-      method: 'GET',
-      headers: { 'Content-Type': 'application/json' },
-    }).catch((err) => {
-      // Optionally log error, but do not block UI
-      console.error('Hello API error:', err);
-    });
+  
     // Show success state after attempting notification
     setIsEmailSubmitted(true);
     
