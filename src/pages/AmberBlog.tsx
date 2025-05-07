@@ -72,7 +72,7 @@ const AmberBlogContent = () => {
           <div className={`mb-12 transition-all duration-1000 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             <div className="relative rounded-xl overflow-hidden">
               <img 
-                src="/images/ugc.jpeg" 
+                src="/images/2x2_amber.png" 
                 alt="Amber Lowe" 
                 className="w-full h-auto object-cover rounded-xl" 
               />

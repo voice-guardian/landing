@@ -61,7 +61,7 @@ const Testimonials: React.FC = () => {
     {
       id: 1,
       quote: "Before Watchdog, I felt powerless to collect the money I was owed from big corporations. Watchdog helped me secure a fair outcome, and I couldn't be more excited to partner with them on future projects.",
-      backgroundImage: "/images/ugc.jpeg",
+      backgroundImage: "/images/ugc.jpg",
       companyName: "Amber Lowe (UGC Creator)",
       isCaseStudy: true,
       hasBlogPost: true,
@@ -72,7 +72,7 @@ const Testimonials: React.FC = () => {
       id: 2,
       quote: "Watchdog is filling an incredible gap in the industry for protecting and monetizing our client's composition copyrights, helping us monetize opportunities we didn't know even existed.",
       companyLogo: "/images/brands/the-administration.png",
-      backgroundImage: "/images/record.jpg",
+      backgroundImage: "/images/party.jpg",
       companyName: "The Administration MP",
       isCaseStudy: true,
       hasBlogPost: true,
