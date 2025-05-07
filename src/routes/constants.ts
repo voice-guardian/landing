@@ -3,12 +3,13 @@ export const ROUTES = {
   HOME: '/',
   ABOUT: '/about',
   SEARCH_RESULTS: '/search',
-  AMBER_BLOG: '/blog/amber-lowe-case-study',
+  AMBER_BLOG: '/amber-lowe-case-study',
+  ADMINISTRATION_BLOG: '/administration-mp-case-study',
   // Add more routes as needed
   // Example:
   // CONTACT: '/contact',
   // PRICING: '/pricing',
-};
+} as const;
 
 // Navigation helper
 export const navigate = (route: string) => {

@@ -34,7 +34,21 @@ const FindingUsesScreen = ({ searchTerm, onClose, artistId }: FindingUsesScreenP
   const [totalUsesFound, setTotalUsesFound] = useState(0);
   const progressIntervalRef = useRef<NodeJS.Timeout | null>(null);
   const apiCallCompleted = useRef(false);
+  const progressCompleted = useRef(false);
   const navigate = useNavigate();
+  
+  // This ensures the progress display is locked at 100% when the form is shown
+  const displayProgress = showEmailPopup ? 100 : Math.floor(loadingProgress);
+  
+  useEffect(() => {
+    // Disable scrolling on the body when the modal is open
+    document.body.style.overflow = 'hidden';
+    
+    // Re-enable scrolling when component unmounts
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, []);
   
   useEffect(() => {
     // Reset state
@@ -102,53 +116,57 @@ const FindingUsesScreen = ({ searchTerm, onClose, artistId }: FindingUsesScreenP
     // Start API call
     fetchWatchdogData();
     
-    // Set up progress interval (runs for up to 10 seconds)
-    const progressSpeed = 10; // Update progress every 100ms
-    const maxProgressTime = 10000; // 10 seconds max
-    const totalSteps = maxProgressTime / progressSpeed;
-    
-    progressIntervalRef.current = setInterval(() => {
-      setLoadingProgress(prev => {
-        // If API call is done and we're at least at 70%, accelerate to 100%
-        if (apiCallCompleted.current && prev >= 70) {
-          const newProgress = prev + 5;
-          
-          if (newProgress >= 100) {
-            if (progressIntervalRef.current) {
-              clearInterval(progressIntervalRef.current);
-            }
-            setTimeout(() => {
-              setShowEmailPopup(true);
-            }, 500);
+    // Simplified progressive loading animation
+    const runProgressAnimation = () => {
+      // Constants for animation
+      const TOTAL_TIME_TO_70_PERCENT = 3000; // 3 seconds to reach 70%
+      const TOTAL_TIME_AFTER_API = 1000; // 1 second to go from 70% to 100% after API completes
+      const UPDATE_INTERVAL = 50; // Update every 50ms for smooth animation
+      
+      // Calculate step sizes
+      const STEP_TO_70 = (70 * UPDATE_INTERVAL) / TOTAL_TIME_TO_70_PERCENT;
+      const STEP_TO_100 = (30 * UPDATE_INTERVAL) / TOTAL_TIME_AFTER_API;
+      
+      // Start the progress animation interval
+      const progressInterval = setInterval(() => {
+        setLoadingProgress(prevProgress => {
+          // If already completed, stay at 100%
+          if (prevProgress >= 100) {
             return 100;
           }
           
-          return newProgress;
-        }
-        
-        // Standard progress increase
-        const newProgress = prev + (100 / totalSteps);
-        
-        // If we reach 70% but API isn't done, slow down progress
-        if (newProgress >= 70 && !apiCallCompleted.current) {
-          return 70;
-        }
-        
-        // When progress reaches 100%, clear interval and show email popup
-        if (newProgress >= 100) {
-          if (progressIntervalRef.current) {
-            clearInterval(progressIntervalRef.current);
+          // If API has completed and we're at or past 70%, move quickly to 100%
+          if (apiCallCompleted.current && prevProgress >= 70) {
+            const nextProgress = Math.min(100, prevProgress + STEP_TO_100);
+            
+            // Once we reach 100%, show email popup and clear interval
+            if (nextProgress >= 100) {
+              setTimeout(() => {
+                setShowEmailPopup(true);
+              }, 300);
+            }
+            
+            return nextProgress;
           }
-          setTimeout(() => {
-            setShowEmailPopup(true);
-          }, 500);
-          return 100;
-        }
-        
-        return newProgress;
-      });
-    }, progressSpeed);
+          
+          // If we haven't reached 70% yet, keep steady pace
+          if (prevProgress < 70) {
+            return Math.min(70, prevProgress + STEP_TO_70);
+          }
+          
+          // If we're at 70% but API isn't done, hold at 70%
+          return 70;
+        });
+      }, UPDATE_INTERVAL);
+      
+      // Store interval reference for cleanup
+      progressIntervalRef.current = progressInterval;
+    };
     
+    // Start the animation
+    runProgressAnimation();
+    
+    // Cleanup
     return () => {
       if (progressIntervalRef.current) {
         clearInterval(progressIntervalRef.current);
@@ -208,47 +226,80 @@ const FindingUsesScreen = ({ searchTerm, onClose, artistId }: FindingUsesScreenP
   }, [onClose]);
 
   return (
-    <div className="fixed inset-0 bg-black flex flex-col items-center justify-center p-4 z-[9999]">
-      <div className="w-full max-w-md flex flex-col items-center">
-        <h2 className="text-2xl font-bold text-white mb-2">Finding Uses</h2>
-        <p className="text-gray-400 mb-8 text-center">Searching for commercial uses of "{searchTerm}"</p>
-        
-        {/* Progress bar */}
-        <div className="w-full h-2 bg-gray-800 rounded-full mb-4 overflow-hidden">
-          <div 
-            className="h-full bg-purple-500 transition-all duration-100 ease-linear"
-            style={{ width: `${loadingProgress}%` }}
-          ></div>
+    // Adding pointer-events-auto to ensure the modal captures all clicks
+    <div className="fixed inset-0 flex flex-col items-center justify-center p-4 z-[10000] pointer-events-auto">
+      {/* Using a higher opacity value to ensure complete coverage */}
+      <div className="absolute inset-0 bg-black opacity-100"></div>
+      
+      {/* Background with gradient overlay - with a more solid color */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#1A0A23] to-black z-[1]"></div>
+      
+      {/* Decorative elements - higher z-index than the background */}
+      <div className="absolute inset-0 z-[2] opacity-20">
+        <div className="absolute inset-0 bg-[url('/images/pattern-bg.png')] bg-repeat opacity-5"></div>
+        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-purple-500 to-transparent"></div>
+        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-purple-500 to-transparent"></div>
+      </div>
+      
+      {/* Close button - needs to be above all backgrounds */}
+      <button
+        onClick={onClose}
+        className="absolute top-6 right-6 text-gray-400 hover:text-white transition-colors z-[11]"
+        aria-label="Close"
+      >
+        <svg className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+      
+      {/* Main content container - ensure it's above all background elements */}
+      <div className="w-full max-w-lg flex flex-col items-center relative z-[10]">
+        <div className="text-center mb-8 max-w-md">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">Finding Uses</h2>
+          <p className="text-gray-300 text-lg">
+            Searching for commercial uses of "<span className="text-purple-400 font-medium">{searchTerm}</span>"
+          </p>
         </div>
         
-        <p className="text-gray-500 text-sm">{loadingProgress}% complete</p>
-        
-        {/* Close button */}
-        <button
-          onClick={onClose}
-          className="absolute top-4 right-4 text-gray-500 hover:text-white transition-colors"
-          aria-label="Close"
-        >
-          <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        </button>
+        {/* Progress section */}
+        {!showEmailPopup && (
+          <div className="w-full mb-10 max-w-md">
+            {/* Progress bar with glow effect */}
+            <div className="w-full h-3 bg-[#14101A] rounded-full mb-4 overflow-hidden shadow-inner border border-gray-800/30">
+              <div 
+                className="h-full bg-gradient-to-r from-purple-600 to-purple-400 transition-all duration-100 ease-linear shadow-[0_0_8px_rgba(168,85,247,0.5)]"
+                style={{ width: `${displayProgress}%` }}
+              ></div>
+            </div>
+            
+            {/* Progress details */}
+            <div className="flex justify-between items-center">
+              <p className="text-gray-400 text-sm">{displayProgress}% complete</p>
+              <div className="flex items-center">
+                <span className="inline-block h-2 w-2 rounded-full bg-purple-500 animate-pulse mr-2"></span>
+                <p className="text-purple-300 text-sm font-medium">Scanning platforms</p>
+              </div>
+            </div>
+          </div>
+        )}
         
         {/* Email Collection or Success component */}
         {showEmailPopup && (
-          <div className="mt-8 bg-[#1a1a1a] p-6 rounded-xl w-full max-w-md border border-gray-800 animate-fade-in">
-            {!isEmailSubmitted ? (
-              <EmailCollectionForm 
-                onSubmit={handleEmailSubmit} 
-                companies={foundCompanies}
-                totalUses={totalUsesFound}
-              />
-            ) : (
-              <SuccessMessage 
-                companies={foundCompanies} 
-                totalUses={totalUsesFound} 
-              />
-            )}
+          <div className="w-full max-w-md">
+            <div className="bg-[#14101A] p-8 rounded-xl border border-purple-800/20 shadow-[0_0_25px_rgba(0,0,0,0.3)]">
+              {!isEmailSubmitted ? (
+                <EmailCollectionForm 
+                  onSubmit={handleEmailSubmit} 
+                  companies={foundCompanies}
+                  totalUses={totalUsesFound}
+                />
+              ) : (
+                <SuccessMessage 
+                  companies={foundCompanies} 
+                  totalUses={totalUsesFound} 
+                />
+              )}
+            </div>
           </div>
         )}
       </div>
