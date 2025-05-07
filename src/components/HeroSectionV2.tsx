@@ -33,7 +33,7 @@ const HeroSectionV2: React.FC = () => {
         <ColorGradient />
       </div>
       {/* Content Section */}
-      <div className="flex flex-col items-center justify-center w-full gap-6 pt-20 flex-1 relative z-10">
+      <div className="flex flex-col items-center justify-center w-full gap-6 pt-28 sm:pt-20 flex-1 relative z-10">
         {/* YCombinator Badge */}
         <div 
           className={`relative backdrop-blur-md bg-white/20 border border-white/10 text-white/80 px-4 py-0.5 rounded-full inline-flex text-xs font-semibold tracking-wide transition-all duration-700 ease-out ${
@@ -87,7 +87,7 @@ const HeroSectionV2: React.FC = () => {
         </div>
       </div>
       {/* Image Section */}
-      <div className="flex items-end justify-end w-full sm:w-3/5 relative flex-1">
+      <div className="flex items-end justify-center w-full sm:w-3/5 relative flex-1">
         <img
           src="/dashboard.webp"
           alt="Dashboard"

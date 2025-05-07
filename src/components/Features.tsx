@@ -65,7 +65,7 @@ const Features = () => {
 
   return (
     <section ref={sectionRef} className="w-full py-20 bg-white overflow-hidden">
-      <div className="container mx-auto px-20 md:px-20 max-w-7xl">
+      <div className="container mx-auto px-6 md:px-20 max-w-7xl">
         {/* Section Heading with animation */}
         <div 
           className={`transition-all duration-700 ease-out transform ${

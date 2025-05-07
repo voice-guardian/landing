@@ -71,7 +71,7 @@ const Testimonials: React.FC = () => {
     {
       id: 2,
       quote: "Watchdog is filling an incredible gap in the industry for protecting and monetizing our client's composition copyrights, helping us monetize opportunities we didn't know even existed.",
-      companyLogo: "/images/brands/the-administration.png",
+      companyLogo: "/images/brands/the-administration.webp",
       backgroundImage: "/images/party.jpg",
       companyName: "The Administration MP",
       isCaseStudy: true,
@@ -101,13 +101,31 @@ const Testimonials: React.FC = () => {
     setCurrentMobileIndex(prevIndex => 
       prevIndex === 0 ? testimonials.length - 1 : prevIndex - 1
     );
+    resetAutoScroll();
   };
 
   const goToNext = () => {
     setCurrentMobileIndex(prevIndex => 
       prevIndex === testimonials.length - 1 ? 0 : prevIndex + 1
     );
+    resetAutoScroll();
   };
+
+  // Auto-scroll logic for mobile testimonials
+  const autoScrollRef = useRef<NodeJS.Timeout | null>(null);
+  const resetAutoScroll = () => {
+    if (autoScrollRef.current) clearInterval(autoScrollRef.current);
+    autoScrollRef.current = setInterval(() => {
+      setCurrentMobileIndex(prevIndex => (prevIndex + 1) % testimonials.length);
+    }, 3000);
+  };
+  useEffect(() => {
+    resetAutoScroll();
+    return () => {
+      if (autoScrollRef.current) clearInterval(autoScrollRef.current);
+    };
+    // eslint-disable-next-line
+  }, []);
 
   // Get current testimonial for mobile view
   const currentMobileTestimonial = testimonials[currentMobileIndex];
@@ -206,13 +224,13 @@ const Testimonials: React.FC = () => {
           </div>
 
           {/* Navigation Controls */}
-          <div className="flex justify-center items-center mt-6 space-x-4">
+          <div className="flex flex-col items-center mt-6 space-y-3">
             {/* Pagination Indicators */}
-            <div className="flex space-x-2">
+            <div className="flex space-x-2 mb-3">
               {testimonials.map((_, index) => (
                 <button
                   key={index}
-                  onClick={() => setCurrentMobileIndex(index)}
+                  onClick={() => { setCurrentMobileIndex(index); resetAutoScroll(); }}
                   className={`w-2 h-2 rounded-full transition-colors duration-300 ${
                     currentMobileIndex === index ? 'bg-purple-500' : 'bg-gray-600'
                   }`}
@@ -220,9 +238,8 @@ const Testimonials: React.FC = () => {
                 />
               ))}
             </div>
-
             {/* Left/Right Buttons */}
-            <div className="flex space-x-3 ml-4">
+            <div className="flex space-x-3">
               <button
                 onClick={goToPrevious}
                 className="w-10 h-10 rounded-full bg-gray-800 hover:bg-gray-700 flex items-center justify-center transition-colors duration-300 border border-gray-700"
@@ -232,7 +249,6 @@ const Testimonials: React.FC = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                 </svg>
               </button>
-              
               <button
                 onClick={goToNext}
                 className="w-10 h-10 rounded-full bg-gray-800 hover:bg-gray-700 flex items-center justify-center transition-colors duration-300 border border-gray-700"
