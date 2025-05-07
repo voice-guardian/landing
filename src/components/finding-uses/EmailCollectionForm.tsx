@@ -7,7 +7,11 @@ interface EmailCollectionFormProps {
   totalUses?: number;
 }
 
-const EmailCollectionForm = ({ onSubmit, companies = [], totalUses = 0 }: EmailCollectionFormProps) => {
+const EmailCollectionForm = ({
+  onSubmit,
+  companies = [],
+  totalUses = 0,
+}: EmailCollectionFormProps) => {
   const [email, setEmail] = useState("");
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -27,29 +31,28 @@ const EmailCollectionForm = ({ onSubmit, companies = [], totalUses = 0 }: EmailC
   return (
     <>
       <div className="text-center mb-6">
-        <div className="inline-block mb-4 relative">
-          
-        </div>
-        
+        <div className="inline-block mb-4 relative"></div>
+
         <h3 className="text-2xl font-bold text-white mb-2">
-          {totalUses > 0 
-            ? `We Found ${totalUses} Potential Uses!` 
+          {totalUses > 0
+            ? `We Found ${totalUses} Potential Uses!`
             : "We Found Potential Earnings!"}
         </h3>
-        
-  
       </div>
-      
+
       {totalUses > 0 && companies.length > 0 && (
         <div className="mb-4">
-          <h4 className="text-gray-300 text-sm font-medium mb-2">Violating Companies found:</h4>
+          <h4 className="text-gray-300 text-sm font-medium mb-2">
+            Commercial uses found:
+          </h4>
           <div className="bg-gray-800 rounded p-3">
             {displayedCompanies.map((company, index) => (
               <span key={index} className="text-white text-sm">
-                {company}{index < displayedCompanies.length - 1 ? ", " : ""}
+                {company}
+                {index < displayedCompanies.length - 1 ? ", " : ""}
               </span>
             ))}
-            
+
             {hasMoreCompanies && (
               <span className="text-gray-400 text-sm ml-1">
                 + {companies.length - 5} more
@@ -58,12 +61,13 @@ const EmailCollectionForm = ({ onSubmit, companies = [], totalUses = 0 }: EmailC
           </div>
         </div>
       )}
-      
+
       <div className="space-y-5">
         <p className="text-gray-300 text-sm leading-relaxed">
-          Enter your email to receive a detailed report on the uses you can claim from copyright uses. 
+          Enter your email to receive a detailed report on the uses you can
+          claim from copyright uses.
         </p>
-        
+
         <form onSubmit={handleSubmit} className="w-full space-y-3">
           <div>
             <input
@@ -75,19 +79,17 @@ const EmailCollectionForm = ({ onSubmit, companies = [], totalUses = 0 }: EmailC
               required
             />
           </div>
-          
-          <Button 
+
+          <Button
             type="submit"
             className="w-full py-3 rounded-lg bg-gradient-to-r from-purple-600 to-purple-500 hover:from-purple-500 hover:to-purple-400 text-white font-medium transition-all duration-300 shadow-lg shadow-purple-900/20"
           >
             Get My Audit Report
           </Button>
-          
-     
         </form>
       </div>
     </>
   );
 };
 
-export default EmailCollectionForm; 
+export default EmailCollectionForm;
