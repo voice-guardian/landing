@@ -82,16 +82,16 @@ const Testimonials: React.FC = () => {
       id: 3,
       quote: "Watchdog has helped to increase my revenue by four times within 6 months! They have been a breeze to work with, carefully and respectfully taking care of all the nitty-gritty so I can continue to focus completely on my music and career. I will forever be grateful for this life-changing opportunity to partner with Watchdog!",
       companyLogo: "/images/testimonials/fatcoda.png",
-      backgroundImage: "/images/drums.webp",
+      backgroundImage: "/images/record.jpg",
       companyName: "Fat Coda Studios",
       isCaseStudy: false
     },
     {
       id: 4,
-      quote: "Watchdog is filling an incredible gap in the industry for protecting and monetizing our client's composition copyrights, finding examples of unlicensed uses we have never seen before.",
-      companyLogo: "/images/testimonials/platinum-grammar.png",
-      backgroundImage: "/images/record.jpg",
-      companyName: "Platinum Grammar Publishing",
+      quote: "This is definitely the best product I’ve seen in this category. Every other vendor just sends us CSV data files that from outsourced data labelers.",
+      // companyLogo: "/images/testimonials/platinum-grammar.png",
+      backgroundImage: "/images/drums.webp",
+      companyName: "Business & Legal Affairs, Top 3 Music Company",
       isCaseStudy: false
     }
   ];

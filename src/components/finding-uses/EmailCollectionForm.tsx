@@ -7,20 +7,42 @@ interface EmailCollectionFormProps {
   totalUses?: number;
 }
 
+const personalEmailDomains = [
+  'gmail.com', 'yahoo.com', 'outlook.com', 'hotmail.com', 'aol.com',
+  'protonmail.com', 'icloud.com', 'yandex.com', 'zoho.com', 'mail.com', 'gmx.com'
+];
+
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
 const EmailCollectionForm = ({
   onSubmit,
   companies = [],
   totalUses = 0,
 }: EmailCollectionFormProps) => {
   const [email, setEmail] = useState("");
+  const [error, setError] = useState("");
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
+    setError("");
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email) return;
+    if (!email) {
+      setError("Please enter your email address.");
+      return;
+    }
+    if (!emailRegex.test(email)) {
+      setError("Please enter a valid email address.");
+      return;
+    }
+    const domain = email.split('@')[1]?.toLowerCase();
+    if (domain && personalEmailDomains.includes(domain)) {
+      setError("Please use your business or work email address (personal emails like Gmail, Yahoo, etc. are not allowed).");
+      return;
+    }
+    setError("");
     onSubmit(email);
   };
 
@@ -78,6 +100,9 @@ const EmailCollectionForm = ({
               className="w-full px-4 py-3 rounded-lg bg-black/40 text-white border border-purple-900/30 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all placeholder:text-gray-500"
               required
             />
+            {error && (
+              <p className="text-red-400 text-xs mt-2 text-left">{error}</p>
+            )}
           </div>
 
           <Button
