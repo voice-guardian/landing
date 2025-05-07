@@ -185,7 +185,14 @@ const FindingUsesScreen = ({ searchTerm, onClose, artistId }: FindingUsesScreenP
       foundCompanies,
     });
     // Send notification to Slack (or store for later in development mode)
-    
+    fetch('/api/notify-slack', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, searchTerm, artistId, foundCompanies }),
+    }).catch((err) => {
+      // Optionally log error, but do not block UI
+      console.error('Slack notification error:', err);
+    });
     
     // Show success state after attempting notification
     setIsEmailSubmitted(true);
