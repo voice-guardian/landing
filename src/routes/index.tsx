@@ -4,6 +4,7 @@ import About from '@/pages/About';
 import SearchResults from '@/pages/SearchResults';
 import AmberBlog from '@/pages/AmberBlog';
 import NotFound from '@/pages/NotFound';
+import AdministrationBlog from '@/pages/AdministrationBlog';
 import { ROUTES } from './constants';
 
 // Define our routes
@@ -11,10 +12,11 @@ const router = createBrowserRouter([
   {
     path: ROUTES.HOME,
     element: <Index />,
+    errorElement: <NotFound />
   },
   {
     path: ROUTES.ABOUT,
-    element: <About />,
+    element: <About />
   },
   {
     path: ROUTES.SEARCH_RESULTS,
@@ -22,7 +24,11 @@ const router = createBrowserRouter([
   },
   {
     path: ROUTES.AMBER_BLOG,
-    element: <AmberBlog />,
+    element: <AmberBlog />
+  },
+  {
+    path: ROUTES.ADMINISTRATION_BLOG,
+    element: <AdministrationBlog />
   },
   // Add more routes here as needed
   // Example:

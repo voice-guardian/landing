@@ -12,6 +12,8 @@ interface Testimonial {
   companyName: string;
   isCaseStudy?: boolean;
   hasBlogPost?: boolean;
+  caseStudyTitle?: string;
+  blogRoute?: string;
 }
 
 const Testimonials: React.FC = () => {
@@ -49,9 +51,9 @@ const Testimonials: React.FC = () => {
     };
   }, []);
   
-  // Navigate to the blog post
-  const navigateToBlog = () => {
-    navigate(ROUTES.AMBER_BLOG);
+  // Navigate to the appropriate blog post
+  const navigateToCaseStudy = (route: string) => {
+    navigate(route);
   };
   
   // Sample testimonial data - marking the second one as a case study
@@ -61,25 +63,37 @@ const Testimonials: React.FC = () => {
       quote: "Before Watchdog, I felt powerless to collect the money I was owed from big corporations. Watchdog helped me secure a fair outcome, and I couldn't be more excited to partner with them on future projects.",
       backgroundImage: "/images/ugc.jpeg",
       companyName: "Amber Lowe (UGC Creator)",
-      isCaseStudy: false,
-      hasBlogPost: true
+      isCaseStudy: true,
+      hasBlogPost: true,
+      caseStudyTitle: "How Amber Lowe Recovered Payments from Brands",
+      blogRoute: ROUTES.AMBER_BLOG
     },
     {
       id: 2,
+      quote: "Watchdog is filling an incredible gap in the industry for protecting and monetizing our client's composition copyrights, helping us monetize opportunities we didn't know even existed.",
+      companyLogo: "/images/brands/the-administration.png",
+      backgroundImage: "/images/record.jpg",
+      companyName: "The Administration MP",
+      isCaseStudy: true,
+      hasBlogPost: true,
+      blogRoute: ROUTES.ADMINISTRATION_BLOG // You'll need to add this route in your constants
+    },
+    {
+      id: 3,
       quote: "Watchdog has helped to increase my revenue by four times within 6 months! They have been a breeze to work with, carefully and respectfully taking care of all the nitty-gritty so I can continue to focus completely on my music and career. I will forever be grateful for this life-changing opportunity to partner with Watchdog!",
       companyLogo: "/images/testimonials/fatcoda.png",
       backgroundImage: "/images/drums.webp",
       companyName: "Fat Coda Studios",
-      isCaseStudy: true
+      isCaseStudy: false
     },
     {
-      id: 3,
+      id: 4,
       quote: "Watchdog is filling an incredible gap in the industry for protecting and monetizing our client's composition copyrights, finding examples of unlicensed uses we have never seen before.",
       companyLogo: "/images/testimonials/platinum-grammar.png",
       backgroundImage: "/images/record.jpg",
       companyName: "Platinum Grammar Publishing",
       isCaseStudy: false
-    },
+    }
   ];
 
   // Navigation handlers
@@ -103,7 +117,7 @@ const Testimonials: React.FC = () => {
       <div className="container mx-auto px-4 md:px-6 max-w-7xl">
         {/* Headline with animation */}
         <div 
-          className={`text-center mb-12 transition-all duration-700 ease-out transform ${
+          className={`text-center mb-12 md:mb-16 transition-all duration-700 ease-out transform ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
           }`}
           style={{ transitionDelay: "200ms" }}
@@ -145,7 +159,7 @@ const Testimonials: React.FC = () => {
               className="absolute inset-0 bg-cover bg-center z-0"
               style={{ 
                 backgroundImage: `url(${currentMobileTestimonial.backgroundImage})`,
-                filter: 'blur(2px) brightness(0.3)' 
+                filter: 'blur(2px) brightness(0.4)' 
               }}
             />
             
@@ -173,13 +187,18 @@ const Testimonials: React.FC = () => {
               <div className="mt-auto">
                 <p className="text-white font-medium font-inter">{currentMobileTestimonial.companyName}</p>
                 
+                {/* Case Study Title - Show only if it has one */}
+                {currentMobileTestimonial.caseStudyTitle && (
+                  <p className="text-gray-300 text-sm mt-1">{currentMobileTestimonial.caseStudyTitle}</p>
+                )}
+                
                 {/* Blog Button - Show only if testimonial has a blog post */}
-                {currentMobileTestimonial.hasBlogPost && (
+                {currentMobileTestimonial.hasBlogPost && currentMobileTestimonial.blogRoute && (
                   <Button 
-                    onClick={navigateToBlog}
+                    onClick={() => navigateToCaseStudy(currentMobileTestimonial.blogRoute!)}
                     className="mt-3 bg-purple-600 hover:bg-purple-700 text-white text-sm py-1 px-3"
                   >
-                    View Blog
+                    View Case Study
                   </Button>
                 )}
               </div>
@@ -188,8 +207,22 @@ const Testimonials: React.FC = () => {
 
           {/* Navigation Controls */}
           <div className="flex justify-center items-center mt-6 space-x-4">
+            {/* Pagination Indicators */}
+            <div className="flex space-x-2">
+              {testimonials.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentMobileIndex(index)}
+                  className={`w-2 h-2 rounded-full transition-colors duration-300 ${
+                    currentMobileIndex === index ? 'bg-purple-500' : 'bg-gray-600'
+                  }`}
+                  aria-label={`Go to testimonial ${index + 1}`}
+                />
+              ))}
+            </div>
+
             {/* Left/Right Buttons */}
-            <div className="flex space-x-3">
+            <div className="flex space-x-3 ml-4">
               <button
                 onClick={goToPrevious}
                 className="w-10 h-10 rounded-full bg-gray-800 hover:bg-gray-700 flex items-center justify-center transition-colors duration-300 border border-gray-700"
@@ -213,23 +246,24 @@ const Testimonials: React.FC = () => {
           </div>
         </div>
         
-        {/* Desktop Testimonials (Multiple Cards) - Hidden on mobile */}
+        {/* Desktop Testimonials (2x2 Grid) - Hidden on mobile */}
         <div 
           className={`hidden md:block relative transition-all duration-700 ease-out transform ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-16"
           }`}
           style={{ transitionDelay: "500ms" }}
         >
-          <div className="flex space-x-6 transition-all duration-500 ease-in-out">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 transition-all duration-500 ease-in-out">
             {testimonials.map((testimonial, index) => (
               <div 
                 key={testimonial.id}
-                className={`flex-1 relative rounded-xl overflow-hidden transition-all duration-300 transform hover:scale-[1.02] group ${
+                className={`relative rounded-xl overflow-hidden transition-all duration-300 transform hover:scale-[1.02] group ${
                   isVisible ? "" : "opacity-0"
                 } ${testimonial.isCaseStudy ? 'ring-2 ring-purple-500 ring-offset-4 ring-offset-[#111] shadow-lg shadow-purple-900/20' : ''}`}
                 style={{ 
                   transitionDelay: `${600 + index * 200}ms`,
-                  transition: "all 0.7s ease-out"
+                  transition: "all 0.7s ease-out",
+                  minHeight: "280px" // Ensure consistent height for grid items
                 }}
               >
                 {/* Case Study Badge - Show only for the special case study card */}
@@ -249,9 +283,9 @@ const Testimonials: React.FC = () => {
                 />
                 
                 {/* Content Container */}
-                <div className="relative z-10 p-6 md:p-8 h-full flex flex-col">
+                <div className="relative z-10 p-6 md:p-6 h-full flex flex-col">
                   {/* Company Logo */}
-                  <div className="mb-4 h-16">
+                  <div className="mb-4 h-12">
                     {testimonial.companyLogo && (
                       <img 
                         src={testimonial.companyLogo} 
@@ -263,7 +297,7 @@ const Testimonials: React.FC = () => {
                   
                   {/* Quote */}
                   <div className="flex-grow flex items-center mb-6">
-                    <p className="text-white text-lg md:text-m font-inter">
+                    <p className="text-white text-base md:text-sm lg:text-base font-inter">
                       "{testimonial.quote}"
                     </p>
                   </div>
@@ -272,13 +306,18 @@ const Testimonials: React.FC = () => {
                   <div className="mt-auto">
                     <p className="text-white font-medium font-inter">{testimonial.companyName}</p>
                     
+                    {/* Case Study Title - Show only if it has one */}
+                    {testimonial.caseStudyTitle && (
+                      <p className="text-gray-300 text-sm mt-1">{testimonial.caseStudyTitle}</p>
+                    )}
+                    
                     {/* Blog Button - Show only if testimonial has a blog post */}
-                    {testimonial.hasBlogPost && (
+                    {testimonial.hasBlogPost && testimonial.blogRoute && (
                       <Button 
-                        onClick={navigateToBlog}
+                        onClick={() => navigateToCaseStudy(testimonial.blogRoute!)}
                         className="mt-3 bg-purple-600 hover:bg-purple-700 text-white text-sm py-1 px-3"
                       >
-                        View Blog
+                        View Case Study
                       </Button>
                     )}
                   </div>
