@@ -20,47 +20,72 @@ const EmailCollectionForm = ({ onSubmit, companies = [], totalUses = 0 }: EmailC
     onSubmit(email);
   };
 
+  // Limit the number of companies shown in the preview
+  const displayedCompanies = companies.slice(0, 5);
+  const hasMoreCompanies = companies.length > 5;
+
   return (
     <>
-      <h3 className="text-xl font-bold text-white mb-2">
-        {totalUses > 0 
-          ? `We Found ${totalUses} Potential Uses!` 
-          : "We Found Potential Earnings!"}
-      </h3>
+      <div className="text-center mb-6">
+        <div className="inline-block mb-4 relative">
+          
+        </div>
+        
+        <h3 className="text-2xl font-bold text-white mb-2">
+          {totalUses > 0 
+            ? `We Found ${totalUses} Potential Uses!` 
+            : "We Found Potential Earnings!"}
+        </h3>
+        
+  
+      </div>
       
       {totalUses > 0 && companies.length > 0 && (
-        <div className="w-full mb-4">
-          <p className="text-gray-300 mb-2 text-sm">Including uses by:</p>
-          <div className="bg-black/30 rounded-lg p-3 max-h-32 overflow-y-auto mb-3">
-            <div className="flex flex-col">
-              {companies.map((company, index) => (
-                <div key={index} className="text-purple-300 py-1">
-                  <span className="text-sm">{company}</span>
-                </div>
-              ))}
-            </div>
+        <div className="mb-4">
+          <h4 className="text-gray-300 text-sm font-medium mb-2">Violating Companies found:</h4>
+          <div className="bg-gray-800 rounded p-3">
+            {displayedCompanies.map((company, index) => (
+              <span key={index} className="text-white text-sm">
+                {company}{index < displayedCompanies.length - 1 ? ", " : ""}
+              </span>
+            ))}
+            
+            {hasMoreCompanies && (
+              <span className="text-gray-400 text-sm ml-1">
+                + {companies.length - 5} more
+              </span>
+            )}
           </div>
         </div>
       )}
       
-      <p className="text-gray-400 mb-4">Enter your email to receive a detailed report on the money you can claim from copyright uses.</p>
-      
-      <form onSubmit={handleSubmit} className="w-full">
-        <input
-          type="email"
-          placeholder="Your email address"
-          value={email}
-          onChange={handleEmailChange}
-          className="w-full mb-3 px-4 py-3 rounded-lg bg-gray-800 text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-purple-500"
-          required
-        />
-        <Button 
-          type="submit"
-          className="w-full py-3 rounded-lg bg-purple-600 hover:bg-purple-700 text-white font-medium transition-colors"
-        >
-          Get My Report
-        </Button>
-      </form>
+      <div className="space-y-5">
+        <p className="text-gray-300 text-sm leading-relaxed">
+          Enter your email to receive a detailed report on the money you can claim from copyright uses. 
+        </p>
+        
+        <form onSubmit={handleSubmit} className="w-full space-y-3">
+          <div>
+            <input
+              type="email"
+              placeholder="Your email address"
+              value={email}
+              onChange={handleEmailChange}
+              className="w-full px-4 py-3 rounded-lg bg-black/40 text-white border border-purple-900/30 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all placeholder:text-gray-500"
+              required
+            />
+          </div>
+          
+          <Button 
+            type="submit"
+            className="w-full py-3 rounded-lg bg-gradient-to-r from-purple-600 to-purple-500 hover:from-purple-500 hover:to-purple-400 text-white font-medium transition-all duration-300 shadow-lg shadow-purple-900/20"
+          >
+            Get My Audit Report
+          </Button>
+          
+     
+        </form>
+      </div>
     </>
   );
 };
