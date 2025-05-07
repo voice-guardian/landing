@@ -31,7 +31,7 @@ const Navbar = () => {
         <div className="flex items-center z-20">
           <Link to={ROUTES.HOME} className="flex items-center text-white font-bold text-xl">
             <img
-              src="/images/watchdog.png"
+              src="/images/watchdog-logo.webp"
               alt="Watchdog Logo"
               width="38"
               height="38"

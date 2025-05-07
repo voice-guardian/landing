@@ -47,7 +47,7 @@ const HeroSectionV2: React.FC = () => {
           </div> */}
           <div className="flex items-center relative z-10 p-0.5">
             <p style={{ textShadow: "0 1px 4px rgba(255,255,255,0.5)" }}>Backed by&nbsp;</p>
-            <img src="/images/yc-logo.png" alt="YCombinator" className="w-24 h-5" />
+            <img src="/images/yc-logo.webp" alt="YCombinator" className="w-24 h-5" />
           </div>
         </div>
         
@@ -89,7 +89,7 @@ const HeroSectionV2: React.FC = () => {
       {/* Image Section */}
       <div className="flex items-end justify-end w-full sm:w-3/5 relative flex-1">
         <img
-          src="/dashboard.png"
+          src="/dashboard.webp"
           alt="Dashboard"
           className={`flex-1 h-auto object-cover transition-all duration-700 ease-out ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-90'} mb-0 sm:mb-0 w-[400px] sm:w-[800px] lg:w-[1000px] mx-4`}
           style={{ transitionDelay: '1s' }}

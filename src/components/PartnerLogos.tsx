@@ -2,12 +2,12 @@ import React, { useEffect, useRef } from 'react';
 
 // Centralized logo data
 const logos = [
-  { src: "/images/brands/regalias-dig.png", alt: "Regalias" },
-  { src: "/images/brands/encore-rec.png", alt: "Encore Productions" },
-  { src: "/images/brands/defend-music.png", alt: "Defend Music" },
-  { src: "/images/brands/romantic.png", alt: "Romantic" },
-  { src: "/images/brands/platinum.png", alt: "Platinum Grammar" },
-  { src: "/images/brands/the-administration.png", alt: "The Administration" },
+  { src: "/images/brands/regalias-dig.webp", alt: "Regalias" },
+  { src: "/images/brands/encore-rec.webp", alt: "Encore Productions" },
+  { src: "/images/brands/defend-music.webp", alt: "Defend Music" },
+  { src: "/images/brands/romantic.webp", alt: "Romantic" },
+  { src: "/images/brands/platinum.webp", alt: "Platinum Grammar" },
+  { src: "/images/brands/the-administration.webp", alt: "The Administration" },
 ];
 
 const LogoItem = ({ src, alt }) => (
