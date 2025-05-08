@@ -70,6 +70,8 @@ const AdministrationBlogContent = () => {
         <div className="max-w-3xl mx-auto">
           {/* Featured Image */}
           <div className={`mb-12 transition-all duration-1000 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+            <p className="text-sm text-gray-400 mb-2">Image provided by <a href="https://unsplash.com/@kevinmccutcheon" target="_blank" rel="noopener noreferrer" className="text-purple-400 hover:text-purple-300">Kevin McCutcheon</a></p>
+            
             <div className="relative rounded-xl overflow-hidden">
               <img 
                 src="/images/record.jpg" 
