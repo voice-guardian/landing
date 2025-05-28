@@ -23,6 +23,16 @@ const Footer: React.FC = () => {
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-14">
           {/* Left - Logo + Headline */}
           <div className="max-w-lg mb-10 md:mb-0">
+            {/* YC Pill */}
+            <div className="flex flex-col items-start mb-4">
+              <div className="relative backdrop-blur-lg bg-black/40 border border-white/10 text-white/80 px-4 py-0.5 rounded-full inline-flex text-xs font-semibold tracking-wide">
+                <div className="flex items-center relative z-10 p-0.5">
+                  <p style={{ textShadow: "0 1px 4px rgba(255,255,255,0.5)" }}>Backed by&nbsp;</p>
+                  <img src="/images/yc-logo.webp" alt="YCombinator" className="w-24 h-5" />
+                </div>
+              </div>
+            </div>
+            <br/>
             <div className="flex items-center mb-6">
               <img
                 src="/images/light-1.png"
@@ -30,14 +40,8 @@ const Footer: React.FC = () => {
                 className="h-8 mr-3"
               />
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold leading-tight">
-              Tap Into A{" "}
-              <span className="font-bold bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent">
-                $65B
-              </span>{" "}
-              Licensing
-              <br />
-              Market
+            <h2 className="text-xl md:text-2xl text-[#FAF9F6] leading-tight">
+              Agents for in-house legal teams.
             </h2>
           </div>
 
@@ -56,7 +60,7 @@ const Footer: React.FC = () => {
         <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
           {/* Left - Copyright */}
           <div className="text-gray-500 text-sm mb-6 md:mb-0">
-            © {currentYear} Watchdog. All Rights Reserved.
+            © {currentYear} Third Chair. All Rights Reserved.
           </div>
 
           {/* Right - Social + Legal */}
@@ -64,7 +68,7 @@ const Footer: React.FC = () => {
             {/* Social Icons */}
             <div className="flex space-x-4 mb-6 md:mb-0 md:mr-8">
               <a
-                href="https://linkedin.com"
+                href="https://linkedin.com/company/watchdog-sf"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-white transition-colors duration-200"

@@ -53,7 +53,7 @@ const Navbar = () => {
               <ChevronDown className="ml-1 h-4 w-4" />
             </button>
             <div
-              className={`absolute left-0 mt-2 min-w-[220px] bg-black/10 backdrop-blur-2xl rounded-b-xl py-2 transition-all duration-200 z-50 ${isDropdownOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
+              className={`absolute left-0 mt-2 min-w-[220px] bg-black/20 backdrop-blur-2xl rounded-b-xl py-2 transition-all duration-200 z-50 ${isDropdownOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
               style={{ marginTop: '24px' }}
             >
               <a
