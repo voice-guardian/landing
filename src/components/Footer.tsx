@@ -49,7 +49,7 @@ const Footer: React.FC = () => {
           <div>
             <a
               href="https://calendly.com/yoavzimmerman/watchdog"
-              className="bg-white text-[#0e0e0e] px-8 py-3 rounded-lg font-bold text-base hover:bg-gray-200 transition-colors duration-300 inline-block"
+              className="bg-white text-[#0e0e0e] px-4 py-2 rounded-md font-bold text-base md:px-8 md:py-3 md:rounded-lg md:text-base text-sm hover:bg-gray-200 transition-colors duration-300 inline-block"
             >
               Book a Demo
             </a>
