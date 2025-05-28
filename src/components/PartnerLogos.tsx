@@ -8,6 +8,7 @@ const logos = [
   { src: "/images/brands/romantic.webp", alt: "Romantic" },
   { src: "/images/brands/platinum.webp", alt: "Platinum Grammar" },
   { src: "/images/brands/the-administration.webp", alt: "The Administration" },
+  { src: "/images/brands/soundstripe.png", alt: "Soundstripe" },
 ];
 
 const LogoItem = ({ src, alt }) => (

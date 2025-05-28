@@ -17,7 +17,7 @@ const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-[#0e0e0e] text-white pt-16 pb-8">
+    <footer className="bg-[#04232C] text-white pt-16 pb-8">
       <div className="container mx-auto px-4 md:px-6">
         {/* Top Section with Brand + CTA */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-14">
@@ -25,11 +25,10 @@ const Footer: React.FC = () => {
           <div className="max-w-lg mb-10 md:mb-0">
             <div className="flex items-center mb-6">
               <img
-                src="/images/logo.png"
+                src="/images/light-1.png"
                 alt="Third Chair Logo"
                 className="h-8 mr-3"
               />
-              <span className="text-white text-xl font-bold">Third Chair</span>
             </div>
             <h2 className="text-3xl md:text-4xl font-bold leading-tight">
               Tap Into A{" "}
