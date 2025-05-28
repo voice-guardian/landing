@@ -10,7 +10,7 @@ const Footer: React.FC = () => {
   ];
 
   const legalLinks = [
-    { name: "Privacy Policy", href: "/privacy" },
+    { name: "Privacy  Policy", href: "/privacy" },
     { name: "Terms of Service", href: "/terms" },
   ];
 
