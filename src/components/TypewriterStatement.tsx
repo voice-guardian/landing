@@ -7,7 +7,7 @@ interface TypewriterStatementProps {
 }
 
 const TypewriterStatement = ({ 
-  text = "Third Chair makes it easy to monitor, negotiate, and <gradient>get paid</gradient> when your music is used by brands.",
+  text = "Third Chair makes it easy to monitor, negotiate, and <gradient>get paid</gradient> when your IP is used by brands.",
   typingSpeed = 10
 }: TypewriterStatementProps) => {
   const [displayText, setDisplayText] = useState('');
@@ -107,7 +107,7 @@ const TypewriterStatement = ({
                 <span className="bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent">
                   get paid
                 </span>
-                {' '}when your music is used by brands.
+                {' '}when your IP is used by brands.
               </>
             ) : (
               <>

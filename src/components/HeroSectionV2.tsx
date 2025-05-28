@@ -59,10 +59,10 @@ const HeroSectionV2: React.FC = () => {
           <h1 className="text-white text-4xl md:text-5xl font-semibold text-center font-inter leading-[60px] w-full">
             <span>Don't Miss Out on</span>
             <br />
-            <span>Music Revenue</span>
+            <span>Licensing Revenue</span>
           </h1>
           <p className="text-gray-300 text-[22px] font-light pt-2 text-center w-full max-w-[70%] leading-[27px]">
-            <span>We find where brands use your music and help you</span>
+            <span>We find where brands use your intellectual property and help you</span>
             <span> turn it into revenue</span>
           </p>
         </div>

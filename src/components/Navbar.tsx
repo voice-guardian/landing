@@ -39,15 +39,11 @@ const Navbar = () => {
         </div>
         
         {/* Desktop Navigation - Hidden on mobile */}
-        {/* <div className="hidden md:flex flex-1 justify-center items-center space-x-8 mx-auto">
-          <div className="flex items-center text-white text-base cursor-pointer hover:text-gray-300 transition-colors">
-            <span>Products</span>
-            <ChevronDown className="ml-1 h-4 w-4" />
-          </div>
-          <a href="/blog" className="text-white text-base hover:text-gray-300 transition-colors">
-            Blog
-          </a>
-        </div> */}
+        <div className="hidden md:flex flex-1 justify-center items-center space-x-8 mx-auto">
+          <Link to="/enforcement" className="flex items-center text-white text-base cursor-pointer hover:text-gray-300 transition-colors">
+            <span>Use Case</span>
+          </Link>
+        </div>
         
         {/* Desktop Action Buttons - Hidden on mobile */}
         <div className="hidden md:flex items-center space-x-6 z-20">

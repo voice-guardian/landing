@@ -1,62 +1,31 @@
-import HeroSectionV2 from "@/components/HeroSectionV2";
-import ProductSlider from "@/components/ProductSlider";
-import TypewriterStatement from "@/components/TypewriterStatement";
-import Features from "@/components/Features";
-import Testimonials from "@/components/Testimonials";
-import Pricing from "@/components/Pricing";
 import MainLayout from "@/components/layouts/MainLayout";
-import { useEffect, useRef } from "react";
-import HeroSection from "@/components/HeroSection";
-import ColorGradient from "@/components/ColorGradient";
 
-const Index = () => {
-  return (
-    <div className="min-h-screen">
-      {/* Background container with explicit height for hero section only */}
-      <div 
-        id="home"
-        className="relative w-full"
-        style={{ 
-          backgroundColor: "#1A0A23", // Fallback color
-          width: "100vw",
-          marginLeft: "calc(-50vw + 50%)",
-        }}
-      >
-        {/* Background image */}
-        {/* <img 
-          className="absolute inset-0 w-full h-full object-cover"
-          src="/images/background8.png"
-          alt=""
-        /> */}
-        
-        {/* Content container - Navbar is now part of MainLayout */}
-        <HeroSectionV2 />
-      </div>
-
-      {/* Rest of the page content with clean separation */}
-      <div className="bg-black">
-        <TypewriterStatement />
-        
-        {/* Features section */}
-        <div id="features">
-          <Features />
+const Index = () => (
+  <div
+    className="min-h-screen flex flex-col items-center justify-center relative"
+    style={{
+      backgroundImage: 'url(/images/home-bg.webp)',
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      backgroundRepeat: 'no-repeat',
+      width: '100vw',
+      height: '100vh',
+      overflow: 'hidden',
+    }}
+  >
+    {/* Overlay for readability */}
+    {/* <div className="absolute inset-0 bg-black/60 z-0" /> */}
+    <div className="relative z-10 flex flex-col items-center justify-center h-full w-full">
+      <div className="absolute" style={{ left: 100, top: 500 }}>
+        <span className="libre-carlson italic text-[86px] text-white leading-none">Augment </span>{' '}
+        <span className="font-inter text-[86px] text-white leading-none">your legal team.</span>
+        <div className="mt-8">
+          <span className="font-inter text-[32px] text-white font-normal">Delegate the busy work to Third Chair so your in-house legal team <br/>can focus on what moves the needle.</span>
         </div>
-        
-        {/* Testimonials section */}
-        <div id="testimonials">
-          <Testimonials />
-        </div>
-        
-        {/* Pricing section */}
-        <div id="pricing">
-          <Pricing />
-        </div>
-        
-        {/* Footer is now part of MainLayout */}
       </div>
     </div>
-  );
-};
+  </div>
+);
 
 const IndexPage = () => (
   <MainLayout>

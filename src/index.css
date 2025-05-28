@@ -1,5 +1,6 @@
 /* Import Satoshi font */
 @import url('https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900,300,401,501,701,901&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:wght@400;700&family=Inter:wght@400;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -92,7 +93,7 @@
   }
   
   body {
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: 'Inter', Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     @apply bg-background text-foreground;
@@ -109,6 +110,15 @@
   * {
     @apply border-border;
   }
+
+  .libre-carlson {
+    font-family: 'Libre Caslon Text', serif;
+  }
+
+  .font-inter {
+    font-family: 'Inter', Arial, sans-serif;
+  }
+
 /* Keyframes for gradient animations */
 @keyframes fadeInGreen {
   0% { opacity: 0; }

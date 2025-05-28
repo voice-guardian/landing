@@ -5,6 +5,7 @@ import SearchResults from '@/pages/SearchResults';
 import AmberBlog from '@/pages/AmberBlog';
 import NotFound from '@/pages/NotFound';
 import AdministrationBlog from '@/pages/AdministrationBlog';
+import UseCaseIPPage from '@/pages/use-case-ip';
 import { ROUTES } from './constants';
 
 // Define our routes
@@ -13,6 +14,10 @@ const router = createBrowserRouter([
     path: ROUTES.HOME,
     element: <Index />,
     errorElement: <NotFound />
+  },
+  {
+    path: '/enforcement',
+    element: <UseCaseIPPage />
   },
   {
     path: ROUTES.ABOUT,
