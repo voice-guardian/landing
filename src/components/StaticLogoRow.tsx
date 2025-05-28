@@ -15,8 +15,8 @@ const LogoItem = ({ src, alt }) => (
     <img
       src={src}
       alt={alt}
-      className="h-12 md:h-16 lg:h-20 w-auto object-contain opacity-80 hover:opacity-100 transition-all duration-200 brightness-0 invert hover:brightness-100 hover:invert-0"
-      style={{ maxWidth: 160 }}
+      className="h-16 md:h-16 lg:h-20 w-auto object-contain opacity-80 hover:opacity-100 transition-all duration-200 brightness-0 invert hover:brightness-100 hover:invert-0"
+      style={{ maxWidth: 180 }}
     />
   </div>
 );
@@ -49,8 +49,8 @@ const StaticLogoRow = () => {
             key={logo.alt}
             src={logo.src}
             alt={logo.alt}
-            className="h-12 md:h-16 lg:h-20 w-auto object-contain opacity-80 hover:opacity-100 transition-all duration-200 brightness-0 invert hover:brightness-100 hover:invert-0"
-            style={{ maxWidth: 160 }}
+            className="h-16 md:h-16 lg:h-20 w-auto object-contain opacity-80 hover:opacity-100 transition-all duration-200 brightness-0 invert hover:brightness-100 hover:invert-0"
+            style={{ maxWidth: 180 }}
           />
         ))}
       </div>
