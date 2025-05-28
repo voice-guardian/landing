@@ -27,7 +27,7 @@ const HeroSectionV2: React.FC = () => {
   };
 
   return (
-    <section className="flex flex-col items-center justify-center max-w-full mx-auto relative min-h-screen bg-cover bg-center bg-no-repeat" style={{ backgroundImage: 'url(/images/bg.webp)', backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}>
+    <section className="flex flex-col items-center justify-center max-w-full mx-auto relative min-h-screen bg-cover bg-center bg-no-repeat" style={{ backgroundImage: 'url(https://ik.imagekit.io/rekruiter/Watchdog/bg.webp)', backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}>
       {/* Animated Gradient Background */}
       {/* <div className="absolute inset-0 w-full h-full z-0 pointer-events-none">
         <ColorGradient />

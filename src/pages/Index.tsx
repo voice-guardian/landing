@@ -13,7 +13,7 @@ const Index = () => {
     <div
       className="min-h-screen flex flex-col items-center justify-center relative"
       style={{
-        backgroundImage: 'url(/images/home-bg.webp)',
+        backgroundImage: 'url(https://ik.imagekit.io/rekruiter/Watchdog/home-bg.webp)',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
