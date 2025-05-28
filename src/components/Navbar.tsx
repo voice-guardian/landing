@@ -34,22 +34,22 @@ const Navbar = () => {
         <div className="flex items-center z-20">
           <Link to={ROUTES.HOME} className="flex items-center">
             <img
-              src="/images/new-logo.png"
+              src="/images/new-logo-3.png"
               alt="Third Chair Logo"
-              style={{ width: '200px', height: 'auto', display: 'block' }}
+              style={{ width: '180px', height: 'auto', display: 'block' }}
             />
           </Link>
         </div>
         
         {/* Desktop Action Buttons - Hidden on mobile */}
-        <div className="hidden md:flex items-center space-x-10 z-20">
+        <div className="hidden md:flex items-center space-x-10 z-[1000]">
           <div
             className="relative"
             onMouseEnter={() => setIsDropdownOpen(true)}
             onMouseLeave={() => setIsDropdownOpen(false)}
           >
             {/* Expanded hover area for dropdown */}
-            <div className="absolute left-[-32px] top-[-24px] w-[260px] h-[80px] z-40" style={{ pointerEvents: 'auto' }}></div>
+            <div className="absolute left-[-32px] top-[-24px] w-[200px] h-[80px] z-40" style={{ pointerEvents: 'auto' }}></div>
             <button className="text-white text-base font-normal flex items-center px-0 py-0 bg-transparent hover:underline focus:outline-none shadow-none border-none relative z-50">
               Use Cases
               <ChevronDown className="ml-1 h-4 w-4" />

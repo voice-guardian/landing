@@ -36,7 +36,7 @@ const HeroSectionV2: React.FC = () => {
       <div className="flex flex-col items-center justify-center w-full gap-6 pt-28 sm:pt-20 flex-1 relative z-10">
         {/* YCombinator Badge */}
         <div 
-          className={`relative backdrop-blur-lg bg-black/40 border border-white/10 text-white/80 px-4 py-0.5 rounded-full inline-flex text-xs font-semibold tracking-wide transition-all duration-700 ease-out ${
+          className={`relative backdrop-blur-lg bg-black/40 border border-white/10 text-white/80 px-4 py-0.5 rounded-full inline-flex text-xs font-semibold tracking-wide transition-all duration-700 ease-out mt-10 ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4"
           }`}
           style={{ transitionDelay: "100ms" }}

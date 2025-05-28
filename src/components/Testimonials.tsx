@@ -144,7 +144,7 @@ const Testimonials: React.FC = () => {
           <h2 className="text-3xl md:text-4xl lg:text-5xl text-white font-light mb-8 font-inter">
             Join leading businesses using Third Chair <br className="hidden sm:block" />
             <span className="font-normal font-inter">
-              <span className="font-bold bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent">to get paid</span> for brand uses
+              <span className="font-bold bg-gradient-to-r from-[#34a8bd] to-[#34a8bd]/80 bg-clip-text text-transparent">to get paid</span> for brand uses
             </span>
           </h2>
         </div>
@@ -214,7 +214,7 @@ const Testimonials: React.FC = () => {
                 {currentMobileTestimonial.hasBlogPost && currentMobileTestimonial.blogRoute && (
                   <Button 
                     onClick={() => navigateToCaseStudy(currentMobileTestimonial.blogRoute!)}
-                    className="mt-3 bg-purple-600 hover:bg-purple-700 text-white text-sm py-1 px-3"
+                    className="mt-3 bg-[#34a8bd] hover:bg-[#34a8bd]/80 text-white text-sm py-1 px-3"
                   >
                     View Case Study
                   </Button>
@@ -275,7 +275,7 @@ const Testimonials: React.FC = () => {
                 key={testimonial.id}
                 className={`relative rounded-xl overflow-hidden transition-all duration-300 transform hover:scale-[1.02] group ${
                   isVisible ? "" : "opacity-0"
-                } ${testimonial.isCaseStudy ? 'ring-2 ring-purple-500 ring-offset-4 ring-offset-[#111] shadow-lg shadow-purple-900/20' : ''}`}
+                } ${testimonial.isCaseStudy ? 'ring-2 ring-[#34a8bd] ring-offset-4 ring-offset-[#111] shadow-lg shadow-purple-900/20' : ''}`}
                 style={{ 
                   transitionDelay: `${600 + index * 200}ms`,
                   transition: "all 0.7s ease-out",
@@ -284,7 +284,7 @@ const Testimonials: React.FC = () => {
               >
                 {/* Case Study Badge - Show only for the special case study card */}
                 {testimonial.isCaseStudy && (
-                  <div className="absolute top-4 right-4 z-20 bg-purple-500 text-white text-xs font-bold px-2 py-1 rounded-md">
+                  <div className="absolute top-4 right-4 z-20 bg-[#34a8bd] text-white text-xs font-bold px-2 py-1 rounded-md">
                     CASE STUDY
                   </div>
                 )}
@@ -331,7 +331,7 @@ const Testimonials: React.FC = () => {
                     {testimonial.hasBlogPost && testimonial.blogRoute && (
                       <Button 
                         onClick={() => navigateToCaseStudy(testimonial.blogRoute!)}
-                        className="mt-3 bg-purple-600 hover:bg-purple-700 text-white text-sm py-1 px-3"
+                        className="mt-3 bg-[#34a8bd] hover:bg-[#34a8bd]/80 text-white text-sm py-1 px-3"
                       >
                         View Case Study
                       </Button>

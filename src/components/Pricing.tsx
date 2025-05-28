@@ -52,7 +52,7 @@ const Pricing: React.FC = () => {
       bgColor: 'bg-gray-100',
       hoverBgImage: "url('/images/background2.png')",
       textColor: 'text-gray-800',
-      buttonClass: 'bg-purple-600 text-white hover:bg-purple-700'
+      buttonClass: 'bg-[#34a8bd] text-white hover:bg-[34a8bd]/80'
     },
     {
       id: 'managed',
@@ -223,7 +223,7 @@ const Pricing: React.FC = () => {
                     href={demoUrl}
                     className={`w-full py-3 px-4 rounded-lg font-medium transition-all duration-300 inline-block text-center ${
                       hoveredCard === plan.id 
-                        ? (plan.id === 'standard' ? 'bg-purple-600 text-white' : 'bg-white text-[#404154]')
+                        ? (plan.id === 'standard' ? 'bg-[#34a8bd] text-white' : 'bg-white text-[#404154]')
                         : plan.buttonClass
                     }`}
                   >
