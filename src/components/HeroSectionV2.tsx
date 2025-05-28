@@ -27,16 +27,16 @@ const HeroSectionV2: React.FC = () => {
   };
 
   return (
-    <section className="flex flex-col items-center justify-center max-w-full mx-auto relative min-h-screen">
+    <section className="flex flex-col items-center justify-center max-w-full mx-auto relative min-h-screen bg-cover bg-center bg-no-repeat" style={{ backgroundImage: 'url(/images/bg.webp)', backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}>
       {/* Animated Gradient Background */}
-      <div className="absolute inset-0 w-full h-full z-0 pointer-events-none">
+      {/* <div className="absolute inset-0 w-full h-full z-0 pointer-events-none">
         <ColorGradient />
-      </div>
+      </div> */}
       {/* Content Section */}
       <div className="flex flex-col items-center justify-center w-full gap-6 pt-28 sm:pt-20 flex-1 relative z-10">
         {/* YCombinator Badge */}
         <div 
-          className={`relative backdrop-blur-md bg-white/20 border border-white/10 text-white/80 px-4 py-0.5 rounded-full inline-flex text-xs font-semibold tracking-wide transition-all duration-700 ease-out ${
+          className={`relative backdrop-blur-lg bg-black/40 border border-white/10 text-white/80 px-4 py-0.5 rounded-full inline-flex text-xs font-semibold tracking-wide transition-all duration-700 ease-out ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4"
           }`}
           style={{ transitionDelay: "100ms" }}

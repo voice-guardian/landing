@@ -108,7 +108,7 @@ const FindingUsesScreen = ({ searchTerm, onClose, artistId }: FindingUsesScreenP
         // Mark API call as completed
         apiCallCompleted.current = true;
       } catch (error) {
-        console.error("Error fetching Watchdog data:", error);
+        console.error("Error fetching Third Chair data:", error);
         apiCallCompleted.current = true;
       }
     };
