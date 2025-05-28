@@ -29,12 +29,15 @@ const Navbar = () => {
       <div className="relative flex justify-between items-center py-5 px-4 md:px-8 container mx-auto">
         {/* Logo */}
         <div className="flex items-center z-20">
-          <Link to={ROUTES.HOME} className="flex items-center">
+          <Link to={ROUTES.HOME} className="flex items-center text-white font-bold text-xl">
             <img
-              src="/images/new-logo.png"
-              alt="Third Chair Logo"
-              style={{ width: '200px', height: 'auto', display: 'block' }}
+              src="/images/watchdog-logo.webp"
+              alt="Watchdog Logo"
+              width="38"
+              height="38"
+              className="mr-4 brightness-0 invert"
             />
+            Watchdog
           </Link>
         </div>
         

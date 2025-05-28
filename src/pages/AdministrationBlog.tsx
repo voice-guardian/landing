@@ -59,7 +59,7 @@ const AdministrationBlogContent = () => {
             </h1>
             
             <p className="text-xl text-gray-300 mb-8">
-              Learn how this music publisher representing 1,500+ songwriters transformed unauthorized brand usage into substantial revenue with Third Chair's tools.
+              Learn how this music publisher representing 1,500+ songwriters transformed unauthorized brand usage into substantial revenue with Watchdog's tools.
             </p>
           </div>
         </div>
@@ -81,7 +81,7 @@ const AdministrationBlogContent = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
               <div className="absolute bottom-0 left-0 right-0 p-6">
                 <h2 className="text-2xl font-bold text-white">
-                  How The Administration MP Claimed Significant Licensing Revenue with Third Chair's Tools
+                  How The Administration MP Claimed Significant Licensing Revenue with Watchdog's Tools
                 </h2>
               </div>
             </div>
@@ -115,7 +115,7 @@ const AdministrationBlogContent = () => {
                 The Administration MP is a powerhouse music publisher representing over 1,500 songwriters and composers. Their clients' music significantly impacts culture across TikTok and Instagram, being featured in over 8 million videos. This widespread use also led to numerous instances of brands using the music in their advertising without proper licensing.
               </p>
               <div className="pl-4 border-l-2 border-purple-500 italic text-white">
-                "Third Chair gives us the ability to protect our clients at scale."
+                "Watchdog gives us the ability to protect our clients at scale."
               </div>
             </section>
             
@@ -173,7 +173,7 @@ const AdministrationBlogContent = () => {
             <section className="bg-gradient-to-r from-purple-900/20 to-purple-800/10 p-8 rounded-xl border border-purple-500/20">
               <h3 className="text-2xl font-bold mb-4 text-purple-400">Testimonial</h3>
               <p className="text-xl italic text-white">
-                "Third Chair is filling an incredible gap in the industry for protecting and monetizing our client's composition copyrights, helping us monetize opportunities we didn't know even existed."
+                "Watchdog is filling an incredible gap in the industry for protecting and monetizing our client's composition copyrights, helping us monetize opportunities we didn't know even existed."
               </p>
               <p className="mt-4 text-purple-300 font-medium">— Joshua Leopold, The Administration MP</p>
             </section>

@@ -26,10 +26,10 @@ const Footer: React.FC = () => {
             <div className="flex items-center mb-6">
               <img
                 src="/images/logo.png"
-                alt="Third Chair Logo"
+                alt="Watchdog Logo"
                 className="h-8 mr-3"
               />
-              <span className="text-white text-xl font-bold">Third Chair</span>
+              <span className="text-white text-xl font-bold">Watchdog</span>
             </div>
             <h2 className="text-3xl md:text-4xl font-bold leading-tight">
               Tap Into A{" "}

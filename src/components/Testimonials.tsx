@@ -60,7 +60,7 @@ const Testimonials: React.FC = () => {
   const testimonials: Testimonial[] = [
     {
       id: 1,
-      quote: "Before Third Chair, I felt powerless to collect the money I was owed from big corporations. Third Chair helped me secure a fair outcome, and I couldn't be more excited to partner with them on future projects.",
+      quote: "Before Watchdog, I felt powerless to collect the money I was owed from big corporations. Watchdog helped me secure a fair outcome, and I couldn't be more excited to partner with them on future projects.",
       backgroundImage: "/images/ugc.jpg",
       companyName: "Amber Lowe (UGC Creator)",
       isCaseStudy: true,
@@ -70,7 +70,7 @@ const Testimonials: React.FC = () => {
     },
     {
       id: 2,
-      quote: "Third Chair is filling an incredible gap in the industry for protecting and monetizing our client's composition copyrights, helping us monetize opportunities we didn't know even existed.",
+      quote: "Watchdog is filling an incredible gap in the industry for protecting and monetizing our client's composition copyrights, helping us monetize opportunities we didn't know even existed.",
       companyLogo: "/images/brands/the-administration.webp",
       backgroundImage: "/images/party.jpg",
       companyName: "The Administration MP",
@@ -80,7 +80,7 @@ const Testimonials: React.FC = () => {
     },
     {
       id: 3,
-      quote: "Third Chair has helped to increase my revenue by four times within 6 months! They have been a breeze to work with, carefully and respectfully taking care of all the nitty-gritty so I can continue to focus completely on my music and career. I will forever be grateful for this life-changing opportunity to partner with Third Chair!",
+      quote: "Watchdog has helped to increase my revenue by four times within 6 months! They have been a breeze to work with, carefully and respectfully taking care of all the nitty-gritty so I can continue to focus completely on my music and career. I will forever be grateful for this life-changing opportunity to partner with Watchdog!",
       companyLogo: "/images/testimonials/fatcoda.png",
       backgroundImage: "/images/record.jpg",
       companyName: "Fat Coda Studios",
@@ -142,7 +142,7 @@ const Testimonials: React.FC = () => {
         >
          
           <h2 className="text-3xl md:text-4xl lg:text-5xl text-white font-light mb-8 font-inter">
-            Join leading businesses using Third Chair <br className="hidden sm:block" />
+            Join leading businesses using Watchdog <br className="hidden sm:block" />
             <span className="font-normal font-inter">
               <span className="font-bold bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent">to get paid</span> for brand uses
             </span>
