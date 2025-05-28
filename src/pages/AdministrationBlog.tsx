@@ -101,7 +101,7 @@ const AdministrationBlogContent = () => {
             <h3 className="text-2xl font-bold mb-4 text-purple-400">Executive Summary</h3>
             <div className="bg-[#14101A] border-l-4 border-purple-500 p-6 rounded-r-lg">
               <p className="text-gray-300">
-                The Administration MP, representing over 1,500 songwriters, faced a challenge: widespread unlicensed use of their clients' music by brands on TikTok and Instagram. Using Watchdog, they transformed passive infringement into active licensing outcomes, recovering significant revenue. This case study demonstrates how music publishers can effectively enforce rights and generate revenue at scale.
+                The Administration MP, representing over 1,500 songwriters, faced a challenge: widespread unlicensed use of their clients' music by brands on TikTok and Instagram. Using Third Chair, they transformed passive infringement into active licensing outcomes, recovering significant revenue. This case study demonstrates how music publishers can effectively enforce rights and generate revenue at scale.
               </p>
             </div>
           </div>
@@ -139,7 +139,7 @@ const AdministrationBlogContent = () => {
             <section>
               <h3 className="text-2xl font-bold mb-4 text-purple-400">Solution</h3>
               <p className="text-gray-300 mb-4">
-                With Watchdog's platform, The Administration MP was able to take control of their intellectual property rights and monetization strategy.
+                With Third Chair's platform, The Administration MP was able to take control of their intellectual property rights and monetization strategy.
               </p>
               <p className="text-gray-300 mb-4">
                 The Administration MP:
@@ -156,10 +156,10 @@ const AdministrationBlogContent = () => {
             <section>
               <h3 className="text-2xl font-bold mb-4 text-purple-400">Outcome</h3>
               <p className="text-gray-300 mb-4">
-                Within weeks, The Administration MP was able to turn social media advertising from uncertain whack-a-mole into a dependable revenue stream. Watchdog provided the tools to recover revenue at scale and effectively protect their clients' rights.
+                Within weeks, The Administration MP was able to turn social media advertising from uncertain whack-a-mole into a dependable revenue stream. Third Chair provided the tools to recover revenue at scale and effectively protect their clients' rights.
               </p>
               <p className="text-gray-300 mb-4">
-                By leveraging Watchdog's technology, The Administration MP created a sustainable system for:
+                By leveraging Third Chair's technology, The Administration MP created a sustainable system for:
               </p>
               <ul className="list-disc pl-6 text-gray-300 space-y-2 mb-4">
                 <li>Continuous monitoring of all client music</li>
@@ -183,7 +183,7 @@ const AdministrationBlogContent = () => {
           <div className={`mt-16 text-center transition-all duration-1000 delay-600 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             <h3 className="text-2xl font-bold mb-4 text-white">Ready to protect your music at scale?</h3>
             <p className="text-gray-300 mb-6">
-              Join publishers like The Administration MP who are transforming IP protection into revenue with Watchdog.
+              Join publishers like The Administration MP who are transforming IP protection into revenue with Third Chair.
             </p>
             <a href="https://calendly.com/yoavzimmerman/watchdog">
               <Button

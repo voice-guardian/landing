@@ -59,7 +59,7 @@ const AmberBlogContent = () => {
             </h1>
             
             <p className="text-xl text-gray-300 mb-8">
-              Join creators like Amber who turned 300+ unauthorized brand uses into significant licensing deals with Watchdog's automated tracking and enforcement tools.
+              Join creators like Amber who turned 300+ unauthorized brand uses into significant licensing deals with Third Chair's automated tracking and enforcement tools.
             </p>
           </div>
         </div>
@@ -79,7 +79,7 @@ const AmberBlogContent = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
               <div className="absolute bottom-0 left-0 right-0 p-6">
                 <h2 className="text-2xl font-bold text-white">
-                Amber Lowe’s Success Story with Watchdog's Platform
+                Amber Lowe’s Success Story with Third Chair's Platform
                 </h2>
               </div>
             </div>
