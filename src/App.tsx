@@ -31,11 +31,11 @@ function App() {
                 IP enforcement
               </a>
               <div className="text-white text-2xl font-semibold text-center flex items-center gap-2">
-                Registrations
+                IP Licensing
                 <span className="ml-2 bg-white/30 text-[10px] text-gray-700 px-2.5 py-0.5 rounded-sm font-semibold leading-tight" style={{lineHeight: '1.1'}}>Coming soon</span>
               </div>
               <div className="text-white text-2xl font-semibold text-center flex items-center gap-2">
-                Compliance
+                IP Compliance
                 <span className="ml-2 bg-white/30 text-[10px] text-gray-700 px-2.5 py-0.5 rounded-sm font-semibold leading-tight" style={{lineHeight: '1.1'}}>Coming soon</span>
               </div>
             </div>

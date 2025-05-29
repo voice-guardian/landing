@@ -55,22 +55,22 @@ const Navbar = () => {
               <ChevronDown className="ml-1 h-4 w-4" />
             </button>
             <div
-              className={`absolute left-[-32px] mt-2 min-w-[220px] bg-black/30 backdrop-blur-2xl rounded-b-xl py-2 transition-all duration-200 z-50 ${isDropdownOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
+              className={`absolute left-[-32px] mt-2 min-w-[270px] bg-black/30 backdrop-blur-2xl rounded-b-xl py-2 transition-all duration-200 z-50 ${isDropdownOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
               style={{ marginTop: '24px' }}
             >
               <a
                 href="/enforcement"
                 className="block px-6 py-3 text-white hover:bg-black/50 hover:text-purple-300 transition-colors rounded-lg text-base font-medium"
               >
-                IP enforcement
+              IP Enforcement
               </a>
-              <div className="block px-6 py-3 text-white flex items-center gap-2 text-base font-medium">
-                Registrations
-                <span className="ml-2 bg-white/30 text-[10px] text-gray-700 px-2.5 py-0.5 rounded-sm font-semibold leading-tight" style={{lineHeight: '1.1'}}>Coming soon</span>
+              <div className="block px-4 py-3 text-white flex items-center gap-2 text-base font-medium">
+              &nbsp;&nbsp;IP Licensing
+                <span className="ml-2 bg-white/30 text-[9px] text-gray-700 px-2.5 py-0.5 rounded-sm font-semibold leading-tight" style={{lineHeight: '1.1'}}>Coming soon</span>
               </div>
-              <div className="block px-6 py-3 text-white flex items-center gap-2 text-base font-medium">
-                Compliance
-                <span className="ml-2 bg-white/30 text-[10px] text-gray-700 px-2.5 py-0.5 rounded-sm font-semibold leading-tight" style={{lineHeight: '1.1'}}>Coming soon</span>
+              <div className="block px-4 py-3 text-white flex items-center gap-2 text-base font-medium">
+              &nbsp;&nbsp;IP Compliance
+                <span className="ml-2 bg-white/30 text-[9px] text-gray-700 px-2.5 py-0.5 rounded-sm font-semibold leading-tight" style={{lineHeight: '1.1'}}>Coming soon</span>
               </div>
             </div>
           </div>

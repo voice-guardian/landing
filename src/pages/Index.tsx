@@ -31,7 +31,7 @@ const Index = () => {
             <span className="libre-carlson italic text-[86px] leading-none text-white">Augment </span>{' '}
             <span className="font-inter text-[86px] leading-none text-white">your legal team.</span>
             <div className="mt-8 transition-opacity duration-700 ease-out" style={{ transitionDelay: '300ms' }}>
-              <span className="font-inter text-[32px] text-white font-normal">Delegate the busy work to Third Chair so your in-house legal team <br/>can focus on what moves the needle.</span>
+              <span className="font-inter text-[32px] text-white font-normal">Delegate the paralegal work to Third Chair so your in-house legal team <br/>can operate at scale.</span>
             </div>
           </div>
         </div>
@@ -40,7 +40,7 @@ const Index = () => {
           <span className="libre-carlson italic text-[54px] sm:text-[54px] leading-none text-white text-center">Augment </span>{' '}
           <span className="font-inter text-[48px] sm:text-[48px] leading-none text-white text-center">your legal team.</span>
           <div className="mt-6 w-full transition-opacity duration-700 ease-out" style={{ transitionDelay: '300ms' }}>
-            <span className="font-inter text-[18px] sm:text-lg text-white font-normal text-center block w-full px-2">Delegate the busy work to Third Chair so your in-house legal team <br className="hidden sm:block"/>can focus on what moves the needle.</span>
+            <span className="font-inter text-[18px] sm:text-lg text-white font-normal text-center block w-full px-2">Delegate the paralegal work to Third Chair so your in-house legal team <br className="hidden sm:block"/>can operate at scale.</span>
           </div>
         </div>
       </div>
