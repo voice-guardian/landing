@@ -74,7 +74,7 @@ const Navbar = () => {
               </div>
             </div>
           </div>
-          <a href="https://calendly.com/yoavzimmerman/watchdog">
+          <a href="https://calendly.com/yoavz-usethirdchair/third-chair-demo">
             <Button variant="outline" className="bg-white text-black hover:bg-gray-100 text-sm h-9 px-4 w-[112px] rounded-md border-0 shadow-none">
               Book a Demo
             </Button>

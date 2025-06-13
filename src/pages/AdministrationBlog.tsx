@@ -185,7 +185,7 @@ const AdministrationBlogContent = () => {
             <p className="text-gray-300 mb-6">
               Join publishers like The Administration MP who are transforming IP protection into revenue with Third Chair.
             </p>
-            <a href="https://calendly.com/yoavzimmerman/watchdog">
+            <a href="https://calendly.com/yoavz-usethirdchair/third-chair-demo">
               <Button
                 className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-2 rounded-md"
               >

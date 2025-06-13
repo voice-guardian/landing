@@ -75,7 +75,7 @@ const Pricing: React.FC = () => {
     }
   ];
 
-  const demoUrl = "https://calendly.com/yoavzimmerman/watchdog";
+  const demoUrl = "https://calendly.com/yoavz-usethirdchair/third-chair-demo";
 
   return (
     <section ref={sectionRef} className="w-full py-20 bg-white overflow-hidden">

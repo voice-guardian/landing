@@ -183,7 +183,7 @@ const AmberBlogContent = () => {
             <p className="text-gray-300 mb-6">
               Join creators like Amber who are turning unauthorized usage into revenue with Watchdog.
             </p>
-            <a href="https://calendly.com/yoavzimmerman/watchdog">
+            <a href="https://calendly.com/yoavz-usethirdchair/third-chair-demo">
               <Button
                 className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-2 rounded-md"
               >
