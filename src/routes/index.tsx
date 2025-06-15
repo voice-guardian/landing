@@ -7,6 +7,15 @@ import NotFound from '@/pages/NotFound';
 import AdministrationBlog from '@/pages/AdministrationBlog';
 import UseCaseIPPage from '@/pages/use-case-ip';
 import { ROUTES } from './constants';
+import React from 'react';
+
+// External redirect component
+const ExternalRedirect = ({ to }: { to: string }) => {
+  React.useEffect(() => {
+    window.location.href = to;
+  }, [to]);
+  return null;
+};
 
 // Define our routes
 const router = createBrowserRouter([
@@ -42,6 +51,10 @@ const router = createBrowserRouter([
   {
     path: '/terms-of-service',
     element: <Navigate to="/terms-of-service.html" replace />,
+  },
+  {
+    path: '/careers',
+    element: <ExternalRedirect to="https://app.dover.com/jobs/thirdchair" />,
   },
   // Add more routes here as needed
   // Example:
