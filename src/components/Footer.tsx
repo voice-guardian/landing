@@ -17,7 +17,7 @@ const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-[#04232C] text-white pt-16 pb-8">
+    <footer className="bg-[#04232C] text-white pt-16 pb-16 z-50 relative">
       <div className="container mx-auto px-4 md:px-6">
         {/* Top Section with Brand + CTA */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-14">
@@ -64,9 +64,9 @@ const Footer: React.FC = () => {
           </div>
 
           {/* Right - Social + Legal */}
-          <div className="flex flex-col md:flex-row items-center">
+          <div className="flex flex-col md:flex-row items-center w-full md:w-auto">
             {/* Social Icons */}
-            <div className="flex space-x-4 mb-6 md:mb-0 md:mr-8">
+            <div className="flex space-x-4 mb-4 md:mb-0 md:mr-8 justify-center w-full">
               <a
                 href="https://linkedin.com/company/watchdog-sf"
                 target="_blank"
@@ -84,18 +84,27 @@ const Footer: React.FC = () => {
               </a>
             </div>
             {/* Legal Links */}
-            <div className="flex space-x-4">
+            <div className="flex flex-row flex-wrap justify-center items-center space-x-4 min-w-0 md:w-auto md:flex-nowrap md:space-x-8 md:space-y-0 md:px-8">
               <a
                 href="/privacy-policy.html"
-                className="text-white text-sm hover:underline"
+                className="text-white text-sm hover:underline md:whitespace-nowrap"
               >
                 Privacy Policy
               </a>
               <a
                 href="/terms-of-service.html"
-                className="text-white text-sm hover:underline"
+                className="text-white text-sm hover:underline md:whitespace-nowrap"
               >
                 Terms of Service
+              </a>
+              {/* Mobile Only: Careers Link as simple link */}
+              <a
+                href="https://app.dover.com/jobs/thirdchair"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white text-sm hover:underline md:hidden"
+              >
+                Careers
               </a>
             </div>
           </div>

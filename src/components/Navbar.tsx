@@ -43,6 +43,15 @@ const Navbar = () => {
         
         {/* Desktop Action Buttons - Hidden on mobile */}
         <div className="hidden md:flex items-center space-x-10 z-[1000]">
+           {/* Careers Link */}
+           <a
+            href="https://app.dover.com/jobs/thirdchair"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-white text-base font-normal hover:underline focus:outline-none"
+          >
+            Careers
+          </a>
           <div
             className="relative"
             onMouseEnter={() => setIsDropdownOpen(true)}
@@ -74,6 +83,7 @@ const Navbar = () => {
               </div>
             </div>
           </div>
+         
           <a href="https://calendly.com/yoavz-usethirdchair/third-chair-demo">
             <Button variant="outline" className="bg-white text-black hover:bg-gray-100 text-sm h-9 px-4 w-[112px] rounded-md border-0 shadow-none">
               Book a Demo
